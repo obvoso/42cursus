@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 18:23:02 by soo               #+#    #+#             */
-/*   Updated: 2022/03/20 21:55:57 by soo              ###   ########.fr       */
+/*   Updated: 2022/03/21 16:15:00 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	*str_cpy(char const *start, char const *end)
 	i = 0;
 	ret = (char *)malloc(end - start + 1);
 	if (!ret)
-		return (NULL); 
+		return (NULL);
 	while (start < end)
 		ret[i++] = *start++;
 	ret[i] = '\0';
@@ -53,7 +53,8 @@ char	**ft_split(char const *s, char c)
 
 	if (!s)
 		return (NULL);
-	if (!(ret = (char **)malloc(sizeof(char *) * (cnt_str(s, c) + 1))))
+	ret = (char **)malloc(sizeof(char *) * (cnt_str(s, c) + 1));
+	if (!ret)
 		return (NULL);
 	i = 0;
 	while (*s)
@@ -67,8 +68,7 @@ char	**ft_split(char const *s, char c)
 			ret[i] = str_cpy(start, s);
 			++i;
 		}
-		else
-			++s;
+		++s;
 	}
 	ret[i] = NULL;
 	return (ret);

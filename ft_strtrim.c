@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 16:45:51 by soo               #+#    #+#             */
-/*   Updated: 2022/03/20 18:44:07 by soo              ###   ########.fr       */
+/*   Updated: 2022/03/21 15:10:36 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	char			*ret;
+	char	*ret;
 	size_t	start;
 	size_t	end;
 

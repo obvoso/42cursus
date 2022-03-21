@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 16:40:10 by soo               #+#    #+#             */
-/*   Updated: 2022/03/20 18:51:34 by soo              ###   ########.fr       */
+/*   Updated: 2022/03/21 15:09:22 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char			*ret;
-	size_t	len;
-	size_t	i;
+	size_t			len;
+	size_t			i;
 
 	if (!s1 || !s2)
 		return (NULL);

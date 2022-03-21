@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 15:33:29 by soo               #+#    #+#             */
-/*   Updated: 2022/03/17 22:04:41 by soo              ###   ########.fr       */
+/*   Updated: 2022/03/21 15:09:42 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
 	size_t	dest_len;
 	size_t	src_len;
-	
+
 	dest_len = ft_strlen(dst);
 	src_len = 0;
 	if (dest_len < dstsize)

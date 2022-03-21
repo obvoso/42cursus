@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 22:09:03 by soo               #+#    #+#             */
-/*   Updated: 2022/03/17 17:57:16 by soo              ###   ########.fr       */
+/*   Updated: 2022/03/21 15:06:14 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 			*dest_p++ = *src_p++;
 	else if (dest_p > src_p)
 		while (len--)
-		dest_p[len] = src_p[len];
+			dest_p[len] = src_p[len];
 	return (dst);
 }

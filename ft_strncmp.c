@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 16:41:01 by soo               #+#    #+#             */
-/*   Updated: 2022/03/17 21:19:54 by soo              ###   ########.fr       */
+/*   Updated: 2022/03/21 15:10:00 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	unsigned const char	*s1_p;
-	unsigned const char *s2_p;
+	unsigned const char	*s2_p;
 
 	s1_p = (unsigned const char *)s1;
 	s2_p = (unsigned const char *)s2;
