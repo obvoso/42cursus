@@ -6,47 +6,31 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 20:09:02 by soo               #+#    #+#             */
-/*   Updated: 2022/03/21 14:41:35 by soo              ###   ########.fr       */
+/*   Updated: 2022/03/22 20:11:30 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-void	clear_lst(t_list *lst, void (*del)(void *))
-{
-	t_list	*next;
-
-	while (lst)
-	{
-		next = lst->next;
-		ft_lstdelone(lst, del);
-		lst = next;
-	}
-	free(next);
-}
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
 	t_list	*new;
 	t_list	*head;
 
-	if (lst && *f && del)
+	if (lst && f)
 	{
-		head = ft_lstnew(f(lst->content));
-		new = head->next;
+		new = 0;
+		head = new;
 		while (lst)
 		{
 			new = ft_lstnew(f(lst->content));
 			if (!new)
 			{
-				clear_lst(head, del);
+				ft_lstclear(&head, del);
 				return (NULL);
 			}
+			ft_lstadd_back(&head, new);
 			lst = lst->next;
-			if (!lst)
-				new->next = NULL;
-			else
-				new = new->next;
 		}
 		return (head);
 	}

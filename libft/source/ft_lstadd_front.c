@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 17:13:48 by soo               #+#    #+#             */
-/*   Updated: 2022/03/21 15:04:53 by soo              ###   ########.fr       */
+/*   Updated: 2022/03/22 18:28:01 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_lstadd_front(t_list **lst, t_list *new)
 	if (lst)
 	{
 		tmp = lst;
-		new->next = (*tmp);
-		(*tmp) = new;
+		new->next = *tmp;
+		*tmp = new;
 	}
 }

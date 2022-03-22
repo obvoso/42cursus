@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 18:23:02 by soo               #+#    #+#             */
-/*   Updated: 2022/03/21 16:15:00 by soo              ###   ########.fr       */
+/*   Updated: 2022/03/22 17:06:56 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ unsigned int	cnt_str(char const *s, char c)
 			while (*s != c && *s)
 				++s;
 		}
-		++s;
+		else
+			++s;
 	}
 	return (cnt);
 }
@@ -64,11 +65,10 @@ char	**ft_split(char const *s, char c)
 			start = s;
 			while (*s != c && *s)
 				++s;
-			ret[i] = (char *)malloc(s - start + 1);
-			ret[i] = str_cpy(start, s);
-			++i;
+			ret[i++] = str_cpy(start, s);
 		}
-		++s;
+		else
+			++s;
 	}
 	ret[i] = NULL;
 	return (ret);

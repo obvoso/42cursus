@@ -1,26 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/11 16:23:58 by soo               #+#    #+#             */
-/*   Updated: 2022/03/17 18:43:30 by soo              ###   ########.fr       */
+/*   Created: 2022/03/13 22:04:05 by soo               #+#    #+#             */
+/*   Updated: 2022/03/22 22:21:34 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+void	putnbr_recur(long long nb, int fd)
 {
-	while (*s)
+	if (nb > 9)
+		putnbr_recur(nb / 10, fd);
+	ft_putchar_fd(nb % 10 + '0', fd);
+}
+
+void	ft_putnbr_fd(int n, int fd)
+{
+	long long	nb;
+
+	nb = (long long)n;
+	if (nb < 0)
 	{
-		if (*s == c)
-			return ((char *)s);
-		++s;
+		ft_putchar_fd('-', fd);
+		nb *= -1;
 	}
-	if (*s == c)
-		return ((char *)s);
-	return (NULL);
+	putnbr_recur(nb, fd);
 }
