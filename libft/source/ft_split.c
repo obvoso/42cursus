@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 18:23:02 by soo               #+#    #+#             */
-/*   Updated: 2022/03/22 17:06:56 by soo              ###   ########.fr       */
+/*   Updated: 2022/03/23 01:55:58 by songmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,32 +31,18 @@ unsigned int	cnt_str(char const *s, char c)
 	return (cnt);
 }
 
-char	*str_cpy(char const *start, char const *end)
+void	str_cpy(char *ret, char const *start, char const *end)
 {
-	char	*ret;
-	size_t	i;
-
-	i = 0;
-	ret = (char *)malloc(end - start + 1);
-	if (!ret)
-		return (NULL);
 	while (start < end)
-		ret[i++] = *start++;
-	ret[i] = '\0';
-	return (ret);
+		*ret++= *start++;
+	*ret = '\0';
 }
 
-char	**ft_split(char const *s, char c)
+int	ctrl_split(char **ret, char const *s, char c)
 {
-	char			**ret;
-	const char		*start;
+	const char	*start;
 	unsigned int	i;
-
-	if (!s)
-		return (NULL);
-	ret = (char **)malloc(sizeof(char *) * (cnt_str(s, c) + 1));
-	if (!ret)
-		return (NULL);
+	
 	i = 0;
 	while (*s)
 	{
@@ -65,11 +51,35 @@ char	**ft_split(char const *s, char c)
 			start = s;
 			while (*s != c && *s)
 				++s;
-			ret[i++] = str_cpy(start, s);
+			ret[i] = (char *)malloc(s - start + 1);
+			if (!ret[i])
+			{
+				while (i > 0)
+					free(ret[i--]);
+				return (1);
+			}
+			str_cpy(ret[i++], start, s);
 		}
 		else
 			++s;
 	}
 	ret[i] = NULL;
+	return (0);
+}
+
+char	**ft_split(char const *s, char c)
+{
+	char			**ret;
+
+	if (!s)
+		return (NULL);
+	ret = (char **)malloc(sizeof(char *) * (cnt_str(s, c) + 1));
+	if (!ret)
+		return (NULL);
+	if(ctrl_split(ret, s, c))
+	{
+		free(ret);
+		return (NULL);
+	}
 	return (ret);
 }

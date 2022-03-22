@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 17:20:49 by soo               #+#    #+#             */
-/*   Updated: 2022/03/22 19:41:21 by soo              ###   ########.fr       */
+/*   Updated: 2022/03/23 01:53:28 by songmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ void			ft_lstclear(t_list **lst, void (*del)(void *));
 void			ft_lstiter(t_list *lst, void (*f)(void *));
 t_list			*ft_lstmap(t_list *lst, void *(*f)(void *), \
 void (*del)(void *));
-char			*str_cpy(char const *start, char const *end);
+void			str_cpy(char *ret, char const *start, char const *end);
+int			ctrl_split(char **ret, char const *s, char c);
 void			putnbr_recur(long long n, int fd);
 void			*ft_calloc(size_t count, size_t size);
 char			*ft_strdup(const char *s1);
