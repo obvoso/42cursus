@@ -6,34 +6,33 @@
 #    By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/10 15:13:23 by soo               #+#    #+#              #
-#    Updated: 2022/03/22 16:28:01 by soo              ###   ########.fr        #
+#    Updated: 2022/03/23 15:51:15 by soo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -Iinclude -c
+CFLAGS = -Wall -Wextra -Werror -c
 
 NAME = libft.a
-SRCS_DIR = source
 
-SRCS = $(SRCS_DIR)/ft_isalpha.c $(SRCS_DIR)/ft_isdigit.c \
-	   $(SRCS_DIR)/ft_isalnum.c $(SRCS_DIR)/ft_isascii.c $(SRCS_DIR)/ft_isprint.c \
-	   $(SRCS_DIR)/ft_strlen.c $(SRCS_DIR)/ft_memset.c $(SRCS_DIR)/ft_bzero.c \
-	   $(SRCS_DIR)/ft_memcpy.c $(SRCS_DIR)/ft_memmove.c $(SRCS_DIR)/ft_strlcpy.c \
-	   $(SRCS_DIR)/ft_strlcat.c $(SRCS_DIR)/ft_toupper.c $(SRCS_DIR)/ft_tolower.c \
-	   $(SRCS_DIR)/ft_strchr.c $(SRCS_DIR)/ft_strrchr.c $(SRCS_DIR)/ft_strncmp.c \
-	   $(SRCS_DIR)/ft_memchr.c $(SRCS_DIR)/ft_memcmp.c $(SRCS_DIR)/ft_strnstr.c \
-	   $(SRCS_DIR)/ft_atoi.c $(SRCS_DIR)/ft_calloc.c $(SRCS_DIR)/ft_strdup.c \
-	   $(SRCS_DIR)/ft_substr.c $(SRCS_DIR)/ft_strjoin.c $(SRCS_DIR)/ft_strtrim.c \
-	   $(SRCS_DIR)/ft_split.c $(SRCS_DIR)/ft_itoa.c $(SRCS_DIR)/ft_strmapi.c \
-	   $(SRCS_DIR)/ft_striteri.c $(SRCS_DIR)/ft_putchar_fd.c \
-	   $(SRCS_DIR)/ft_putstr_fd.c $(SRCS_DIR)/ft_putendl_fd.c \
-	   $(SRCS_DIR)/ft_putnbr_fd.c
+SRCS = ft_isalpha.c ft_isdigit.c \
+	   ft_isalnum.c ft_isascii.c ft_isprint.c \
+	   ft_strlen.c ft_memset.c ft_bzero.c \
+	   ft_memcpy.c ft_memmove.c ft_strlcpy.c \
+	   ft_strlcat.c ft_toupper.c ft_tolower.c \
+	   ft_strchr.c ft_strrchr.c ft_strncmp.c \
+	   ft_memchr.c ft_memcmp.c ft_strnstr.c \
+	   ft_atoi.c ft_calloc.c ft_strdup.c \
+	   ft_substr.c ft_strjoin.c ft_strtrim.c \
+	   ft_split.c ft_itoa.c ft_strmapi.c \
+	   ft_striteri.c ft_putchar_fd.c \
+	   ft_putstr_fd.c ft_putendl_fd.c \
+	   ft_putnbr_fd.c
 
-SRCS_BONUS = $(SRCS_DIR)/ft_lstnew.c $(SRCS_DIR)/ft_lstadd_front.c \
-			 $(SRCS_DIR)/ft_lstsize.c $(SRCS_DIR)/ft_lstlast.c $(SRCS_DIR)/ft_lstadd_back.c \
-			 $(SRCS_DIR)/ft_lstdelone.c $(SRCS_DIR)/ft_lstclear.c $(SRCS_DIR)/ft_lstiter.c \
-			 $(SRCS_DIR)/ft_lstmap.c
+SRCS_BONUS = ft_lstnew.c ft_lstadd_front.c \
+			 ft_lstsize.c ft_lstlast.c ft_lstadd_back.c \
+			 ft_lstdelone.c ft_lstclear.c ft_lstiter.c \
+			 ft_lstmap.c
 
 OBJS = $(SRCS:.c=.o)
 OBJS_BONUS = $(SRCS_BONUS:.c=.o)
@@ -53,7 +52,7 @@ $(NAME) : $(OBJECTS)
 	$(CC) $(CFLAGS) $^ -o $@ 
 
 bonus :
-	make WITH_BONUS=1 all
+	make WITH_BONUS=1
 
 clean : 
 	rm -f $(OBJS) $(OBJS_BONUS)
