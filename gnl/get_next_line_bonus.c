@@ -6,20 +6,19 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 17:00:28 by soo               #+#    #+#             */
-/*   Updated: 2022/03/31 22:08:33 by soo              ###   ########.fr       */
+/*   Updated: 2022/04/01 22:36:14 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 #include <stdio.h>
 
-
-int	find_newline(char *buf, int len)
+int	find_newline(char *buf)
 {
 	int	i;
 
 	i = 0;
-	while (i < len)
+	while (buf[i])
 	{
 		if (buf[i] == '\n')
 			return (i);
@@ -28,36 +27,85 @@ int	find_newline(char *buf, int len)
 	return (0);
 }
 
-t_list	**return_line(t_list **ret, int fd)
+t_list	*return_line(t_list **ret, int fd)
 {
 	t_list	*new;
+	char	*tmp;
 	char	buf[BUFFER_SIZE + 1];
 	int		buf_len;
 	int		size;
 	
-	new = ft_lstnew(fd);
-	ft_lstadd_back(ret, new);
-	while ((buf_len = read(fd, &buf, BUFFER_SIZE)) > 1)
+	if (!*ret)
+		*ret = ft_lstnew(fd);
+	new = *ret;
+	while (new->fd != fd && new->next)
+		new = new->next;
+	if (!new->next && new->fd != fd)
+		new = ft_lstnew(fd);
+	if (!new->backup)
 	{
-		printf("buf_len = %d\n", buf_len);
-		buf[buf_len] = '\0';
-		printf("buf : %s\n", buf);
-		while (!(size = find_newline(buf, buf_len)))
+		buf_len = read(fd, &buf, BUFFER_SIZE);
+		new->backup = ft_strjoin(new->backup, buf);
+		if (buf_len > 1)
+		{
+		while (!(size = find_newline(new->backup)))
 		{	
-
-		//	if (ft_strlen(buf->backup) > buf_len)
-			new->backup = ft_strjoin(new->line, buf);
+			tmp = new->backup;
 			buf_len = read(fd, &buf, BUFFER_SIZE);
+			new->backup = ft_strjoin(new->backup, buf);
+			free(tmp);
 		}
 		printf("disturb while, size = %d\n", size);
-		new->backup = ft_strjoin(new->backup, buf);
-		printf("new->backup %s\n", new->backup);
+		printf("new->backup :%s\n", new->backup);
+		tmp = new->line;
 		new->line = ft_strdup(new->backup, size);
+		free (tmp);
+		tmp = new->backup;
 		new->backup = ft_strdup(&buf[size], buf_len - size);
-		printf("backup : %s\n", new->backup);
-		printf("newline : %s\n", new->line);
-		printf("return line fuc return value : %s\n", ft_lstlast(*ret)->line);
-		return (ret);
+		free (tmp);
+		printf("after trim backup :%s\n", new->backup);
+		printf("after trim newline :%s\n", new->line);
+		return (new);
+		}
+	}
+	else
+	{
+		printf("else newbackup :%s\n", new->backup);
+		buf_len = ft_strlen(new->backup);
+		if (buf_len > 1)
+		{
+			while (!(size = find_newline(new->backup)))
+			{	
+				printf("%d\n", size);
+				tmp = new->backup;
+				buf_len = read(fd, &buf, BUFFER_SIZE);
+				new->backup = ft_strjoin(new->backup, buf);
+				free(tmp);	
+			}
+		
+		printf("disturb while, size = %d\n", size);
+		printf("new->backup: %s\n", new->backup);
+		tmp = new->line;
+		new->line = ft_strdup(new->backup, size);
+		printf("1after trim newline : %s\n", new->line);
+		free (tmp);
+		tmp = new->backup;
+		printf("before trim backup : %s\n", new->backup);
+		printf("2after trim newline : %s\n", new->line);
+		tmp = new->backup;
+		new->backup = ft_strdup(&(new->backup)[size], buf_len - size);
+		printf("3after trim newline : %s\n", new->line);
+		free (tmp);
+		printf("after trim backup : %s\n", new->backup);
+		printf("a4fter trim newline : %s\n", new->line);
+		return (new);
+		}
+		
+	}
+	printf("buf_len = %d\n", buf_len);
+	if (buf_len > 1)
+	{
+		
 	}
 	free (ret);
 	return (NULL);
@@ -65,13 +113,19 @@ t_list	**return_line(t_list **ret, int fd)
 
 char	*get_next_line(int fd)
 {
-	static t_list		**ret;
+	static t_list	**ret;
+	t_list			*p_node;
 
 	if (fd < 0 || BUFFER_SIZE < 1)
 		return (NULL);
-	ret = (t_list **)malloc(sizeof(t_list *) + 1);
-	return_line(ret, fd);
-	return (ft_lstlast(*ret)->line);
-	free (ret);
+	if (!ret)
+		ret = (t_list **)malloc(sizeof(t_list *));
+	printf("\n호출 몇번 되는데\n\n");
+	p_node = return_line(ret, fd);
+	if (p_node)
+	{
+		printf("!!p_node%s\n", p_node->line);
+		return (p_node->line);
+	}
 	return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 16:25:00 by soo               #+#    #+#             */
-/*   Updated: 2022/03/31 22:03:17 by soo              ###   ########.fr       */
+/*   Updated: 2022/04/01 18:39:51 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,7 @@ int main() {
 		 printf("\nError in open\n"); 
 		 return (0); 
 	} 
-	printf("열리긴 열림\n");
-	while ((line = (get_next_line(fd))) > 0) 
+	while ((line = (get_next_line(fd))) != NULL)
 	{
 		printf("|%s\n", line); 
 		free(line);

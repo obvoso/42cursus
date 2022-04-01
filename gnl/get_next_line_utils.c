@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 21:46:35 by soo               #+#    #+#             */
-/*   Updated: 2022/03/31 22:01:23 by soo              ###   ########.fr       */
+/*   Updated: 2022/04/01 22:22:46 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,11 @@ size_t ft_strlen(const char *s)
 {
 	size_t	len;
 
+	// printf("ft_strlen:%s\n", s);
 	len = 0;
 	if (s)
-	{
-		while (s[len] && s[len] != '\n')
+		while (s[len])
 			++len;
-	}
 	return (len);
 }
 
@@ -53,42 +52,52 @@ char *ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2 )
-{
-	char			*ret;
-	size_t			i;
-
-	//if (!s1 || !s2)
-	//	return (NULL);
-	//printf("strjoin NULL gard pass\n");
-	ret = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
-//	printf("strjoin : %s\n%s\n", s1, s2);
-	if (!ret)
-		return (NULL);
-	i = 0;
-	if (s1)
-		while (*s1)
-			ret[i++] = *s1++;
-	if (s2)
-		while (*s2) 
-			ret[i++] = *s2++;
-	ret[i] = '\0';
-	printf("strjoin before return : %s\n", ret);
-	return (ret);
-}
-
-char	*ft_strdup(const char *s1, size_t size)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*ret;
 	size_t	i;
 
-	i = 0;
-	ret = (char *)malloc(size + 1);
+	ret = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	printf("s1 :%s\ns2 :%s", s1, s2);
 	if (!ret)
 		return (NULL);
-	while (i < size)
+	i = 0;
+	if (s1)
+	{
+		if (*s1 == '\n')
+			s1++;
+		while (*s1)
+			ret[i++] = *s1++;
+	}
+	if (s2)
+		while (*s2) 
+			ret[i++] = *s2++;
+	ret[i] = '\0';
+	//printf("strjoin before return : %s\n", ret);
+	return (ret);
+}
+
+char	*ft_strdup(char *s1, size_t size)
+{
+	char	*ret;
+	size_t	len;
+	size_t	i;
+	
+	i = 0;
+	len = ft_strlen(s1);
+	printf("ft_strdup : %d %d\n", (int)size, (int)len);
+	if (len > size)
+		ret = (char *)malloc(size + 1);
+	else
+		ret = (char *)malloc(len + 1);
+	if (!ret)
+		return (NULL);
+	if (*s1 == '\n')
+		s1++;
+	while (i < size && *s1)
 		ret[i++] = *s1++;
 	ret[i] = '\0';
+	printf("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!%s\n", ret);
 	return (ret);
 }
 
