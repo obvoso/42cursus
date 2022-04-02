@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
+/*   By: songmin <autumninmoon@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 21:46:35 by soo               #+#    #+#             */
-/*   Updated: 2022/04/01 22:22:46 by soo              ###   ########.fr       */
+/*   Updated: 2022/04/02 23:05:55 by songmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 size_t ft_strlen(const char *s)
 {
-	size_t	len;
+	size_t len;
 
 	// printf("ft_strlen:%s\n", s);
 	len = 0;
@@ -28,7 +28,7 @@ size_t ft_strlen(const char *s)
 
 char *ft_strcpy(char *dst, const char *src)
 {
-	int	i;
+	int i;
 
 	i = -1;
 	while (src[++i])
@@ -39,8 +39,8 @@ char *ft_strcpy(char *dst, const char *src)
 
 char *ft_strchr(const char *s, int c)
 {
-	char	ch;
-	int		i;
+	char ch;
+	int i;
 
 	i = -1;
 	ch = (char)c;
@@ -52,10 +52,10 @@ char *ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char *ft_strjoin(char *s1, char *s2)
 {
-	char	*ret;
-	size_t	i;
+	char *ret;
+	size_t i;
 
 	ret = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
 	printf("s1 :%s\ns2 :%s", s1, s2);
@@ -70,19 +70,19 @@ char	*ft_strjoin(char *s1, char *s2)
 			ret[i++] = *s1++;
 	}
 	if (s2)
-		while (*s2) 
+		while (*s2)
 			ret[i++] = *s2++;
 	ret[i] = '\0';
 	//printf("strjoin before return : %s\n", ret);
 	return (ret);
 }
 
-char	*ft_strdup(char *s1, size_t size)
+char *ft_strdup(char *s1, size_t size)
 {
-	char	*ret;
-	size_t	len;
-	size_t	i;
-	
+	char *ret;
+	size_t len;
+	size_t i;
+
 	i = 0;
 	len = ft_strlen(s1);
 	printf("ft_strdup : %d %d\n", (int)size, (int)len);
@@ -101,7 +101,7 @@ char	*ft_strdup(char *s1, size_t size)
 	return (ret);
 }
 
-t_list	*ft_lstlast(t_list *lst)
+t_list *ft_lstlast(t_list *lst)
 {
 	if (!lst)
 		return (lst);
@@ -110,7 +110,7 @@ t_list	*ft_lstlast(t_list *lst)
 	return (lst);
 }
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void ft_lstadd_back(t_list **lst, t_list *new)
 {
 	if (lst && new)
 	{
@@ -121,9 +121,9 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 	}
 }
 
-t_list	*ft_lstnew(int fd)
+t_list *ft_lstnew(int fd)
 {
-	t_list	*ret;
+	t_list *ret;
 
 	ret = (t_list *)malloc(sizeof(t_list));
 	if (!ret)
@@ -134,4 +134,3 @@ t_list	*ft_lstnew(int fd)
 	ret->next = NULL;
 	return (ret);
 }
-
