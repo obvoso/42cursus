@@ -1,17 +1,5 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/27 17:00:28 by soo               #+#    #+#             */
-/*   Updated: 2022/04/03 22:31:47 by soo              ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#include "get_next_line_bonus.h"
 #include "new.h"
+#include <stdio.h>
 
 size_t find_newline(char *str)
 {
@@ -66,13 +54,11 @@ char *init(t_list **ret, int fd)
 	}
 	else if (new->fd != fd)
 	{
-		while (new->fd != fd)
+		while (new->fd != fd &&new->next)
 		{
 			new = new->next;
-			if (!new->next)
-				break;
 		}
-		if (new->fd != fd && !new->next)
+		if (!new->next)
 		{
 			new->next = ft_lstnew(fd);
 			new = new->next;
@@ -105,6 +91,10 @@ char *get_next_line(int fd)
 	if (!ret)
 		ret = (t_list **)malloc(sizeof(t_list *));
 	line = init(ret, fd);
-
+	if (line == NULL)
+	{
+	    free(ret);
+	    return (NULL);
+	}
 	return (line);
 }

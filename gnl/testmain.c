@@ -3,21 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   testmain.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: songmin <autumninmoon@gmail.com>           +#+  +:+       +#+        */
+/*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 16:25:00 by soo               #+#    #+#             */
-/*   Updated: 2022/04/02 23:06:00 by songmin          ###   ########.fr       */
+/*   Updated: 2022/04/03 21:47:26 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_bonus.h"
+#include "new.h"
 #include <stdio.h>
 #include <fcntl.h>
 
 int main()
 {
-	int fd;
-	//	int i;
+	int fd[4];
 	int j;
 	char *line = 0;
 
@@ -25,18 +24,48 @@ int main()
 	printf("\n==========================================\n");
 	printf("========= TEST 2 : Empty Lines ===========\n");
 	printf("==========================================\n\n");
-	if (!(fd = open("testscript.txt", O_RDONLY)))
+	if ((fd[0] = open("testscript.txt", O_RDONLY)))
 	{
-		printf("\nError in open\n");
-		return (0);
-	}
-	while ((line = (get_next_line(fd))) != NULL)
-	{
-		printf("|%s\n", line);
+		while ((line = (get_next_line(fd[0]))) != NULL)
+		{
+			printf("|%s\n", line);
+			free(line);
+			j++;
+		}
 		free(line);
-		j++;
+		close(fd[0]);
 	}
-	//if (line == 0)
-	//	printf("|%s\n", line); free(line);
-	close(fd);
+	if ((fd[1] = open("testscript2.txt", O_RDONLY)))
+		{
+		while ((line = (get_next_line(fd[1]))) != NULL)
+		{
+			printf("|%s\n", line);
+			free(line);
+			j++;
+		}
+		free(line);
+		close(fd[1]);
+	}
+	if ((fd[2] = open("testscript3.txt", O_RDONLY)))
+	{
+		while ((line = (get_next_line(fd[2]))) != NULL)
+		{
+			printf("|%s\n", line);
+			free(line);
+			j++;
+		}
+		free(line);
+		close(fd[2]);
+	}
+	if ((fd[3] = open("testscript4.txt", O_RDONLY)))
+	{
+		while ((line = (get_next_line(fd[3]))) != NULL)
+		{
+			printf("|%s\n", line);
+			free(line);
+			j++;
+		}
+		free(line);
+		close(fd[3]);
+	}
 }
