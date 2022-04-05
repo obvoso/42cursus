@@ -11,7 +11,7 @@ int main()
 	while ((line = get_next_line(fd)) != NULL)
 	{
 		printf("fin : %s\n", line);
-		free (line);
+		free(line);
 	}
 	printf("끝\n");
 }

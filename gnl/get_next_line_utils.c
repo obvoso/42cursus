@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
+/*   By: songmin <autumninmoon@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 21:46:35 by soo               #+#    #+#             */
-/*   Updated: 2022/04/04 22:19:42 by soo              ###   ########.fr       */
+/*   Updated: 2022/04/05 22:35:38 by songmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,20 +26,20 @@ size_t ft_strlen(const char *s)
 
 t_list *ft_lstnew(int fd)
 {
-	t_list *ret;
+    t_list *ret;
 
-	ret = (t_list *)malloc(sizeof(t_list));
-	if (!ret)
-		return (ret);
-	ret->fd = fd;
-	ret->backup = NULL;
-	ret->next = NULL;
-	return (ret);
+    ret = (t_list *)malloc(sizeof(t_list));
+    if (!ret)
+        return (NULL);
+    ret->fd = fd;
+    ret->backup = NULL;
+    ret->next = NULL;
+    return (ret);
 }
 
 char *ft_strjoin(char *s1, char *s2)
 {
-    char    *tmp;
+    char *tmp;
     char *ret;
     size_t i;
 
@@ -47,7 +47,7 @@ char *ft_strjoin(char *s1, char *s2)
     if (!ret)
         return (NULL);
     i = 0;
-    if (s1 && *s1)
+    if (s1)
     {
         tmp = s1;
         while (*s1)
@@ -63,18 +63,26 @@ char *ft_strjoin(char *s1, char *s2)
 
 char *ft_strdup(char *s1, size_t size)
 {
-	char *ret;
-	size_t i;
+    char *ret;
+    size_t i;
 
-	i = 0;
+    i = 0;
     if (size == 0)
         return (NULL);
-	ret = (char *)malloc(size + 1);
-	if (!ret)
-		return (NULL);
-	while (i < size && *s1)
-		ret[i++] = *s1++;
-	ret[i] = '\0';
-
-	return (ret);
+    if (s1)
+    {
+        ret = (char *)malloc(size + 1);
+        if (!ret)
+            return (NULL);
+        while (i < size)
+        {
+            ret[i] = s1[i];
+            ++i;
+        }
+        ret[i] = '\0';
+        free(s1);
+        s1 = NULL;
+        return (ret);
+    }
+    return (NULL);
 }
