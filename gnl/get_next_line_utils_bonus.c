@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/27 21:46:35 by soo               #+#    #+#             */
-/*   Updated: 2022/04/06 18:05:39 by soo              ###   ########.fr       */
+/*   Created: 2022/04/06 18:06:21 by soo               #+#    #+#             */
+/*   Updated: 2022/04/06 18:07:38 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 size_t ft_strlen(const char *s)
 {

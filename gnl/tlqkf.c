@@ -12,6 +12,8 @@ int main()
 	{
 		printf("fin : %s\n", line);
 		free(line);
+		system("leaks a.out > leaks_result_tmp; cat leaks_result_tmp | grep leaks && rm -rf leaks_result_tmp");
+
 	}
 	printf("끝\n");
 }
