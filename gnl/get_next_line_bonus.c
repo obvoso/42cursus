@@ -6,12 +6,12 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 17:00:28 by soo               #+#    #+#             */
-/*   Updated: 2022/04/06 22:37:16 by soo              ###   ########.fr       */
+/*   Updated: 2022/04/07 18:56:05 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
-
+#include <stdio.h>
 size_t find_newline(char *str)
 {
 	size_t size;
@@ -76,28 +76,26 @@ char *init(t_list **ret, int fd)
 	size_t size;
 
 	new = *ret;
-	if (!*ret)
+	if (!*ret) // 초기
 	{
 		new = ft_lstnew(fd);
 		*ret = new;
 	}
 	else if (new->fd != fd)
 	{
-		while (new->fd != fd)
-		{
+		while (new->fd != fd && new->next) // 연결리스트 탐색, fd가 동일하면 new가 그 위치, 
 			new = new->next;
-			if (!new->next)
-				break;
-		}
-		if (new->fd != fd && !new->next)
+		if (new->fd != fd && !new->next) // 노드를 모두 탐색했는데 연결리스트의 fd가 일치하지 않으면 뉴노드만듬 
 		{
 			new->next = ft_lstnew(fd);
+			if (!new->next)
+				return (NULL);
 			new = new->next;
 		}
 	}
 	size = read_line(new, fd);
 	if (size <= 0 && new->backup == NULL)
-	return (NULL);
+		return (NULL);
 	return (return_line(new, size));
 }
 
@@ -107,27 +105,31 @@ t_list **del_node(t_list **ret, int fd)
 	t_list	*n_node;
 
 	p_node = *ret;
-	if (p_node->fd == fd)
+	if (p_node->fd == fd) // 첫 노드 삭제
 	{
 		*ret = p_node->next;
+		if (!*ret)
+		{
+			free(*ret);
+			*ret = NULL;
+		}
 		free(p_node);
-		p_node = NULL;
 		return (ret);
 	}
 	while (p_node->next->fd != fd && p_node->next->next)
 		p_node = p_node->next;
-	if (!p_node->next->next && p_node->next->fd == fd)
+	if (p_node->next->fd == fd && !p_node->next->next) // 마지막 노드 삭제
 	{
-		free (p_node->next);
+		n_node = p_node->next;
+		free (n_node);
 		p_node->next = NULL;
 	}
-	else if (p_node->next->fd == fd)
+	else if (p_node->next->fd == fd && p_node->next->next) // 중간 노드 삭제
 	{
 		n_node = p_node->next;
 		p_node->next = n_node->next;
 		free(n_node);
 	}
-	//else 	생각하셈
 	return (ret);
 }
 
@@ -143,6 +145,7 @@ char *get_next_line(int fd)
 		ret = (t_list **)malloc(sizeof(t_list *));
 		if (!ret)
 			return (NULL);
+		*ret = NULL;
 	}
 	line = init(ret, fd);
 	if (line == NULL)

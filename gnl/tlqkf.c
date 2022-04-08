@@ -1,19 +1,75 @@
 #include <stdio.h>
 #include <fcntl.h>
+#include <string.h>
 #include "get_next_line.h"
+
+void gnl(int fd, char const * expectedReturn)
+{
+	char *  gnlReturn = get_next_line(fd);
+	if (expectedReturn == NULL)
+		printf("NULL\n");
+	else
+		if(strcmp(gnlReturn, expectedReturn))
+			printf("Error\n");
+	free(gnlReturn);
+}
+
 
 int main()
 {
 	int fd;
-	char *line;
+	int i;
+	// char *line;
 
-	fd = open("t1.txt", O_RDONLY);
-	while ((line = get_next_line(fd)) != NULL)
+	i = 0;
+	while (i < 6)
 	{
-		printf("fin : %s\n", line);
-		free(line);
-		system("leaks a.out > leaks_result_tmp; cat leaks_result_tmp | grep leaks && rm -rf leaks_result_tmp");
-
+		fd = open("t1.txt", O_RDONLY);
+		gnl(fd, "9876543210987654321098765432109876543210\n");
+		gnl(fd, "01234567890123456789012345678901234567890\n");
+		gnl(fd, "987654321098765432109876543210987654321098\n");
+		gnl(fd, "01234567890123456789012345678901234567890\n");
+		gnl(fd, "9876543210987654321098765432109876543210\n");
+		gnl(fd, NULL);
+		system("leaks a.out > leaks_result; cat leaks_result | grep leaked && rm -rf leaks_result");
+		close(fd);
+		i++;
 	}
-	printf("끝\n");
+	while (1) {}
 }
+	// fd = open("t1.txt", O_RDONLY);
+	// while ((line = get_next_line(fd)) != NULL)
+	// {
+	// 	printf("fin : %s\n", line);
+	// 	free(line);
+
+	// }
+	// fd = open("t1.txt", O_RDONLY);
+	// while ((line = get_next_line(fd)) != NULL)
+	// {
+	// 	printf("fin : %s\n", line);
+	// 	free(line);
+
+	// }
+	// fd = open("t1.txt", O_RDONLY);
+	// while ((line = get_next_line(fd)) != NULL)
+	// {
+	// 	printf("fin : %s\n", line);
+	// 	free(line);
+
+	// }
+	// fd = open("t1.txt", O_RDONLY);
+	// while ((line = get_next_line(fd)) != NULL)
+	// {
+	// 	printf("fin : %s\n", line);
+	// 	free(line);
+	// }
+	// fd = open("t1.txt", O_RDONLY);
+	// while ((line = get_next_line(fd)) != NULL)
+	// {
+	// 	printf("fin : %s\n", line);
+	// 	free(line);
+	// }
+	// close(fd);
+	// printf("끝\n");
+//}

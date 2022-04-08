@@ -6,11 +6,12 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 16:48:47 by soo               #+#    #+#             */
-/*   Updated: 2022/04/06 17:36:11 by soo              ###   ########.fr       */
+/*   Updated: 2022/04/08 15:44:51 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <stdio.h>
 
 size_t find_newline(char *str)
 {
@@ -79,7 +80,7 @@ char *init(t_list *ret, int fd)
 	if (new->fd != fd)
 		return (NULL);
 	size = read_line(new, fd);
-	if (size <= 0 && new->backup == NULL)
+	if ((size <= 0 && new->backup == NULL))
 		return (NULL);
 	return (return_line(new, size));
 }
@@ -102,7 +103,6 @@ char *get_next_line(int fd)
 	{
 		free(ret);
 		ret = NULL;
-		return (NULL);
 	}
 	return (line);
 }
