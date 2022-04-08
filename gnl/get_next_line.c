@@ -6,16 +6,15 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 16:48:47 by soo               #+#    #+#             */
-/*   Updated: 2022/04/08 15:44:51 by soo              ###   ########.fr       */
+/*   Updated: 2022/04/08 16:33:06 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h>
 
-size_t find_newline(char *str)
+size_t	find_newline(char *str)
 {
-	size_t size;
+	size_t	size;
 
 	size = 0;
 	if (str)
@@ -30,11 +29,11 @@ size_t find_newline(char *str)
 	return (0);
 }
 
-char *return_line(t_list *new, size_t size)
+char	*return_line(t_list *new, size_t size)
 {
-	char *line;
-	char *tmp;
-	size_t len;
+	char	*line;
+	char	*tmp;
+	size_t	len;
 
 	len = find_newline(new->backup);
 	if (!len && !size && new->backup)
@@ -51,10 +50,10 @@ char *return_line(t_list *new, size_t size)
 	return (line);
 }
 
-int read_line(t_list *new, int fd)
+int	read_line(t_list *new, int fd)
 {
-	size_t size;
-	char buf[BUFFER_SIZE + 1];
+	size_t	size;
+	char	buf[BUFFER_SIZE + 1];
 
 	size = 0;
 	while (!(find_newline(new->backup)))
@@ -71,10 +70,10 @@ int read_line(t_list *new, int fd)
 	return (size);
 }
 
-char *init(t_list *ret, int fd)
+char	*init(t_list *ret, int fd)
 {
-	t_list *new;
-	size_t size;
+	t_list	*new;
+	size_t	size;
 
 	new = ret;
 	if (new->fd != fd)
@@ -85,10 +84,10 @@ char *init(t_list *ret, int fd)
 	return (return_line(new, size));
 }
 
-char *get_next_line(int fd)
+char	*get_next_line(int fd)
 {
-	static t_list *ret;
-	char *line;
+	static t_list	*ret;
+	char			*line;
 
 	if (fd < 0 || BUFFER_SIZE < 1)
 		return (NULL);

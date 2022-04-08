@@ -6,15 +6,15 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 17:00:28 by soo               #+#    #+#             */
-/*   Updated: 2022/04/07 18:56:05 by soo              ###   ########.fr       */
+/*   Updated: 2022/04/08 16:33:36 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
-#include <stdio.h>
-size_t find_newline(char *str)
+
+size_t	find_newline(char *str)
 {
-	size_t size;
+	size_t	size;
 
 	size = 0;
 	if (str)
@@ -29,11 +29,11 @@ size_t find_newline(char *str)
 	return (0);
 }
 
-char *return_line(t_list *new, size_t size)
+char	*return_line(t_list *new, size_t size)
 {
-	char *line;
-	char *tmp;
-	size_t len;
+	char	*line;
+	char	*tmp;
+	size_t	len;
 
 	len = find_newline(new->backup);
 	if (!len && !size && new->backup)
@@ -50,10 +50,10 @@ char *return_line(t_list *new, size_t size)
 	return (line);
 }
 
-int read_line(t_list *new, int fd)
+int	read_line(t_list *new, int fd)
 {
-	size_t size;
-	char buf[BUFFER_SIZE + 1];
+	size_t	size;
+	char	buf[BUFFER_SIZE + 1];
 
 	size = 0;
 	while (!(find_newline(new->backup)))
@@ -70,10 +70,10 @@ int read_line(t_list *new, int fd)
 	return (size);
 }
 
-char *init(t_list **ret, int fd)
+char	*init(t_list **ret, int fd)
 {
-	t_list *new;
-	size_t size;
+	t_list	*new;
+	size_t	size;
 
 	new = *ret;
 	if (!*ret) // 초기
@@ -88,8 +88,6 @@ char *init(t_list **ret, int fd)
 		if (new->fd != fd && !new->next) // 노드를 모두 탐색했는데 연결리스트의 fd가 일치하지 않으면 뉴노드만듬 
 		{
 			new->next = ft_lstnew(fd);
-			if (!new->next)
-				return (NULL);
 			new = new->next;
 		}
 	}
@@ -99,7 +97,7 @@ char *init(t_list **ret, int fd)
 	return (return_line(new, size));
 }
 
-t_list **del_node(t_list **ret, int fd)
+t_list	**del_node(t_list **ret, int fd)
 {
 	t_list	*p_node;
 	t_list	*n_node;
@@ -108,11 +106,6 @@ t_list **del_node(t_list **ret, int fd)
 	if (p_node->fd == fd) // 첫 노드 삭제
 	{
 		*ret = p_node->next;
-		if (!*ret)
-		{
-			free(*ret);
-			*ret = NULL;
-		}
 		free(p_node);
 		return (ret);
 	}
@@ -133,10 +126,10 @@ t_list **del_node(t_list **ret, int fd)
 	return (ret);
 }
 
-char *get_next_line(int fd)
+char	*get_next_line(int fd)
 {
-	static t_list **ret;
-	char *line;
+	static t_list	**ret;
+	char			*line;
 
 	if (fd < 0 || BUFFER_SIZE < 1)
 		return (NULL);

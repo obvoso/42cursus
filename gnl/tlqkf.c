@@ -14,7 +14,6 @@ void gnl(int fd, char const * expectedReturn)
 	free(gnlReturn);
 }
 
-
 int main()
 {
 	int fd;
