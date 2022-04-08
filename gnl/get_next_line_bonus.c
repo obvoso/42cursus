@@ -6,28 +6,11 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 17:00:28 by soo               #+#    #+#             */
-/*   Updated: 2022/04/08 16:33:36 by soo              ###   ########.fr       */
+/*   Updated: 2022/04/08 17:49:30 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
-
-size_t	find_newline(char *str)
-{
-	size_t	size;
-
-	size = 0;
-	if (str)
-	{
-		while (str[size])
-		{
-			if (str[size] == '\n')
-				return (size + 1);
-			++size;
-		}
-	}
-	return (0);
-}
 
 char	*return_line(t_list *new, size_t size)
 {
@@ -56,6 +39,8 @@ int	read_line(t_list *new, int fd)
 	char	buf[BUFFER_SIZE + 1];
 
 	size = 0;
+	if (!new)
+		return (0);
 	while (!(find_newline(new->backup)))
 	{
 		size = read(fd, &buf, BUFFER_SIZE);
@@ -76,16 +61,16 @@ char	*init(t_list **ret, int fd)
 	size_t	size;
 
 	new = *ret;
-	if (!*ret) // 초기
+	if (!*ret)
 	{
 		new = ft_lstnew(fd);
 		*ret = new;
 	}
 	else if (new->fd != fd)
 	{
-		while (new->fd != fd && new->next) // 연결리스트 탐색, fd가 동일하면 new가 그 위치, 
+		while (new->fd != fd && new->next)
 			new = new->next;
-		if (new->fd != fd && !new->next) // 노드를 모두 탐색했는데 연결리스트의 fd가 일치하지 않으면 뉴노드만듬 
+		if (new->fd != fd && !new->next)
 		{
 			new->next = ft_lstnew(fd);
 			new = new->next;
@@ -103,7 +88,7 @@ t_list	**del_node(t_list **ret, int fd)
 	t_list	*n_node;
 
 	p_node = *ret;
-	if (p_node->fd == fd) // 첫 노드 삭제
+	if (p_node->fd == fd)
 	{
 		*ret = p_node->next;
 		free(p_node);
@@ -111,13 +96,13 @@ t_list	**del_node(t_list **ret, int fd)
 	}
 	while (p_node->next->fd != fd && p_node->next->next)
 		p_node = p_node->next;
-	if (p_node->next->fd == fd && !p_node->next->next) // 마지막 노드 삭제
+	if (p_node->next->fd == fd && !p_node->next->next)
 	{
 		n_node = p_node->next;
 		free (n_node);
 		p_node->next = NULL;
 	}
-	else if (p_node->next->fd == fd && p_node->next->next) // 중간 노드 삭제
+	else if (p_node->next->fd == fd && p_node->next->next)
 	{
 		n_node = p_node->next;
 		p_node->next = n_node->next;

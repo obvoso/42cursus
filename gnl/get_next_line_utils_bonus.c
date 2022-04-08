@@ -6,12 +6,28 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 18:06:21 by soo               #+#    #+#             */
-/*   Updated: 2022/04/08 16:33:32 by soo              ###   ########.fr       */
+/*   Updated: 2022/04/08 16:48:04 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "get_next_line_bonus.h"
+
+size_t	find_newline(char *str)
+{
+	size_t	size;
+
+	size = 0;
+	if (str)
+	{
+		while (str[size])
+		{
+			if (str[size] == '\n')
+				return (size + 1);
+			++size;
+		}
+	}
+	return (0);
+}
 
 size_t	ft_strlen(const char *s)
 {
