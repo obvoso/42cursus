@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 21:46:35 by soo               #+#    #+#             */
-/*   Updated: 2022/04/08 16:33:21 by soo              ###   ########.fr       */
+/*   Updated: 2022/04/11 18:00:46 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ t_list	*ft_lstnew(int fd)
 	if (!ret)
 		return (NULL);
 	ret->fd = fd;
+	ret->flag = 0;
 	ret->backup = NULL;
 	ret->next = NULL;
 	return (ret);

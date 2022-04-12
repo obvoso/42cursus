@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 17:00:28 by soo               #+#    #+#             */
-/*   Updated: 2022/04/08 17:49:30 by soo              ###   ########.fr       */
+/*   Updated: 2022/04/12 13:49:35 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	*return_line(t_list *new, size_t size)
 	return (line);
 }
 
-int	read_line(t_list *new, int fd)
+ssize_t	read_line(t_list *new, int fd)
 {
 	size_t	size;
 	char	buf[BUFFER_SIZE + 1];
@@ -43,6 +43,8 @@ int	read_line(t_list *new, int fd)
 		return (0);
 	while (!(find_newline(new->backup)))
 	{
+		if (new->flag == 1)
+			return (0);
 		size = read(fd, &buf, BUFFER_SIZE);
 		if (size > 0 && size <= BUFFER_SIZE)
 		{
@@ -51,6 +53,9 @@ int	read_line(t_list *new, int fd)
 		}
 		else
 			return (size);
+		if (size > 0 && size < BUFFER_SIZE)
+			if (!find_newline(buf))
+				new->flag = 1;
 	}
 	return (size);
 }

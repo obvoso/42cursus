@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 17:29:01 by soo               #+#    #+#             */
-/*   Updated: 2022/04/08 16:54:49 by soo              ###   ########.fr       */
+/*   Updated: 2022/04/12 13:49:03 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 typedef struct s_list
 {
 	int				fd;
+	int				flag;
 	char			*backup;
 	struct s_list	*next;
 }	t_list;
@@ -33,7 +34,7 @@ char	*ft_strdup(char *s1, size_t len, size_t size);
 t_list	*ft_lstnew(int fd);
 size_t	find_newline(char *str);
 char	*return_line(t_list *new, size_t size);
-int		read_line(t_list *new, int fd);
+ssize_t	read_line(t_list *new, int fd);
 char	*init(t_list **ret, int fd);
 char	*get_next_line(int fd);
 t_list	**del_node(t_list **ret, int fd);

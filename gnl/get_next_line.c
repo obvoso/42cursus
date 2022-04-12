@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 16:48:47 by soo               #+#    #+#             */
-/*   Updated: 2022/04/08 16:33:06 by soo              ###   ########.fr       */
+/*   Updated: 2022/04/12 13:51:38 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,14 @@ size_t	find_newline(char *str)
 	return (0);
 }
 
-char	*return_line(t_list *new, size_t size)
+char	*return_line(t_list *new, ssize_t size)
 {
 	char	*line;
 	char	*tmp;
 	size_t	len;
 
 	len = find_newline(new->backup);
-	if (!len && !size && new->backup)
+	if (!len && size <= 0 && new->backup)
 	{
 		line = ft_strdup(new->backup, 0, ft_strlen(new->backup));
 		free(new->backup);
@@ -50,14 +50,16 @@ char	*return_line(t_list *new, size_t size)
 	return (line);
 }
 
-int	read_line(t_list *new, int fd)
+ssize_t	read_line(t_list *new, int fd)
 {
-	size_t	size;
+	ssize_t	size;
 	char	buf[BUFFER_SIZE + 1];
 
 	size = 0;
 	while (!(find_newline(new->backup)))
-	{
+	{	
+		if (new->flag == 1)
+			return (0);
 		size = read(fd, &buf, BUFFER_SIZE);
 		if (size > 0 && size <= BUFFER_SIZE)
 		{
@@ -66,6 +68,9 @@ int	read_line(t_list *new, int fd)
 		}
 		else
 			return (size);
+		if (size > 0 && size < BUFFER_SIZE)
+			if (!find_newline(buf))
+				new->flag = 1;
 	}
 	return (size);
 }
@@ -73,13 +78,13 @@ int	read_line(t_list *new, int fd)
 char	*init(t_list *ret, int fd)
 {
 	t_list	*new;
-	size_t	size;
+	ssize_t	size;
 
 	new = ret;
 	if (new->fd != fd)
 		return (NULL);
 	size = read_line(new, fd);
-	if ((size <= 0 && new->backup == NULL))
+	if (size <= 0 && new->backup == NULL)
 		return (NULL);
 	return (return_line(new, size));
 }
