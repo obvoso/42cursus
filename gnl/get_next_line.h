@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 16:53:04 by soo               #+#    #+#             */
-/*   Updated: 2022/04/12 13:49:15 by soo              ###   ########.fr       */
+/*   Updated: 2022/04/13 16:44:05 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdlib.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1000
+#  define BUFFER_SIZE 1024
 # endif
 
 typedef struct s_list

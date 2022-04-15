@@ -48,6 +48,7 @@ t_list	*ft_lstnew(int fd)
 	if (!ret)
 		return (NULL);
 	ret->fd = fd;
+	ret->flag = 0;
 	ret->backup = NULL;
 	ret->next = NULL;
 	return (ret);
