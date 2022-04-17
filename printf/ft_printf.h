@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/17 12:49:38 by soo               #+#    #+#             */
+/*   Updated: 2022/04/17 13:39:29 by soo              ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
@@ -5,16 +17,16 @@
 # include <stdlib.h>
 # include <stdarg.h>
 
-int	cnt_digit(size_t n, int len);
-char	*ft_itoa(long long nb);
-int	ft_putstr(char *str);
+int		div_format(char format, va_list ap);
+int		cnt_digit(long long n, int len);
+char	*ltoa(long long nb);
+int		cnt_putstr(char *str);
 char	*convert_hex(size_t n, char *hex_base);
-int	print_char(va_list ap);
-int	print_dec_int(va_list ap);
-int	print_str(va_list ap);
-int	print_unsigned_int(va_list ap);
-int	print_hex(va_list ap, char *hex_base);
-int	print_addr(va_list ap);
-
+int		print_char(va_list ap);
+int		print_dec_int(va_list ap);
+int		print_str(va_list ap);
+int		print_unsigned_int(va_list ap);
+int		print_addr(va_list ap);
+int		print_hex(va_list ap, char *hex_base);
 
 #endif
