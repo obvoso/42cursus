@@ -6,30 +6,33 @@
 #    By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/17 12:52:29 by soo               #+#    #+#              #
-#    Updated: 2022/04/17 13:42:45 by soo              ###   ########.fr        #
+#    Updated: 2022/04/17 15:46:37 by soo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -c
 AR = ar
-AFLAGS = rc
+AFLAGS = rcs
 
-NAME = ft_printf.a
+NAME = libftprintf.a
 
 SRCS = ft_printf.c ft_printf_func.c ft_printf_utils.c
 
 OBJS = $(SRCS:.c=.o)
 
+.PHONY : all clean fclean re
+
 all : $(NAME)
-	$(AR) $(AFLAGS) $^
+	
 $(NAME) : $(OBJS)
+	$(AR) $(AFLAGS) $@ $^
+%.o : %.c
 	$(CC) $(CFLAGS) $^ -o $@
 clean :
 	rm $(OBJS)
 fclean : clean
 	rm $(NAME)
-re : 
-	fclean all
+	
+re : fclean all
 
-.PHONY : all clean fclean re

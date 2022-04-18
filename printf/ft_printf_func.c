@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 21:56:48 by soo               #+#    #+#             */
-/*   Updated: 2022/04/17 13:39:14 by soo              ###   ########.fr       */
+/*   Updated: 2022/04/18 17:14:30 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,8 @@ int	print_char(va_list ap)
 	char	c;
 
 	c = (char)va_arg(ap, int);
-	if (c)
-	{
-		write(1, &c, 1);
-		return (1);
-	}
-	return (-1);
+	write(1, &c, 1);
+	return (1);
 }
 
 int	print_str(va_list ap)
@@ -73,11 +69,11 @@ int	print_unsigned_int(va_list ap)
 
 int	print_addr(va_list ap)
 {
-	size_t	addr;
-	char	*rst;
-	int		cnt;
+	unsigned long	addr;
+	char			*rst;
+	int				cnt;
 
-	addr = (size_t)va_arg(ap, void *);
+	addr = (unsigned long)va_arg(ap, void *);
 	rst = convert_hex(addr, "0123456789abcdef");
 	if (!rst)
 		return (-1);
