@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 16:46:04 by soo               #+#    #+#             */
-/*   Updated: 2022/04/18 17:08:06 by soo              ###   ########.fr       */
+/*   Updated: 2022/04/18 18:56:54 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	ft_printf(const char *str, ...)
 
 	cnt = 0;
 	va_start(ap, str);
-	while (*str)
+	while (*str && cnt != -1)
 	{
 		if (*str != '%')
 		{
@@ -51,11 +51,11 @@ int	ft_printf(const char *str, ...)
 		else
 		{
 			++str;
-			cnt_tmp = div_format(*str, ap);
+			cnt_tmp = div_format(*str++, ap);
 			if (cnt_tmp == -1)
-				return (-1);
-			cnt += cnt_tmp;
-			++str;
+				cnt = -1;
+			else
+				cnt += cnt_tmp;
 		}
 	}
 	va_end(ap);

@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 21:56:48 by soo               #+#    #+#             */
-/*   Updated: 2022/04/18 17:14:30 by soo              ###   ########.fr       */
+/*   Updated: 2022/04/18 18:51:57 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	print_dec_int(va_list ap)
 	char	*rst;
 
 	n = va_arg(ap, int);
-	rst = ltoa(n);
+	rst = lltoa(n);
 	if (!rst)
 		return (-1);
 	cnt = cnt_putstr(rst);
@@ -58,7 +58,7 @@ int	print_unsigned_int(va_list ap)
 
 	cnt = 0;
 	ui = va_arg(ap, unsigned int);
-	rst = ltoa(ui);
+	rst = lltoa(ui);
 	if (!rst)
 		return (-1);
 	cnt = cnt_putstr(rst);

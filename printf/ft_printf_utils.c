@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 16:46:19 by soo               #+#    #+#             */
-/*   Updated: 2022/04/18 17:25:19 by soo              ###   ########.fr       */
+/*   Updated: 2022/04/18 18:51:45 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	cnt_digit(size_t nb, int len)
 	return (digit);
 }
 
-char	*ltoa(long long nb)
+char	*lltoa(long long nb)
 {
 	char		*ret;
 	int			digit;
@@ -79,8 +79,6 @@ char	*convert_hex(size_t n, char *hex_base)
 	if (!ret)
 		return (NULL);
 	ret[len] = '\0';
-	if (n < 0)
-		n *= -1;
 	if (n == 0)
 		ret[0] = '0';
 	while (n)
