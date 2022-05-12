@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 21:43:01 by soo               #+#    #+#             */
-/*   Updated: 2022/05/12 17:13:01 by soo              ###   ########.fr       */
+/*   Updated: 2022/05/12 17:28:10 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_deque *check_argv(char **arr_av, t_deque **deque)
 				if ((*deque)->head)
 				{
 					clear_node(*deque);
-					free (*deque);
+					free(*deque);
 					*deque = NULL;
 				}
 				while (*arr_av)
@@ -37,7 +37,7 @@ t_deque *check_argv(char **arr_av, t_deque **deque)
 				return (NULL);
 			}
 		}
-	++i;
+		++i;
 	}
 	return (*deque);
 }
@@ -52,6 +52,7 @@ t_deque *init(int argc, char **argv, t_deque **deque_a)
 	while (++i < argc)
 	{
 		arr_av = ft_split(argv[i], ' ');
+		printf("arr_av:%s\n", *arr_av); // 두번째 인자부터 어볼트
 		if (!arr_av)
 		{
 			clear_node(*deque_a);

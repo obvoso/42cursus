@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 17:18:26 by soo               #+#    #+#             */
-/*   Updated: 2022/05/12 17:10:45 by soo              ###   ########.fr       */
+/*   Updated: 2022/05/12 17:24:01 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 t_deque *deque_init(t_deque **deque)
 {
+	printf("??\n");
 	(*deque)->head = NULL;
 	(*deque)->tail = NULL;
 	return (*deque);
