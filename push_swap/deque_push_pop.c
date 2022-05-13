@@ -6,13 +6,14 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 17:05:19 by soo               #+#    #+#             */
-/*   Updated: 2022/05/12 17:10:18 by soo              ###   ########.fr       */
+/*   Updated: 2022/05/13 15:58:42 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdio.h>
 
-t_deque *add_first(int value, t_deque **deque)
+t_deque *add_front(int value, t_deque **deque)
 {
 	t_node	*new;
 
@@ -33,7 +34,7 @@ t_deque *add_first(int value, t_deque **deque)
 	return (*deque);
 }
 
-t_deque *add_last(int value, t_deque **deque)
+t_deque *add_back(int value, t_deque **deque)
 {
 	t_node	*new;
 
@@ -72,7 +73,7 @@ int	rm_front(t_deque **deque)
 	return (value);
 }
 
-int rm_last(t_deque **deque)
+int rm_back(t_deque **deque)
 {
 	t_node *rm_node;
 	int	value;

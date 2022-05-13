@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 17:18:26 by soo               #+#    #+#             */
-/*   Updated: 2022/05/12 17:24:01 by soo              ###   ########.fr       */
+/*   Updated: 2022/05/13 15:23:18 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 t_deque *deque_init(t_deque **deque)
 {
-	printf("??\n");
 	(*deque)->head = NULL;
 	(*deque)->tail = NULL;
 	return (*deque);
@@ -23,9 +22,11 @@ t_deque *deque_init(t_deque **deque)
 
 int is_empty(t_deque **deque)
 {
-	if (!(*deque)->head)
-		return TRUE;
-	return FALSE;
+	if (!(*deque))
+		return (TRUE);
+	if ((*deque)->head == NULL)
+		return (TRUE);
+	return (FALSE);
 }
 
 t_deque	*clear_node(t_deque *deque)

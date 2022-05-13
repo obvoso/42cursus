@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 21:44:20 by soo               #+#    #+#             */
-/*   Updated: 2022/05/12 17:10:31 by soo              ###   ########.fr       */
+/*   Updated: 2022/05/13 16:00:15 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,16 @@ t_deque *init(int argc, char **argv, t_deque **deque_a);
 t_deque *deque_init(t_deque **deque);
 int is_empty(t_deque **deque);
 t_deque	*clear_node(t_deque *deque);
-t_deque *add_first(int value, t_deque **deque);
-t_deque *add_last(int value, t_deque **deque);
+t_deque *add_front(int value, t_deque **deque);
+t_deque *add_back(int value, t_deque **deque);
 int	rm_front(t_deque **deque);
-int rm_last(t_deque **deque);
+int rm_back(t_deque **deque);
+
+// deque_func
+void push_deque(t_deque **srcs, t_deque **dest);
+void rotate_deque(t_deque **deque);
+void rev_rotate_deque(t_deque **deque);
+void swap_deque(t_deque **deque);
+
 
 #endif
