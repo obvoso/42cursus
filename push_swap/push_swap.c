@@ -6,41 +6,12 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 21:43:01 by soo               #+#    #+#             */
-/*   Updated: 2022/05/13 16:21:42 by soo              ###   ########.fr       */
+/*   Updated: 2022/05/16 17:41:26 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
-
-t_deque *check_argv(char **arr_av, t_deque **deque)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (arr_av[i])
-	{
-		j = 0;
-		while (arr_av[i][j])
-		{
-			if (!ft_isdigit((int)arr_av[i][j++]))
-			{
-				if ((*deque)->head)
-				{
-					clear_node(*deque);
-					free(*deque);
-					*deque = NULL;
-				}
-				while (*arr_av)
-					free(*arr_av++);
-				return (NULL);
-			}
-		}
-		++i;
-	}
-	return (*deque);
-}
 
 t_deque *init(int argc, char **argv, t_deque **deque_a)
 {
@@ -78,27 +49,17 @@ t_deque *init(int argc, char **argv, t_deque **deque_a)
 int main(int argc, char **argv)
 {
 	t_deque	*deque_a;
-	t_deque *deque_b;
-
+	t_deque	*deque_b;
+	int		*arr;
 
 	deque_a = (t_deque *)malloc(sizeof(t_deque));
 	deque_b = (t_deque *)malloc(sizeof(t_deque));
-	if (!deque_a || !deque_b)
-	{
-		write(2, "Error\n", 6);
+	if (check_error(argc, &deque_a, &deque_b, argv))
 		return (1);
-	}
-	if (!deque_init(&deque_a) || !deque_init(&deque_b))
-		return (1);
-	if (argc < 2)
-		return (1);
-	if (!init(argc, argv, &deque_a))
-	{
-		write(2, "Error\n", 6);
-		return (1);
-	}
-	swap_deque(&deque_b);
+	arr = sort_array(deque_size(deque_a->head), deque_a->head);
+	
 	//노드 생성 확인
+	// swap_deque(&deque_b);
 	if (!is_empty(&deque_a))
 	{
 		printf("dequeA\n\n");
@@ -119,5 +80,5 @@ int main(int argc, char **argv)
 			now2 = now2->next;
 		}
 	}
-	system("leaks pushswap1 | grep leaked");
+	//system("leaks pushswap1 | grep leaked");
 }
