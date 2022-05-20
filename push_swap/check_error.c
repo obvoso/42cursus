@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 17:32:11 by soo               #+#    #+#             */
-/*   Updated: 2022/05/16 16:09:14 by soo              ###   ########.fr       */
+/*   Updated: 2022/05/18 22:31:26 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,21 @@ t_deque *check_argv(char **arr_av, t_deque **deque)
 		++i;
 	}
 	return (*deque);
+}
+
+int	check_overlap(char **arr_av)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (arr_av[i + 1])
+	{
+		j = i + 1;
+		while (arr_av[j])
+			if(!ft_strncmp(arr_av[i], arr_av[j++], 11))
+				return (0);
+		++i;
+	}
+	return (1);
 }

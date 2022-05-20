@@ -6,12 +6,11 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 17:05:19 by soo               #+#    #+#             */
-/*   Updated: 2022/05/16 16:24:40 by soo              ###   ########.fr       */
+/*   Updated: 2022/05/18 22:43:27 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
 t_deque *add_front(int value, t_deque **deque)
 {
@@ -24,7 +23,7 @@ t_deque *add_front(int value, t_deque **deque)
 		return (NULL);
 	}
 	if (is_empty(deque))
-		(*deque)->tail = new;
+		(*deque)->top = new;
 	else
 		(*deque)->head->prev = new;
 	new->prev = NULL;
@@ -47,11 +46,11 @@ t_deque *add_back(int value, t_deque **deque)
 	if (is_empty(deque))
 		(*deque)->head = new;
 	else
-		(*deque)->tail->next = new;
-	new->prev = (*deque)->tail;
+		(*deque)->top->next = new;
+	new->prev = (*deque)->top;
 	new->next = NULL;
 	new->value = value;
-	(*deque)->tail = new;
+	(*deque)->top = new;
 	return (*deque);
 }
 
@@ -67,7 +66,7 @@ int	rm_front(t_deque **deque)
 	free(rm_node);
 	(*deque)->head = (*deque)->head->next;
 	if (!(*deque)->head)
-		(*deque)->tail = NULL;
+		(*deque)->top = NULL;
 	else
 		(*deque)->head->prev = NULL;
 	return (value);
@@ -80,14 +79,14 @@ int rm_back(t_deque **deque)
 
 	if(is_empty(deque))
 		return (0);//고치렴2
-	rm_node = (*deque)->tail;
+	rm_node = (*deque)->top;
 	value = rm_node->value;
 	free(rm_node);
-	(*deque)->tail = (*deque)->tail->prev;
-	if (!(*deque)->tail)
+	(*deque)->top = (*deque)->top->prev;
+	if (!(*deque)->top)
 		(*deque)->head = NULL;
 	else
-		(*deque)->tail->next = NULL;
+		(*deque)->top->next = NULL;
 	return (value);
 }
 

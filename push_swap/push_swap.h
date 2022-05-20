@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 21:44:20 by soo               #+#    #+#             */
-/*   Updated: 2022/05/16 16:29:52 by soo              ###   ########.fr       */
+/*   Updated: 2022/05/20 18:17:44 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ typedef struct	s_node
 {
 	struct s_node	*prev;
 	struct s_node	*next;
-	int		value;
+	int				value;
 }	t_node;
 
 typedef struct	s_deque
 {
 	struct s_node	*head;
-	struct s_node	*tail;
+	struct s_node	*top;
 	char			name;
 }	t_deque;
 
@@ -47,6 +47,11 @@ int rm_back(t_deque **deque);
 int	deque_size(t_node *deque);
 t_deque *check_argv(char **arr_av, t_deque **deque);
 
+// to
+void A_to_B(int *arr,int chunk, t_deque *deque_a, t_deque *deque_b);
+
+int	get_chunk_size(int size);
+
 //array_sort
 void	quick_sort(int *arr, int start, int end);
 int	*sort_array(int size, t_node *deque);
@@ -55,12 +60,13 @@ void	ft_rev_int_tab(int *tab, int size);
 
 // error
 int check_error(int argc, t_deque **deque_a, t_deque **deque_b, char **argv);
+int	check_overlap(char **arr_av);
 
 // deque_func
-void push_deque(t_deque **srcs, t_deque **dest);
-void rotate_deque(t_deque **deque);
-void rev_rotate_deque(t_deque **deque);
-void swap_deque(t_deque **deque);
+void push_deque(t_deque **srcs, t_deque **dest, char cmd);
+void rotate_deque(t_deque **deque, char cmd);
+void rev_rotate_deque(t_deque **deque, char cmd);
+void swap_deque(t_deque **deque, char cmd);
 
 
 #endif

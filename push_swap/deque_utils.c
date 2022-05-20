@@ -6,17 +6,16 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 17:18:26 by soo               #+#    #+#             */
-/*   Updated: 2022/05/15 17:31:06 by soo              ###   ########.fr       */
+/*   Updated: 2022/05/18 22:31:33 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
 t_deque *deque_init(t_deque **deque, char name)
 {
 	(*deque)->head = NULL;
-	(*deque)->tail = NULL; 
+	(*deque)->top = NULL; 
 	(*deque)->name = name;
 	return (*deque);
 }
@@ -43,7 +42,7 @@ t_deque	*clear_node(t_deque *deque)
 		free(p_node);
 	}
 	deque->head = NULL;
-	deque->tail = NULL;
+	deque->top = NULL;
 	return (deque);
 }
 
