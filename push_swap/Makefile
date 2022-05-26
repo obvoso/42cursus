@@ -6,7 +6,7 @@
 #    By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/06 21:49:56 by soo               #+#    #+#              #
-#    Updated: 2022/05/16 16:43:32 by soo              ###   ########.fr        #
+#    Updated: 2022/05/23 16:16:50 by soo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ SCRS =	push_swap.c \
 		deque_func.c \
 		check_error.c \
 		array_sort.c \
+		deque_sort.c \
 
 OBJS = ${SCRS:.c=.o}
 NAME = libpushswap.a

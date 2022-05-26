@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 16:19:26 by soo               #+#    #+#             */
-/*   Updated: 2022/05/20 22:51:11 by soo              ###   ########.fr       */
+/*   Updated: 2022/05/26 17:27:40 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,41 @@ void	ft_rev_int_tab(int *tab, int size)
 	}
 }
 
+void	quick_sort_swap(int *arr, int i, int j)
+{
+	int	tmp;
+
+	tmp = arr[j];
+	arr[j] = arr[i];
+	arr[i] = tmp;
+}
+
+void	quick_sort(int *arr, int start, int end)
+{
+	int	pivot;
+	int	i;
+	int	j;
+
+	if (start >= end)
+		return ;
+	pivot = start;
+	i = start + 1;
+	j = end;
+	while (i <= j)
+	{
+		while (arr[i] < arr[pivot] && i <= end)
+			++i;
+		while (arr[j] > arr[pivot] && j >= start)
+			--j;
+		if (i > j)
+			quick_sort_swap(arr, pivot, j);
+		else
+			quick_sort_swap(arr, i, j);
+	}
+	quick_sort(arr, start, j - 1);
+	quick_sort(arr, j + 1, end);
+}
+
 int	is_sort(int	*tab, int length)
 {
 	int	i;
@@ -40,60 +75,21 @@ int	is_sort(int	*tab, int length)
 		if (tab[i] > tab[i + 1])
 		{
 			flag = 2;
-			break;
+			break ;
 		}
 		++i;
-	} 
+	}
 	i = 0;
 	if (flag == 2)
 	{
 		while (i < length - 1)
 		{
 			if (tab[i] < tab[i + 1])
-			{
-				flag = 0;
-				break;
-			}
+				return (0);
 			++i;
 		}
 	}
 	return (flag);
-}
-
-void	quick_sort(int *arr, int start, int end)
-{
-	int	pivot;
-	int	i;
-	int	j;
-	int	tmp;
-
-	if (start >= end)
-		return ;
-	pivot = start;
-	i = start + 1;
-	j = end;
-
-	while (i <= j)
-	{
-		while (arr[i] < arr[pivot] && i <= end)
-			++i;
-		while (arr[j] > arr[pivot] && j >= start)
-			--j;
-		if (i > j)
-		{
-			tmp = arr[j];
-			arr[j] = arr[pivot];
-			arr[pivot] = tmp;
- 		}
-		else
-		{
-			tmp = arr[j];
-			arr[j] = arr[i];
-			arr[i] = tmp;
-		}
-	}
-	quick_sort(arr, start, j - 1);
-	quick_sort(arr, j + 1, end);
 }
 
 int	*sort_array(int size, t_node *deque)
@@ -109,12 +105,14 @@ int	*sort_array(int size, t_node *deque)
 	while (i < size)
 	{
 		arr[i++] = deque->value;
-		deque = deque->next;
+		deque = deque->prev;
 	}
 	sort_flag = is_sort(arr, size);
 	if (!sort_flag)
 		quick_sort(arr, 0, size - 1);
 	else if (sort_flag == 2)
 		ft_rev_int_tab(arr, size);
+	if (sort_flag == 1)
+		return (NULL);
 	return (arr);
 }

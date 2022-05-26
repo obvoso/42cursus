@@ -6,13 +6,13 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 17:05:19 by soo               #+#    #+#             */
-/*   Updated: 2022/05/18 22:43:27 by soo              ###   ########.fr       */
+/*   Updated: 2022/05/26 17:29:37 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_deque *add_front(int value, t_deque **deque)
+t_deque	*add_front(int value, t_deque **deque)
 {
 	t_node	*new;
 
@@ -22,7 +22,7 @@ t_deque *add_front(int value, t_deque **deque)
 		clear_node(*deque);
 		return (NULL);
 	}
-	if (is_empty(deque))
+	if (is_empty(*deque))
 		(*deque)->top = new;
 	else
 		(*deque)->head->prev = new;
@@ -33,7 +33,7 @@ t_deque *add_front(int value, t_deque **deque)
 	return (*deque);
 }
 
-t_deque *add_back(int value, t_deque **deque)
+t_deque	*add_back(int value, char *command, t_deque **deque)
 {
 	t_node	*new;
 
@@ -43,12 +43,14 @@ t_deque *add_back(int value, t_deque **deque)
 		clear_node(*deque);
 		return (NULL);
 	}
-	if (is_empty(deque))
+	if (is_empty(*deque))
 		(*deque)->head = new;
 	else
 		(*deque)->top->next = new;
 	new->prev = (*deque)->top;
 	new->next = NULL;
+	if ((*deque)->name == 'c')
+		new->cmd = command;
 	new->value = value;
 	(*deque)->top = new;
 	return (*deque);
@@ -58,9 +60,7 @@ int	rm_front(t_deque **deque)
 {
 	t_node	*rm_node;
 	int		value;
-	
-	if (is_empty(deque))
-		return (0);//고치렴
+
 	rm_node = (*deque)->head;
 	value = rm_node->value;
 	free(rm_node);
@@ -72,13 +72,11 @@ int	rm_front(t_deque **deque)
 	return (value);
 }
 
-int rm_back(t_deque **deque)
+int	rm_back(t_deque **deque)
 {
-	t_node *rm_node;
-	int	value;
+	t_node	*rm_node;
+	int		value;
 
-	if(is_empty(deque))
-		return (0);//고치렴2
 	rm_node = (*deque)->top;
 	value = rm_node->value;
 	free(rm_node);
@@ -89,4 +87,3 @@ int rm_back(t_deque **deque)
 		(*deque)->top->next = NULL;
 	return (value);
 }
-
