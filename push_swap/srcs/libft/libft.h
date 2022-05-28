@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 17:20:49 by soo               #+#    #+#             */
-/*   Updated: 2022/03/23 14:45:22 by soo              ###   ########.fr       */
+/*   Updated: 2022/05/27 18:45:50 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include "./gnl/get_next_line.h"
 
 typedef struct s_list
 {

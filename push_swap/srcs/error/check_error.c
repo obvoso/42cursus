@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 17:32:11 by soo               #+#    #+#             */
-/*   Updated: 2022/05/26 17:28:19 by soo              ###   ########.fr       */
+/*   Updated: 2022/05/28 17:52:41 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,13 @@ int	check_error(int argc, t_deque *deque_a, t_deque *deque_b, char **argv)
 	}
 	if (!deque_init(deque_a, 'a') || !deque_init(deque_b, 'b'))
 		return (1);
-	if (argc < 2)
-		return (1);
 	if (!argv_init(argc, argv, &deque_a))
 	{
-		write(1, "?\n", 2);
+		write(2, "Error\n", 6);
+		return (1);
+	}
+	if (!chk_dup(&deque_a))
+	{
 		write(2, "Error\n", 6);
 		return (1);
 	}
@@ -47,6 +49,18 @@ t_deque	*check_argv(char **arr_av, t_deque **deque)
 		return (NULL);
 	}
 	return (*deque);
+}
+
+t_deque	*check_maxint(char *arr_av, t_deque **deque_a, int value)
+{
+	if (value == 0 && *arr_av - '0' != 0)
+	{
+		clear_node(*deque_a);
+		free(*deque_a);
+		*deque_a = NULL;
+		return (NULL);
+	}
+	return (*deque_a);
 }
 
 t_deque	*check_digit(char **arr_av, t_deque **deque)

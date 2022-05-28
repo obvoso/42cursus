@@ -6,26 +6,11 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 21:43:01 by soo               #+#    #+#             */
-/*   Updated: 2022/05/26 17:40:06 by soo              ###   ########.fr       */
+/*   Updated: 2022/05/28 17:53:01 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	get_chunk_size(int size)
-{
-	if (size <= 100)
-		return (15);
-	if (size <= 500)
-		return (30);
-	if (size <= 1000)
-		return (45);
-	if (size <= 2000)
-		return (65);
-	if (size <= 5000)
-		return (150);
-	return (200);
-}
 
 void	print_deque(t_node *cmd)
 {
@@ -55,35 +40,12 @@ void	print_deque(t_node *cmd)
 	}
 }
 
-t_deque	*argv_init(int argc, char **argv, t_deque **deque_a)
-{
-	char	**arr_av;
-	int		i;
-	int		j;
-
-	i = 0;
-	while (++i < argc)
-	{
-		arr_av = ft_split(argv[i], ' ');
-		if (!check_argv(arr_av, deque_a))
-			return (NULL);
-		j = 0;
-		while (arr_av[j])
-		{
-			add_front(ft_atoi(arr_av[j]), deque_a);
-			free(arr_av[j++]);
-		}
-		free(arr_av);
-	}
-	return (*deque_a);
-}
-
 void	arg_handler(int *arr, t_deque *deque_a, t_deque *deque_b, t_deque *cmd)
 {
 	int	deque_a_size;
 
 	deque_a_size = deque_size(deque_a->head);
-	if (!arr)
+	if (!arr || deque_a_size < 2)
 		exit(0);
 	if (deque_a_size == 3)
 		three_argc(arr, cmd, deque_a, 0);
@@ -113,7 +75,6 @@ int	main(int argc, char **argv)
 	arr = sort_array(deque_size(deque_a->head), deque_a->top);
 	if (!arr)
 		exit(0);
-	else
-		arg_handler(arr, deque_a, deque_b, command);
+	arg_handler(arr, deque_a, deque_b, command);
 	return (0);
 }

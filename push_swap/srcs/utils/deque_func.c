@@ -6,11 +6,26 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 15:32:42 by soo               #+#    #+#             */
-/*   Updated: 2022/05/26 17:31:59 by soo              ###   ########.fr       */
+/*   Updated: 2022/05/28 15:42:07 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	get_chunk_size(int size)
+{
+	if (size <= 100)
+		return (15);
+	if (size <= 500)
+		return (30);
+	if (size <= 1000)
+		return (45);
+	if (size <= 2000)
+		return (65);
+	if (size <= 5000)
+		return (150);
+	return (200);
+}
 
 void	push_deque(t_deque *srcs, t_deque *dest, char cmd, t_deque *command)
 {

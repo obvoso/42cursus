@@ -6,11 +6,39 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 17:18:26 by soo               #+#    #+#             */
-/*   Updated: 2022/05/26 17:32:26 by soo              ###   ########.fr       */
+/*   Updated: 2022/05/28 15:53:02 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+t_deque	*argv_init(int argc, char **argv, t_deque **deque_a)
+{
+	char	**arr_av;
+	int		i;
+	int		j;
+
+	i = 0;
+	while (++i < argc)
+	{
+		arr_av = ft_split(argv[i], ' ');
+		if (!check_argv(arr_av, deque_a))
+			return (NULL);
+		j = 0;
+		while (arr_av[j])
+		{
+			if (!check_maxint(arr_av[j], deque_a, ft_atoi(arr_av[j])))
+			{
+				free(arr_av[j]);
+				break ;
+			}
+			add_front(ft_atoi(arr_av[j]), deque_a);
+			free(arr_av[j++]);
+		}
+		free(arr_av);
+	}
+	return (*deque_a);
+}
 
 t_deque	*deque_init(t_deque *deque, char name)
 {
