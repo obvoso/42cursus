@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 17:41:06 by soo               #+#    #+#             */
-/*   Updated: 2022/05/28 15:34:49 by soo              ###   ########.fr       */
+/*   Updated: 2022/05/29 19:59:58 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,22 +32,22 @@ int	is_deque_sort(t_deque *deque_a, t_deque *deque_b)
 
 void	check_op(char *op, t_deque *deq_a, t_deque *deq_b, t_deque *cmd)
 {
-	if (!ft_strncmp(op, "pa\n", 3))
+	if (!ft_strncmp(op, "pa\n", 2))
 		push_deque(deq_b, deq_a, 'a', cmd);
-	else if (!ft_strncmp(op, "pb\n", 3))
+	else if (!ft_strncmp(op, "pb\n", 2))
 		push_deque(deq_a, deq_b, 'b', cmd);
-	else if (!ft_strncmp(op, "sa\n", 3))
+	else if (!ft_strncmp(op, "sa\n", 2))
 		swap_deque(&deq_a, 'a', cmd);
-	else if (!ft_strncmp(op, "sb\n", 3))
+	else if (!ft_strncmp(op, "sb\n", 2))
 		swap_deque(&deq_b, 'b', cmd);
-	else if (!ft_strncmp(op, "ss\n", 3))
+	else if (!ft_strncmp(op, "ss\n", 2))
 	{
 		swap_deque(&deq_a, 'a', cmd);
 		swap_deque(&deq_b, 'b', cmd);
 	}
-	else if (!ft_strncmp(op, "ra\n", 3))
+	else if (!ft_strncmp(op, "ra\n", 2))
 		rotate_deque(deq_a, 'a', cmd);
-	else if (!ft_strncmp(op, "rb\n", 3))
+	else if (!ft_strncmp(op, "rb\n", 2))
 		rotate_deque(deq_b, 'b', cmd);
 	else
 		check_op2(op, deq_a, deq_b, cmd);
@@ -71,30 +71,26 @@ void	check_op2(char *op, t_deque *deq_a, t_deque *deq_b, t_deque *cmd)
 	}
 	else
 	{
-		write(1, "KO\n", 3);
+		write(2, "Error\n", 6);
 		exit(0);
 	}
 }
 
-int	main(int argc, char **argv)
+void	checker(t_deque *deque_a, t_deque *deque_b, t_deque *cmd)
 {
-	t_deque	*deque_a;
-	t_deque	*deque_b;
-	t_deque	*cmd;
 	char	*op;
 
-	deque_a = (t_deque *)malloc(sizeof(t_deque));
-	deque_b = (t_deque *)malloc(sizeof(t_deque));
-	cmd = (t_deque *)malloc(sizeof(t_deque));
-	if (check_error(argc, deque_a, deque_b, argv) || !cmd)
-		return (1);
-	deque_init(cmd, 'c');
 	op = "1";
 	while (op)
 	{
 		op = get_next_line(0);
 		if (!op)
 			break ;
+		if (op[ft_strlen(op) - 1] != '\n')
+		{
+			write(2, "Error\n", 6);
+			exit(0);
+		}
 		check_op(op, deque_a, deque_b, cmd);
 		free(op);
 	}
@@ -102,5 +98,22 @@ int	main(int argc, char **argv)
 		write(1, "OK\n", 3);
 	else
 		write(1, "KO\n", 3);
+}
+
+int	main(int argc, char **argv)
+{
+	t_deque	*deque_a;
+	t_deque	*deque_b;
+	t_deque	*cmd;
+
+	deque_a = (t_deque *)malloc(sizeof(t_deque));
+	deque_b = (t_deque *)malloc(sizeof(t_deque));
+	cmd = (t_deque *)malloc(sizeof(t_deque));
+	if (check_error(argc, deque_a, deque_b, argv) || !cmd)
+		return (1);
+	if (deque_size(deque_a->head) < 2)
+		exit(0);
+	deque_init(cmd, 'c');
+	checker(deque_a, deque_b, cmd);
 	return (0);
 }

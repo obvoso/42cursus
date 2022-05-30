@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 17:18:26 by soo               #+#    #+#             */
-/*   Updated: 2022/05/28 15:53:02 by soo              ###   ########.fr       */
+/*   Updated: 2022/05/29 20:52:23 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,6 @@ t_deque	*deque_init(t_deque *deque, char name)
 
 int	is_empty(t_deque *deque)
 {
-	if (!deque)
-		return (TRUE);
 	if (deque->head == NULL)
 		return (TRUE);
 	return (FALSE);

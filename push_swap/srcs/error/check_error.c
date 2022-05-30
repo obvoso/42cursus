@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 17:32:11 by soo               #+#    #+#             */
-/*   Updated: 2022/05/28 17:52:41 by soo              ###   ########.fr       */
+/*   Updated: 2022/05/28 22:22:32 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	check_error(int argc, t_deque *deque_a, t_deque *deque_b, char **argv)
 		write(2, "Error\n", 6);
 		return (1);
 	}
-	if (!chk_dup(&deque_a))
+	if (!check_dup(&deque_a))
 	{
 		write(2, "Error\n", 6);
 		return (1);
@@ -43,7 +43,7 @@ t_deque	*check_argv(char **arr_av, t_deque **deque)
 		*deque = NULL;
 		return (NULL);
 	}
-	if (!check_digit(arr_av, deque) || !check_overlap(arr_av))
+	if (!check_digit(arr_av, deque))
 	{
 		free(arr_av);
 		return (NULL);
@@ -92,19 +92,29 @@ t_deque	*check_digit(char **arr_av, t_deque **deque)
 	return (*deque);
 }
 
-int	check_overlap(char **arr_av)
+t_deque	*check_dup(t_deque **deque)
 {
-	int	i;
-	int	j;
+	t_node	*n_now;
+	t_node	*n_next;
 
-	i = 0;
-	while (arr_av[i + 1])
+	if (deque_size((*deque)->head) < 2)
+		return (*deque);
+	n_now = (*deque)->top;
+	while (n_now->prev)
 	{
-		j = i + 1;
-		while (arr_av[j])
-			if (!ft_strncmp(arr_av[i], arr_av[j++], 11))
-				return (0);
-		++i;
+		n_next = n_now->prev;
+		while (n_next)
+		{
+			if (n_now->value == n_next->value)
+			{
+				clear_node(*deque);
+				free(*deque);
+				*deque = NULL;
+				return (NULL);
+			}
+			n_next = n_next->prev;
+		}
+		n_now = n_now->prev;
 	}
-	return (1);
+	return (*deque);
 }

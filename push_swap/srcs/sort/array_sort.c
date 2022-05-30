@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 16:19:26 by soo               #+#    #+#             */
-/*   Updated: 2022/05/28 17:21:10 by soo              ###   ########.fr       */
+/*   Updated: 2022/05/29 20:10:36 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ void	quick_sort(int *arr, int start, int end)
 	j = end;
 	while (i <= j)
 	{
-		while (arr[i] < arr[pivot] && i <= end)
+		while (i <= end && arr[i] < arr[pivot])
 			++i;
-		while (arr[j] > arr[pivot] && j >= start)
+		while (j >= start && arr[j] > arr[pivot])
 			--j;
 		if (i > j)
 			quick_sort_swap(arr, pivot, j);

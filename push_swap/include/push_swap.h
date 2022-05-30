@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 21:44:20 by soo               #+#    #+#             */
-/*   Updated: 2022/05/28 17:31:37 by soo              ###   ########.fr       */
+/*   Updated: 2022/05/29 20:54:16 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ t_deque	*add_front(int value, t_deque **deque);
 t_deque	*add_back(int value, char *command, t_deque **deque);
 int		rm_front(t_deque **deque);
 int		rm_back(t_deque **deque);
-t_deque	*chk_dup(t_deque **deque);
 
 // deque_sort
 int		find_deque_value(int value, t_node *deque);
@@ -80,7 +79,7 @@ int		check_error(int argc, t_deque *deque_a, t_deque *deque_b, char **argv);
 t_deque	*check_argv(char **arr_av, t_deque **deque);
 t_deque	*check_maxint(char *arr_av, t_deque **deque_a, int value);
 t_deque	*check_digit(char **arr_av, t_deque **deque);
-int		check_overlap(char **arr_av);
+t_deque	*check_dup(t_deque **deque);
 
 // deque_func
 int		get_chunk_size(int size);

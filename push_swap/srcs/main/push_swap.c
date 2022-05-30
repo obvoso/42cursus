@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 21:43:01 by soo               #+#    #+#             */
-/*   Updated: 2022/05/28 17:53:01 by soo              ###   ########.fr       */
+/*   Updated: 2022/05/29 20:49:38 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	arg_handler(int *arr, t_deque *deque_a, t_deque *deque_b, t_deque *cmd)
 
 	deque_a_size = deque_size(deque_a->head);
 	if (!arr || deque_a_size < 2)
-		exit(0);
+		exit(1);
 	if (deque_a_size == 3)
 		three_argc(arr, cmd, deque_a, 0);
 	else if (deque_a_size == 5)
@@ -70,11 +70,11 @@ int	main(int argc, char **argv)
 	deque_b = (t_deque *)malloc(sizeof(t_deque));
 	command = (t_deque *)malloc(sizeof(t_deque));
 	if (check_error(argc, deque_a, deque_b, argv) || !command)
-		return (1);
+		exit(1);
 	deque_init(command, 'c');
 	arr = sort_array(deque_size(deque_a->head), deque_a->top);
 	if (!arr)
-		exit(0);
+		exit(1);
 	arg_handler(arr, deque_a, deque_b, command);
 	return (0);
 }

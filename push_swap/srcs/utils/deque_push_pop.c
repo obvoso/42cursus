@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 17:05:19 by soo               #+#    #+#             */
-/*   Updated: 2022/05/28 17:53:25 by soo              ###   ########.fr       */
+/*   Updated: 2022/05/29 20:09:29 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ int	rm_front(t_deque **deque)
 
 	rm_node = (*deque)->head;
 	value = rm_node->value;
-	free(rm_node);
 	(*deque)->head = (*deque)->head->next;
+	free(rm_node);
 	if (!(*deque)->head)
 		(*deque)->top = NULL;
 	else
@@ -79,38 +79,11 @@ int	rm_back(t_deque **deque)
 
 	rm_node = (*deque)->top;
 	value = rm_node->value;
-	free(rm_node);
 	(*deque)->top = (*deque)->top->prev;
+	free(rm_node);
 	if (!(*deque)->top)
 		(*deque)->head = NULL;
 	else
 		(*deque)->top->next = NULL;
 	return (value);
-}
-
-t_deque	*chk_dup(t_deque **deque)
-{
-	t_node	*n_now;
-	t_node	*n_next;
-
-	if (deque_size((*deque)->head) < 2)
-		return (*deque);
-	n_now = (*deque)->top;
-	while (n_now->prev)
-	{
-		n_next = n_now->prev;
-		while (n_next)
-		{
-			if (n_now->value == n_next->value)
-			{
-				clear_node(*deque);
-				free(*deque);
-				*deque = NULL;
-				return (NULL);
-			}
-			n_next = n_next->prev;
-		}
-		n_now = n_now->prev;
-	}
-	return (*deque);
 }
