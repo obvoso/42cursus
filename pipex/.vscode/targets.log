@@ -1,0 +1,319 @@
+make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+# GNU Make 3.81
+# Copyright (C) 2006  Free Software Foundation, Inc.
+# This is free software; see the source for copying conditions.
+# There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.
+
+# This program built for i386-apple-darwin11.3.0
+ 
+
+# Make data base, printed on Thu Jun  9 22:03:46 2022
+
+# Variables
+
+# automatic
+<D = $(patsubst %/,%,$(dir $<))
+# automatic
+?F = $(notdir $?)
+# environment
+VSCODE_LOG_NATIVE = false
+# automatic
+?D = $(patsubst %/,%,$(dir $?))
+# automatic
+@D = $(patsubst %/,%,$(dir $@))
+# automatic
+@F = $(notdir $@)
+# makefile
+CURDIR := /Users/soo/soo/42cursus/pipex
+# makefile
+SHELL = /bin/sh
+# environment
+VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
+# environment
+_ = /usr/bin/make
+# makefile (from `Makefile', line 14)
+CFLAGS = -Wall -Wextra -Werror
+# makefile (from `Makefile', line 1)
+MAKEFILE_LIST :=  Makefile
+# environment
+VSCODE_VERBOSE_LOGGING = true
+# makefile (from `Makefile', line 17)
+OBJS = ${SRCS:.c=.o}
+# environment
+P9K_SSH = 0
+# environment
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000cq5r0035sf/T/vscode-ipc-d359ab4e-b46e-44ac-baa2-bf55cd92b2c2.sock
+# environment
+VSCODE_CWD = /
+# environment
+PATH = /Applications/Visual Studio Code 2.app/Contents/Resources/app/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki
+# environment
+VSCODE_LOG_STACK = false
+# environment
+ELECTRON_RUN_AS_NODE = 1
+# default
+.FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
+# environment
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.OMvg8CDN1g/Listeners
+# automatic
+%F = $(notdir $%)
+# environment
+VSCODE_PIPE_LOGGING = true
+# environment
+PWD = /Users/soo/soo/42cursus/pipex
+# environment
+ORIGINAL_XDG_CURRENT_DESKTOP = undefined
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
+# environment
+HOME = /Users/soo
+# default
+MAKEFILEPATH := /Applications/Xcode.app/Contents/Developer/Makefiles
+# environment
+VSCODE_CODE_CACHE_PATH = /Users/soo/Library/Application Support/Code/CachedData/57fd6d0195bb9b9d1b49f6da5db789060795de47
+# environment
+LOGNAME = soo
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# automatic
+^D = $(patsubst %/,%,$(dir $^))
+# environment
+XPC_FLAGS = 0x0
+# default
+MAKE = $(MAKE_COMMAND)
+# default
+MAKECMDGOALS := all
+# makefile (from `Makefile', line 15)
+SRCS = srcs/pipex.c
+# environment
+SHLVL = 1
+# makefile (from `Makefile', line 18)
+LIBFT = srcs/libft/libft.a
+# makefile (from `Makefile', line 13)
+CC = cc
+# default
+MAKE_VERSION := 3.81
+# environment
+USER = soo
+# makefile
+.DEFAULT_GOAL := all
+# makefile (from `Makefile', line 19)
+NAME = pipex
+# automatic
+%D = $(patsubst %/,%,$(dir $%))
+# default
+MAKE_COMMAND := /Applications/Xcode.app/Contents/Developer/usr/bin/make
+# makefile (from `Makefile', line 16)
+INC = -I include
+# default
+.VARIABLES := 
+# environment
+TMPDIR = /var/folders/zz/zyxvpxvq6csfxvn_n000cq5r0035sf/T/
+# automatic
+*F = $(notdir $*)
+# environment
+VSCODE_IPC_HOOK = /Users/soo/Library/Application Support/Code/1.67.0-main.sock
+# makefile
+MAKEFLAGS = Rrqp
+# environment
+MFLAGS = -Rrqp
+# automatic
+*D = $(patsubst %/,%,$(dir $*))
+# environment
+MAIL = soo@student.42seoul.kr
+# environment
+XPC_SERVICE_NAME = com.microsoft.VSCode.5004
+# automatic
++D = $(patsubst %/,%,$(dir $+))
+# automatic
++F = $(notdir $+)
+# environment
+__CF_USER_TEXT_ENCODING = 0x1972E:0x0:0x0
+# default
+MAKEFILES := 
+# automatic
+<F = $(notdir $<)
+# environment
+LC_ALL = C
+# automatic
+^F = $(notdir $^)
+# default
+SUFFIXES := 
+# default
+.INCLUDE_DIRS = /usr/local/include
+# environment
+MAKELEVEL := 0
+# environment
+LANG = C
+# environment
+VSCODE_PID = 15633
+# variable set hash-table stats:
+# Load=69/1024=7%, Rehash=0, Collisions=3/104=3%
+
+ 
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+
+# Directories
+
+# . (device 16777225, inode 4117206): 7 files, no impossibilities.
+# srcs (device 16777225, inode 4140140): 4 files, no impossibilities so far.
+
+# 11 files, no impossibilities in 2 directories.
+
+# Implicit Rules
+
+%.o: %.c
+#  commands to execute (from `Makefile', line 27):
+	$(CC) $(CFLAGS) -o $@ -c $^ $(INC)
+	
+
+# 1 implicit rules, 0 (0.0%) terminal.
+
+# Files
+
+all: pipex
+#  Phony target (prerequisite of .PHONY).
+#  Command-line target.
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/5=0%
+
+srcs/pipex.o: srcs/pipex.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `srcs/pipex'
+#  Last modified 2022-06-09 16:47:14
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := srcs/pipex.o
+# automatic
+# % := 
+# automatic
+# * := srcs/pipex
+# automatic
+# + := srcs/pipex.c
+# automatic
+# | := 
+# automatic
+# < := srcs/pipex.c
+# automatic
+# ^ := srcs/pipex.c
+# automatic
+# ? := srcs/pipex.c
+# variable set hash-table stats:
+# Load=8/32=25%, Rehash=0, Collisions=1/15=7%
+#  commands to execute (from `Makefile', line 27):
+	$(CC) $(CFLAGS) -o $@ -c $^ $(INC)
+	
+
+.PHONY: all clean fclean re bonus
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+.SUFFIXES:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Makefile:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-09 16:39:06
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+bonus:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+
+# Not a target:
+srcs/pipex.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-09 22:03:43
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+fclean: clean
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 37):
+	$(MAKE) -C ./srcs/libft fclean
+	rm -f $(NAME)
+	
+
+srcs/libft/libft.a:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 30):
+	$(MAKE) -C srcs/libft all
+	
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+re: fclean all
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+
+clean:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 33):
+	$(MAKE) -C ./srcs/libft clean
+ 
+	rm -f $(OBJS) $(OBJS_BONUS)
+	
+
+pipex: srcs/pipex.o srcs/libft/libft.a
+#  Implicit rule search has not been done.
+#  Last modified 2022-06-09 16:47:14
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/5=0%
+#  commands to execute (from `Makefile', line 24):
+	$(CC) $(CFLAGS) -o $@ $^ -L ./srcs/libft -l ft
+	
+
+# files hash-table stats:
+# Load=13/1024=1%, Rehash=0, Collisions=0/40=0%
+# VPATH Search Paths
+
+# No `vpath' search paths.
+
+# No general (`VPATH' variable) search path.
+
+# # of strings in strcache: 1
+# # of strcache buffers: 1
+# strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
+# strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
+
+# Finished Make data base on Thu Jun  9 22:03:46 2022
+
+ 
