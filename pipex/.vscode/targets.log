@@ -8,10 +8,11 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This program built for i386-apple-darwin11.3.0
  
 
-# Make data base, printed on Thu Jun  9 22:03:46 2022
+# Make data base, printed on Fri Jun 10 19:59:58 2022
 
 # Variables
 
+ 
 # automatic
 <D = $(patsubst %/,%,$(dir $<))
 # automatic
@@ -38,12 +39,12 @@ CFLAGS = -Wall -Wextra -Werror
 MAKEFILE_LIST :=  Makefile
 # environment
 VSCODE_VERBOSE_LOGGING = true
-# makefile (from `Makefile', line 17)
+# makefile (from `Makefile', line 19)
 OBJS = ${SRCS:.c=.o}
 # environment
 P9K_SSH = 0
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000cq5r0035sf/T/vscode-ipc-d359ab4e-b46e-44ac-baa2-bf55cd92b2c2.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000cq5r0035sf/T/vscode-ipc-a4acdeb9-1d8d-4233-86ac-d1968e382874.sock
 # environment
 VSCODE_CWD = /
 # environment
@@ -55,7 +56,7 @@ ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.OMvg8CDN1g/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.XbcAxJbd7v/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -86,11 +87,11 @@ XPC_FLAGS = 0x0
 MAKE = $(MAKE_COMMAND)
 # default
 MAKECMDGOALS := all
-# makefile (from `Makefile', line 15)
-SRCS = srcs/pipex.c
+# makefile (from `Makefile', line 16)
+SRCS = srcs/pipex.c srcs/error.c srcs/path.c
 # environment
 SHLVL = 1
-# makefile (from `Makefile', line 18)
+# makefile (from `Makefile', line 20)
 LIBFT = srcs/libft/libft.a
 # makefile (from `Makefile', line 13)
 CC = cc
@@ -100,13 +101,13 @@ MAKE_VERSION := 3.81
 USER = soo
 # makefile
 .DEFAULT_GOAL := all
-# makefile (from `Makefile', line 19)
+# makefile (from `Makefile', line 21)
 NAME = pipex
 # automatic
 %D = $(patsubst %/,%,$(dir $%))
 # default
 MAKE_COMMAND := /Applications/Xcode.app/Contents/Developer/usr/bin/make
-# makefile (from `Makefile', line 16)
+# makefile (from `Makefile', line 15)
 INC = -I include
 # default
 .VARIABLES := 
@@ -149,32 +150,38 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 15633
+VSCODE_PID = 8890
 # variable set hash-table stats:
+ 
 # Load=69/1024=7%, Rehash=0, Collisions=3/104=3%
 
- 
 # Pattern-specific Variable Values
 
 # No pattern-specific variable values.
 
 # Directories
 
-# . (device 16777225, inode 4117206): 7 files, no impossibilities.
-# srcs (device 16777225, inode 4140140): 4 files, no impossibilities so far.
+# . (device 16777225, inode 4117206): 10 files, no impossibilities.
+# srcs (device 16777225, inode 4140140): 7 files, no impossibilities so far.
 
-# 11 files, no impossibilities in 2 directories.
+# 17 files, no impossibilities in 2 directories.
 
 # Implicit Rules
 
 %.o: %.c
-#  commands to execute (from `Makefile', line 27):
+#  commands to execute (from `Makefile', line 29):
 	$(CC) $(CFLAGS) -o $@ -c $^ $(INC)
 	
 
 # 1 implicit rules, 0 (0.0%) terminal.
 
 # Files
+
+# Not a target:
+srcs/path.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 all: pipex
 #  Phony target (prerequisite of .PHONY).
@@ -189,7 +196,7 @@ all: pipex
 srcs/pipex.o: srcs/pipex.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `srcs/pipex'
-#  Last modified 2022-06-09 16:47:14
+#  Last modified 2022-06-10 19:55:51
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # automatic
@@ -210,7 +217,7 @@ srcs/pipex.o: srcs/pipex.c
 # ? := srcs/pipex.c
 # variable set hash-table stats:
 # Load=8/32=25%, Rehash=0, Collisions=1/15=7%
-#  commands to execute (from `Makefile', line 27):
+#  commands to execute (from `Makefile', line 29):
 	$(CC) $(CFLAGS) -o $@ -c $^ $(INC)
 	
 
@@ -228,7 +235,7 @@ srcs/pipex.o: srcs/pipex.c
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-09 16:39:06
+#  Last modified 2022-06-10 19:59:55
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -243,7 +250,7 @@ bonus:
 # Not a target:
 srcs/pipex.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-09 22:03:43
+#  Last modified 2022-06-10 19:59:20
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -254,7 +261,7 @@ fclean: clean
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 37):
+#  commands to execute (from `Makefile', line 39):
 	$(MAKE) -C ./srcs/libft fclean
 	rm -f $(NAME)
 	
@@ -263,7 +270,7 @@ srcs/libft/libft.a:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 30):
+#  commands to execute (from `Makefile', line 32):
 	$(MAKE) -C srcs/libft all
 	
 
@@ -284,25 +291,30 @@ clean:
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 33):
+#  commands to execute (from `Makefile', line 35):
 	$(MAKE) -C ./srcs/libft clean
- 
 	rm -f $(OBJS) $(OBJS_BONUS)
 	
 
-pipex: srcs/pipex.o srcs/libft/libft.a
+# Not a target:
+srcs/error.o:
 #  Implicit rule search has not been done.
-#  Last modified 2022-06-09 16:47:14
+#  Modification time never checked.
+#  File has not been updated.
+
+pipex: srcs/pipex.o srcs/error.o srcs/path.o srcs/libft/libft.a
+#  Implicit rule search has not been done.
+#  Last modified 2022-06-10 19:55:51
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/5=0%
-#  commands to execute (from `Makefile', line 24):
+#  commands to execute (from `Makefile', line 26):
 	$(CC) $(CFLAGS) -o $@ $^ -L ./srcs/libft -l ft
 	
 
 # files hash-table stats:
-# Load=13/1024=1%, Rehash=0, Collisions=0/40=0%
+# Load=15/1024=1%, Rehash=0, Collisions=0/44=0%
 # VPATH Search Paths
 
 # No `vpath' search paths.
@@ -314,6 +326,6 @@ pipex: srcs/pipex.o srcs/libft/libft.a
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Thu Jun  9 22:03:46 2022
+# Finished Make data base on Fri Jun 10 19:59:58 2022
 
  
