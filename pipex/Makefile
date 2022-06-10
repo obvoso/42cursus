@@ -6,14 +6,16 @@
 #    By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/07 16:17:40 by soo               #+#    #+#              #
-#    Updated: 2022/06/09 16:39:06 by soo              ###   ########.fr        #
+#    Updated: 2022/06/10 19:59:55 by soo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-SRCS =	srcs/pipex.c
 INC = -I include
+SRCS =	srcs/pipex.c \
+		srcs/error.c \
+		srcs/path.c
 OBJS = ${SRCS:.c=.o}
 LIBFT = srcs/libft/libft.a
 NAME = pipex
