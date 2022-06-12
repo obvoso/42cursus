@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 13:42:19 by soo               #+#    #+#             */
-/*   Updated: 2022/06/10 16:13:50 by soo              ###   ########.fr       */
+/*   Updated: 2022/06/12 21:13:25 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ int	check_arg(int ac, char **av)
 	i = 0;
 	if (ac != 5)
 	{
-		ft_putstr_fd("Format Error : file1 \"cmd1\" \"cmd2\" file2\n", 2);
+		ft_putstr_fd("Format Error : \n", 2);
 		return (1);
 	}
 	if (check_slash_dot(av))
 	{
-		ft_putstr_fd("Format Error : file1 \"cmd1\" \"cmd2\" file2\n", 2);
+		ft_putstr_fd("Format Error : \n", 2);
 		return (1);
 	}
 	while (av[++i])
@@ -33,7 +33,7 @@ int	check_arg(int ac, char **av)
 		c = av[i][0];
 		if (!ft_isalnum(((int)c)) && c != '/' && c != '.')
 		{
-			ft_putstr_fd("Format Error : file1 \"cmd1\" \"cmd2\" file2\n", 2);
+			ft_putstr_fd("Format Error : \n", 2);
 			return (1);
 		}
 	}
