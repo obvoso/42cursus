@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 21:12:05 by soo               #+#    #+#             */
-/*   Updated: 2022/06/16 21:44:08 by soo              ###   ########.fr       */
+/*   Updated: 2022/06/17 17:28:51 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,4 +82,13 @@ void	exe_last_cmd(t_px *node, char **envp)
 	close(node->pipe[1]);
 	if (execve(node->path, node->cmd, envp) == -1)
 		exit(1);
+}
+
+void	exe_process(t_px *head, int argc, char **argv, char **envp)
+{
+	while (head)
+	{
+		make_process(head, argc, argv, envp);
+		head = head->next;
+	}
 }

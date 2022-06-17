@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 19:57:29 by soo               #+#    #+#             */
-/*   Updated: 2022/06/16 21:41:36 by soo              ###   ########.fr       */
+/*   Updated: 2022/06/17 17:13:04 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 char	**split_path(char **envp, char **argv, char ***cmd, int idx)
 {
 	char	**c_path;
+	char	*tmp;
 	int		i;
 
 	i = 0;
@@ -22,13 +23,12 @@ char	**split_path(char **envp, char **argv, char ***cmd, int idx)
 	{
 		if (!ft_strncmp(envp[i], "PATH=", 5))
 		{
-			c_path = ft_split(ft_strdup(envp[i] + 5), ':');
+			tmp = ft_strdup(envp[i] + 5);
+			c_path = ft_split(tmp, ':');
+			free(tmp);
 			if (!ft_strncmp(argv[idx], "awk", 3) \
 				|| (!ft_strncmp(argv[idx], "sed", 3)))
-			{
-				*cmd = ft_split(argv[idx], '\'');
-				cmd[0][0][3] = '\0';
-			}
+				split_path_awk(argv, cmd, idx);
 			else
 				*cmd = ft_split(argv[idx], ' ');
 			return (c_path);
@@ -36,6 +36,13 @@ char	**split_path(char **envp, char **argv, char ***cmd, int idx)
 		++i;
 	}
 	return (NULL);
+}
+
+char	***split_path_awk(char **argv, char ***cmd, int idx)
+{
+	*cmd = ft_split(argv[idx], '\'');
+	cmd[0][0][3] = '\0';
+	return (cmd);
 }
 
 char	*check_path(char **path, char *cmd)

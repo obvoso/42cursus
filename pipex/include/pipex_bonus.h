@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 21:02:21 by soo               #+#    #+#             */
-/*   Updated: 2022/06/16 13:40:55 by soo              ###   ########.fr       */
+/*   Updated: 2022/06/17 17:27:53 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 typedef struct s_px
 {
 	char		**cmd;
+	char		**c_path;
 	char		*path;
 	char		*infile;
 	char		*outfile;
@@ -40,6 +41,7 @@ typedef struct s_px
 t_px	*px_last(t_px *head);
 void	exe_first_cmd(t_px *node, char **envp);
 void	exe_last_cmd(t_px *node, char **envp);
+void	exe_process(t_px *head, int argc, char **argv, char **envp);
 
 //main
 t_px	*here_doc(int argc, char **argv, t_px **head);
