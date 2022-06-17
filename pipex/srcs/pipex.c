@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 20:51:51 by soo               #+#    #+#             */
-/*   Updated: 2022/06/12 20:59:19 by soo              ###   ########.fr       */
+/*   Updated: 2022/06/16 16:58:18 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +90,9 @@ static int	second_child(char **argv, char **envp, int pipe[])
 	pid = fork();
 	if (pid == -1)
 		return (1);
-	else if (pid == 0)
+	if (pid == 0)
 		second_cmd(argv, envp, pipe);
-	else if (pid > 0)
+	if (pid > 0)
 	{
 		close(pipe[0]);
 		close(pipe[1]);
@@ -105,7 +105,12 @@ int	main(int argc, char **argv, char **envp)
 {
 	int	fd[2];
 
-	if (check_arg(argc, argv))
+	if (argc != 5)
+	{
+		ft_putstr_fd("Format Error\n", 2);
+		return (1);
+	}
+	if (check_argv(argv, argc))
 		return (1);
 	if (pipe(fd) == -1)
 		return (1);
