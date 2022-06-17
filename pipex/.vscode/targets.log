@@ -8,7 +8,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This program built for i386-apple-darwin11.3.0
  
 
-# Make data base, printed on Sun Jun 12 14:22:57 2022
+# Make data base, printed on Fri Jun 17 13:48:03 2022
 
 # Variables
 
@@ -24,6 +24,8 @@ VSCODE_LOG_NATIVE = false
 @D = $(patsubst %/,%,$(dir $@))
 # automatic
 @F = $(notdir $@)
+# makefile (from `Makefile', line 30)
+BONUS_OBJS = ${BONUS_SRCS:.c=.o}
 # makefile
 CURDIR := /Users/soo/soo/42cursus/pipex
 # makefile
@@ -38,17 +40,16 @@ CFLAGS = -Wall -Wextra -Werror
 MAKEFILE_LIST :=  Makefile
 # environment
 VSCODE_VERBOSE_LOGGING = true
-# makefile (from `Makefile', line 19)
+# makefile (from `Makefile', line 29)
 OBJS = ${SRCS:.c=.o}
 # environment
 P9K_SSH = 0
- 
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000cq5r0035sf/T/vscode-ipc-de9081a3-d510-45f5-b977-f01f0ad5c529.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000cq5r0035sf/T/vscode-ipc-3b003334-c2bf-48ad-ac3f-2ebee0dd3468.sock
 # environment
 VSCODE_CWD = /
 # environment
-PATH = /Applications/Visual Studio Code 2.app/Contents/Resources/app/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki
+PATH = /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki
 # environment
 VSCODE_LOG_STACK = false
 # environment
@@ -56,9 +57,11 @@ ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.fcCDgnGfZg/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.YXcVs8FciA/Listeners
 # automatic
 %F = $(notdir $%)
+# makefile (from `Makefile', line 24)
+BONUS_SRCS = srcs/pipex_bonus.c srcs/utils_bonus.c srcs/path.c srcs/error.c 
 # environment
 VSCODE_PIPE_LOGGING = true
 # environment
@@ -72,7 +75,7 @@ HOME = /Users/soo
 # default
 MAKEFILEPATH := /Applications/Xcode.app/Contents/Developer/Makefiles
 # environment
-VSCODE_CODE_CACHE_PATH = /Users/soo/Library/Application Support/Code/CachedData/57fd6d0195bb9b9d1b49f6da5db789060795de47
+VSCODE_CODE_CACHE_PATH = /Users/soo/Library/Application Support/Code/CachedData/4af164ea3a06f701fe3e89a2bcbb421d2026b68f
 # environment
 LOGNAME = soo
 # environment
@@ -87,11 +90,11 @@ XPC_FLAGS = 0x0
 MAKE = $(MAKE_COMMAND)
 # default
 MAKECMDGOALS := all
-# makefile (from `Makefile', line 16)
+# makefile (from `Makefile', line 20)
 SRCS = srcs/pipex.c srcs/error.c srcs/path.c
 # environment
 SHLVL = 1
-# makefile (from `Makefile', line 20)
+# makefile (from `Makefile', line 18)
 LIBFT = srcs/libft/libft.a
 # makefile (from `Makefile', line 13)
 CC = cc
@@ -101,7 +104,7 @@ MAKE_VERSION := 3.81
 USER = soo
 # makefile
 .DEFAULT_GOAL := all
-# makefile (from `Makefile', line 21)
+# makefile (from `Makefile', line 17)
 NAME = pipex
 # automatic
 %D = $(patsubst %/,%,$(dir $%))
@@ -116,7 +119,7 @@ TMPDIR = /var/folders/zz/zyxvpxvq6csfxvn_n000cq5r0035sf/T/
 # automatic
 *F = $(notdir $*)
 # environment
-VSCODE_IPC_HOOK = /Users/soo/Library/Application Support/Code/1.67.0-main.sock
+VSCODE_IPC_HOOK = /Users/soo/Library/Application Support/Code/1.68.0-main.sock
 # makefile
 MAKEFLAGS = Rrqp
 # environment
@@ -126,7 +129,7 @@ MFLAGS = -Rrqp
 # environment
 MAIL = soo@student.42seoul.kr
 # environment
-XPC_SERVICE_NAME = com.microsoft.VSCode.2352
+XPC_SERVICE_NAME = com.microsoft.VSCode.4708
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # automatic
@@ -147,12 +150,14 @@ SUFFIXES :=
 .INCLUDE_DIRS = /usr/local/include
 # environment
 MAKELEVEL := 0
+# makefile (from `Makefile', line 35)
+OBJECTS = $(OBJS)
 # environment
 LANG = C
 # environment
-VSCODE_PID = 92920
+VSCODE_PID = 89530
 # variable set hash-table stats:
-# Load=69/1024=7%, Rehash=0, Collisions=3/104=3%
+# Load=72/1024=7%, Rehash=0, Collisions=4/104=4%
 
 # Pattern-specific Variable Values
 
@@ -160,15 +165,15 @@ VSCODE_PID = 92920
 
 # Directories
 
-# . (device 16777225, inode 4117206): 9 files, no impossibilities.
-# srcs (device 16777225, inode 4140140): 8 files, no impossibilities so far.
+# . (device 16777225, inode 4117206): 10 files, no impossibilities.
+# srcs (device 16777225, inode 4140140): 10 files, no impossibilities so far.
 
-# 17 files, no impossibilities in 2 directories.
+# 20 files, no impossibilities in 2 directories.
 
 # Implicit Rules
 
 %.o: %.c
-#  commands to execute (from `Makefile', line 29):
+#  commands to execute (from `Makefile', line 44):
 	$(CC) $(CFLAGS) -o $@ -c $^ $(INC)
 	
 
@@ -176,11 +181,17 @@ VSCODE_PID = 92920
 
 # Files
 
-# Not a target:
-srcs/path.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+srcs/path.o: srcs/path.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `srcs/path'
+#  Last modified 2022-06-16 21:41:41
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 44):
+	$(CC) $(CFLAGS) -o $@ -c $^ $(INC)
+	
 
 all: pipex
 #  Phony target (prerequisite of .PHONY).
@@ -188,35 +199,19 @@ all: pipex
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has been updated.
-#  Needs to be updated (-q is set).
+#  Successfully updated.
 # variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/5=0%
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 srcs/pipex.o: srcs/pipex.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `srcs/pipex'
-#  Last modified 2022-06-12 14:19:02
+#  Last modified 2022-06-16 21:41:41
 #  File has been updated.
-#  Needs to be updated (-q is set).
-# automatic
-# @ := srcs/pipex.o
-# automatic
-# % := 
-# automatic
-# * := srcs/pipex
-# automatic
-# + := srcs/pipex.c
-# automatic
-# | := 
-# automatic
-# < := srcs/pipex.c
-# automatic
-# ^ := srcs/pipex.c
-# automatic
-# ? := srcs/pipex.c
+#  Successfully updated.
 # variable set hash-table stats:
-# Load=8/32=25%, Rehash=0, Collisions=1/15=7%
-#  commands to execute (from `Makefile', line 29):
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 44):
 	$(CC) $(CFLAGS) -o $@ -c $^ $(INC)
 	
 
@@ -234,7 +229,25 @@ srcs/pipex.o: srcs/pipex.c
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-10 19:59:55
+#  Last modified 2022-06-16 17:15:04
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+srcs/error.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-16 21:31:36
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+srcs/path.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-16 21:41:36
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -242,15 +255,18 @@ Makefile:
 
 bonus:
 #  Phony target (prerequisite of .PHONY).
+ 
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
+#  commands to execute (from `Makefile', line 50):
+	make BONUS_FLAG=1
+	
 
 # Not a target:
 srcs/pipex.c:
- 
 #  Implicit rule search has been done.
-#  Last modified 2022-06-12 14:22:40
+#  Last modified 2022-06-16 16:58:18
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -261,16 +277,17 @@ fclean: clean
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 39):
+#  commands to execute (from `Makefile', line 57):
 	$(MAKE) -C ./srcs/libft fclean
 	rm -f $(NAME)
 	
 
 srcs/libft/libft.a:
 #  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-#  commands to execute (from `Makefile', line 32):
+#  Last modified 2022-06-16 21:41:43
+#  File has been updated.
+#  Successfully updated.
+#  commands to execute (from `Makefile', line 47):
 	$(MAKE) -C srcs/libft all
 	
 
@@ -291,30 +308,36 @@ clean:
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 35):
+#  commands to execute (from `Makefile', line 53):
 	$(MAKE) -C ./srcs/libft clean
-	rm -f $(OBJS) $(OBJS_BONUS)
+	rm -f $(OBJS) $(BONUS_OBJS)
 	
 
-# Not a target:
-srcs/error.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+srcs/error.o: srcs/error.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `srcs/error'
+#  Last modified 2022-06-16 21:41:41
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 44):
+	$(CC) $(CFLAGS) -o $@ -c $^ $(INC)
+	
 
 pipex: srcs/pipex.o srcs/error.o srcs/path.o srcs/libft/libft.a
 #  Implicit rule search has not been done.
-#  Last modified 2022-06-12 14:19:02
+#  Last modified 2022-06-16 21:44:12
 #  File has been updated.
-#  Needs to be updated (-q is set).
+#  Successfully updated.
 # variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/5=0%
-#  commands to execute (from `Makefile', line 26):
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 41):
 	$(CC) $(CFLAGS) -o $@ $^ -L ./srcs/libft -l ft
 	
 
 # files hash-table stats:
-# Load=15/1024=1%, Rehash=0, Collisions=0/44=0%
+# Load=17/1024=2%, Rehash=0, Collisions=0/52=0%
 # VPATH Search Paths
 
 # No `vpath' search paths.
@@ -326,6 +349,6 @@ pipex: srcs/pipex.o srcs/error.o srcs/path.o srcs/libft/libft.a
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Sun Jun 12 14:22:57 2022
+# Finished Make data base on Fri Jun 17 13:48:03 2022
 
  

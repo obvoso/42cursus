@@ -1,15 +1,18 @@
 make --dry-run --always-make --keep-going --print-directory
 make: Entering directory `/Users/soo/soo/42cursus/pipex'
 cc -Wall -Wextra -Werror -o srcs/pipex.o -c srcs/pipex.c -I include
+ 
 cc -Wall -Wextra -Werror -o srcs/error.o -c srcs/error.c -I include
 cc -Wall -Wextra -Werror -o srcs/path.o -c srcs/path.c -I include
 /Applications/Xcode.app/Contents/Developer/usr/bin/make -C srcs/libft all
  
 make[1]: Entering directory `/Users/soo/soo/42cursus/pipex/srcs/libft'
 cc -Wall -Wextra -Werror -c ft_isalpha.c -o ft_isalpha.o 
+ 
 cc -Wall -Wextra -Werror -c ft_isdigit.c -o ft_isdigit.o 
 cc -Wall -Wextra -Werror -c ft_isalnum.c -o ft_isalnum.o 
 cc -Wall -Wextra -Werror -c ft_isascii.c -o ft_isascii.o 
+ 
 cc -Wall -Wextra -Werror -c ft_isprint.c -o ft_isprint.o 
 cc -Wall -Wextra -Werror -c ft_strlen.c -o ft_strlen.o 
 cc -Wall -Wextra -Werror -c ft_memset.c -o ft_memset.o 
@@ -18,9 +21,9 @@ cc -Wall -Wextra -Werror -c ft_memcpy.c -o ft_memcpy.o
 cc -Wall -Wextra -Werror -c ft_memmove.c -o ft_memmove.o 
 cc -Wall -Wextra -Werror -c ft_strlcpy.c -o ft_strlcpy.o 
 cc -Wall -Wextra -Werror -c ft_strlcat.c -o ft_strlcat.o 
- 
 cc -Wall -Wextra -Werror -c ft_toupper.c -o ft_toupper.o 
 cc -Wall -Wextra -Werror -c ft_tolower.c -o ft_tolower.o 
+ 
 cc -Wall -Wextra -Werror -c ft_strchr.c -o ft_strchr.o 
 cc -Wall -Wextra -Werror -c ft_strrchr.c -o ft_strrchr.o 
 cc -Wall -Wextra -Werror -c ft_strncmp.c -o ft_strncmp.o 
@@ -29,9 +32,9 @@ cc -Wall -Wextra -Werror -c ft_memcmp.c -o ft_memcmp.o
 cc -Wall -Wextra -Werror -c ft_strnstr.c -o ft_strnstr.o 
 cc -Wall -Wextra -Werror -c ft_atoi.c -o ft_atoi.o 
 cc -Wall -Wextra -Werror -c ft_calloc.c -o ft_calloc.o 
+ 
 cc -Wall -Wextra -Werror -c ft_strdup.c -o ft_strdup.o 
 cc -Wall -Wextra -Werror -c ft_substr.c -o ft_substr.o 
- 
 cc -Wall -Wextra -Werror -c ft_strjoin.c -o ft_strjoin.o 
 cc -Wall -Wextra -Werror -c ft_strtrim.c -o ft_strtrim.o 
 cc -Wall -Wextra -Werror -c ft_split.c -o ft_split.o 
@@ -39,6 +42,7 @@ cc -Wall -Wextra -Werror -c ft_itoa.c -o ft_itoa.o
 cc -Wall -Wextra -Werror -c ft_strmapi.c -o ft_strmapi.o 
 cc -Wall -Wextra -Werror -c ft_striteri.c -o ft_striteri.o 
 cc -Wall -Wextra -Werror -c ft_putchar_fd.c -o ft_putchar_fd.o 
+ 
 cc -Wall -Wextra -Werror -c ft_putstr_fd.c -o ft_putstr_fd.o 
 cc -Wall -Wextra -Werror -c ft_putendl_fd.c -o ft_putendl_fd.o 
 cc -Wall -Wextra -Werror -c ft_putnbr_fd.c -o ft_putnbr_fd.o 
@@ -46,11 +50,11 @@ cc -Wall -Wextra -Werror -c gnl/get_next_line.c -o gnl/get_next_line.o
 cc -Wall -Wextra -Werror -c gnl/get_next_line_utils.c -o gnl/get_next_line_utils.o 
 cc -Wall -Wextra -Werror -c gnl/get_next_line_bonus.c -o gnl/get_next_line_bonus.o 
 cc -Wall -Wextra -Werror -c gnl/get_next_line_utils_bonus.c -o gnl/get_next_line_utils_bonus.o 
+ 
 cc -Wall -Wextra -Werror -c printf/ft_printf.c -o printf/ft_printf.o 
 cc -Wall -Wextra -Werror -c printf/ft_printf_func.c -o printf/ft_printf_func.o 
 cc -Wall -Wextra -Werror -c printf/ft_printf_utils.c -o printf/ft_printf_utils.o 
 ar rc libft.a ft_isalpha.o ft_isdigit.o ft_isalnum.o ft_isascii.o ft_isprint.o ft_strlen.o ft_memset.o ft_bzero.o ft_memcpy.o ft_memmove.o ft_strlcpy.o ft_strlcat.o ft_toupper.o ft_tolower.o ft_strchr.o ft_strrchr.o ft_strncmp.o ft_memchr.o ft_memcmp.o ft_strnstr.o ft_atoi.o ft_calloc.o ft_strdup.o ft_substr.o ft_strjoin.o ft_strtrim.o ft_split.o ft_itoa.o ft_strmapi.o ft_striteri.o ft_putchar_fd.o ft_putstr_fd.o ft_putendl_fd.o ft_putnbr_fd.o gnl/get_next_line.o gnl/get_next_line_utils.o gnl/get_next_line_bonus.o gnl/get_next_line_utils_bonus.o printf/ft_printf.o printf/ft_printf_func.o printf/ft_printf_utils.o
- 
 make[1]: Leaving directory `/Users/soo/soo/42cursus/pipex/srcs/libft'
 cc -Wall -Wextra -Werror -o pipex srcs/pipex.o srcs/error.o srcs/path.o srcs/libft/libft.a -L ./srcs/libft -l ft
 make: Leaving directory `/Users/soo/soo/42cursus/pipex'
