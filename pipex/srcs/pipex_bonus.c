@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 21:02:55 by soo               #+#    #+#             */
-/*   Updated: 2022/06/16 17:41:15 by soo              ###   ########.fr       */
+/*   Updated: 2022/06/17 17:29:04 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,24 +56,22 @@ void	exe_cmd(t_px *node, int argc, char **argv, char **envp)
 
 t_px	*px_head_init(t_px **head, char **av, char **ep, int num)
 {
-	char	**c_path;
-
 	if (pipe((*head)->pipe) == -1)
 		exit(1);
 	(*head)->num = num;
 	if ((*head)->infile)
-		c_path = split_path(ep, av, &(*head)->cmd, (*head)->num + 2);
+		(*head)->c_path = split_path(ep, av, &(*head)->cmd, (*head)->num + 2);
 	else
 	{
-		c_path = split_path(ep, av, &(*head)->cmd, (*head)->num + 1);
+		(*head)->c_path = split_path(ep, av, &(*head)->cmd, (*head)->num + 1);
 		(*head)->infile = ft_strdup(av[1]);
 	}
-	if (!c_path)
+	if (!(*head)->c_path)
 	{
 		ft_putstr_fd("command not found\n", 2);
 		exit(1);
 	}
-	(*head)->path = check_path(c_path, (*head)->cmd[0]);
+	(*head)->path = check_path((*head)->c_path, (*head)->cmd[0]);
 	if (!(*head)->path)
 		exit(127);
 	return (*head);
@@ -94,12 +92,14 @@ t_px	*px_node_init(t_px **head, char **av, char **ep, int num)
 		new->num = num;
 		if (!ft_strncmp((*head)->infile, ".tmp", 4))
 		{
-			new->path = check_path \
-					(split_path(ep, av, &new->cmd, new->num + 2), new->cmd[0]);
+			new->c_path = (split_path(ep, av, &new->cmd, new->num + 2));
+			new->path = check_path(new->c_path, new->cmd[0]);
 		}
 		else
-			new->path = check_path \
-					(split_path(ep, av, &new->cmd, new->num + 1), new->cmd[0]);
+		{
+			new->c_path = (split_path(ep, av, &new->cmd, new->num + 1));
+			new->path = check_path(new->c_path, new->cmd[0]);
+		}
 		tmp = px_last(*head);
 		tmp->next = new;
 		new->prev = tmp;
@@ -130,9 +130,6 @@ int	main(int argc, char **argv, char **envp)
 	num = 1;
 	while (cmd_cnt--)
 		px_node_init(&head, argv, envp, num++);
-	while (head)
-	{
-		make_process(head, argc, argv, envp);
-		head = head->next;
-	}
+	exe_process(head, argc, argv, envp);
+	return (0);
 }

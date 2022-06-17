@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 20:50:38 by soo               #+#    #+#             */
-/*   Updated: 2022/06/16 21:30:45 by soo              ###   ########.fr       */
+/*   Updated: 2022/06/17 17:11:54 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int		check_slash_dot(char **av);
 int		check_char(char **av);
 
 //path
+char	***split_path_awk(char **argv, char ***cmd, int idx);
 char	**split_path(char **envp, char **argv, char ***cmd, int idx);
 char	*check_path(char **path, char *cmd);
 
