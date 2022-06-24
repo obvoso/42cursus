@@ -6,11 +6,11 @@
 #    By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/10 15:13:23 by soo               #+#    #+#              #
-#    Updated: 2022/03/23 15:51:15 by soo              ###   ########.fr        #
+#    Updated: 2022/06/05 16:04:34 by soo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Wextra -Werror -c
 
 NAME = libft.a
@@ -34,13 +34,24 @@ SRCS_BONUS = ft_lstnew.c ft_lstadd_front.c \
 			 ft_lstdelone.c ft_lstclear.c ft_lstiter.c \
 			 ft_lstmap.c
 
+SRCS_GNL = gnl/get_next_line.c \
+		   gnl/get_next_line_utils.c \
+		   gnl/get_next_line_bonus.c \
+		   gnl/get_next_line_utils_bonus.c
+
+SRCS_PRINTF = printf/ft_printf.c \
+			  printf/ft_printf_func.c \
+			  printf/ft_printf_utils.c
+
 OBJS = $(SRCS:.c=.o)
 OBJS_BONUS = $(SRCS_BONUS:.c=.o)
+OBJS_GNL = $(SRCS_GNL:.c=.o)
+OBJS_PRINTF = $(SRCS_PRINTF:.c=.o)
 
 ifdef WITH_BONUS
-  OBJECTS = $(OBJS) $(OBJS_BONUS)
+  OBJECTS = $(OBJS) $(OBJS_BONUS) $(OBJS_GNL) $(OBJS_PRINTF)
 else
-  OBJECTS = $(OBJS)
+  OBJECTS = $(OBJS) $(OBJS_GNL) $(OBJS_PRINTF)
 endif
 
 all : $(NAME)
@@ -55,7 +66,7 @@ bonus :
 	make WITH_BONUS=1
 
 clean : 
-	rm -f $(OBJS) $(OBJS_BONUS)
+	rm -f $(OBJECTS)
 
 fclean : clean
 	rm -f $(NAME)
