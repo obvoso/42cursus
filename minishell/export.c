@@ -6,54 +6,60 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 15:26:02 by soo               #+#    #+#             */
-/*   Updated: 2022/06/30 19:32:10 by soo              ###   ########.fr       */
+/*   Updated: 2022/07/06 21:06:20 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "env.h"
 
-static int	blank_check(t_env new)
+void	print_export(t_env *head)
 {
-	char	*str;
-
-	str = new.key;
-	while (*str)
+	t_env	*now;
+	
+	now = head;
+	while (now->next)
 	{
-		if ((*str >= 9 && *str <= 13) || *str == 32)
-			return (1);
-		++str;
+		if (now->value_flag == 1)
+			ft_printf("declare -x %s\n", now->key);
+		else if(!ft_strncmp(now->value, "", 1))
+			ft_printf("declare -x %s=\"\"\n", now->key);
+		else 
+			ft_printf("declare -x %s=\"%s\"\n", now->key, now->value);
+		now = now->next;
 	}
-	str = new.value;
-	while (*str)
+}
+
+static int	find_equal(char *line)
+{
+	while(*line)
 	{
-		if ((*str >= 9 && *str <= 13) || *str == 32)
+		if (*line == '=')
 			return (1);
-		++str;
+		++line;
 	}
 	return (0);
 }
 
-static int num_check(t_env new)
+t_env	*split_equal(char *line, t_env *new)
 {
-	char *str;
-	str = new.key;
-	while (*str)
-	{
-		if (*str >= '0' && *str <= '9')
-			return (1);
-		++str;
-	}
-	return (0);
-}
+	char	**split_equal;
 
-void key_format_check(t_env new)
-{
-	if (blank_check(new) || num_check(new))
+	split_equal = ft_split(line, '=');
+	new->key = ft_strdup(split_equal[0]);
+	if (find_equal(line) && !split_equal[1])
+		new->value = ft_strdup("");
+	else if (!split_equal[1])
+		new->value_flag = 1;
+	else
 	{
-		printf("ERROR\n");
-		exit(1);
+		new->value = ft_strdup(split_equal[1]);
+		//free(split_equal[1]);
 	}
+	//free(split_equal[0]);
+	//free(split_equal);
+	str_free(split_equal);
+	return (new);
 }
 
 t_env	*add_env(t_env *head, t_env *new)
@@ -63,7 +69,8 @@ t_env	*add_env(t_env *head, t_env *new)
 	now = head;
 	while (now->next)
 	{
-		if (!ft_strncmp(now->key, new->key, ft_strlen(now->key))) // 넘겨줄 len수정
+		if (!ft_strncmp(now->key, new->key, ft_strlen(now->key)) \
+			&& ft_strlen(now->key) == ft_strlen(new->key))
 		{
 			free(now->value);
 			now->value = ft_strdup(new->value);
@@ -81,19 +88,64 @@ t_env	*add_env(t_env *head, t_env *new)
 	return (head);
 }
 
-t_env	*export_env(t_env *head, char **new_env)
+int	make_new_env(t_env *head, char *line)
 {
 	t_env	*new;
-	char	**split_equal;
+	char	**split_blank;
+	int		i;
+	int		flag;
 
-	new = (t_env *)malloc(sizeof(t_env));
-	if (!ft_strchr(new_env[1], (int)'='))
-		printf("ERROR\n");
-	split_equal = ft_split(new_env[1], '=');
-	new->key = ft_strdup(split_equal[0]);
-	new->value = ft_strdup(split_equal[1]);
-	new->next = NULL;
-	key_format_check(*new);
-	add_env(head, new);
-	return (head);
+	split_blank = ft_split(line, ' ');
+	i = 0;
+	flag = 0;
+	while (split_blank[i])
+	{
+		new = (t_env *)malloc(sizeof(t_env));
+		if (!new)
+			return (0); //수정
+		ft_memset(new, 0, sizeof(t_env));
+		if (!format_check(split_blank[i]))
+		{
+			ft_putstr_fd("export: '", 2);
+			ft_putstr_fd(split_blank[i], 2);
+			ft_putstr_fd("' : not a valid identifier\n", 2);
+			++flag;
+			++i;
+			free(new);
+			continue ;
+		}
+		add_env(head, split_equal(split_blank[i++], new));
+	}
+	str_free(split_blank);
+	return (flag);
+}
+
+int	export_env(t_env *head, char **line)
+{
+	if (!line[1] || line[1][0] == '\0') // cmd가 인자없이 export만 들어왔을 경우
+	{
+		str_free(line);
+		print_export(head);
+		return (0);
+	}
+	if (make_new_env(head, line[1]) > 0)
+	{
+		str_free(line);
+		return (1);
+	}
+	str_free(line);
+	return (0);
+}
+
+int	export(t_env *head, char *line)
+{
+	char	**str;
+
+	str = line_format(line, "export");
+	if (!str)
+	{
+		ft_putstr_fd("command not found\n", 2);
+		return (1);
+	}
+	return (export_env(head, str));
 }
