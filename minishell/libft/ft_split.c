@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 18:23:02 by soo               #+#    #+#             */
-/*   Updated: 2022/05/10 22:45:32 by soo              ###   ########.fr       */
+/*   Updated: 2022/07/05 17:35:05 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	str_cpy(char *ret, char const *start, char const *end)
 {
 	while (start < end)
 		*ret++ = *start++;
-	*ret = '\0';
+	 *ret = '\0';
 }
 
 static int	ctrl_split(char **ret, char const *s, char c)
