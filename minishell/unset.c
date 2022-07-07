@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 16:08:34 by soo               #+#    #+#             */
-/*   Updated: 2022/07/06 21:52:14 by soo              ###   ########.fr       */
+/*   Updated: 2022/07/06 22:11:51 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ int	split_del_key(t_env **env, char *del)
 			continue ;
 		}
 		find_unset_env(env, split_key[i++]);
-		printf("\n\n\n\n???\n\n\n\n");
 	}
 	str_free(split_key);
 	return (flag);

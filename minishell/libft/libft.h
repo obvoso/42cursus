@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 17:20:49 by soo               #+#    #+#             */
-/*   Updated: 2022/06/07 19:35:21 by soo              ###   ########.fr       */
+/*   Updated: 2022/07/07 21:53:21 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,6 @@ t_list			*ft_lstmap(t_list *lst, void *(*f)(void *), \
 void (*del)(void *));
 void			*ft_calloc(size_t count, size_t size);
 char			*ft_strdup(const char *s1);
+char			*ft_strndup(const char *s1, size_t size);
 
 #endif

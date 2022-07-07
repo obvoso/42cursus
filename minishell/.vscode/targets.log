@@ -10,7 +10,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 make: *** No rule to make target `all'.  Stop.
 
 
-# Make data base, printed on Wed Jul  6 19:40:33 2022
+# Make data base, printed on Thu Jul  7 18:58:18 2022
 
 # Variables
 
@@ -41,13 +41,13 @@ VSCODE_VERBOSE_LOGGING = true
 # environment
 P9K_SSH = 0
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000cq5r0035sf/T/vscode-ipc-bde39932-7878-4ab1-b029-4e30bd226d93.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000cq5r0035sf/T/vscode-ipc-5673fe36-0b54-4b8e-990c-696ab40962ed.sock
 # environment
 VSCODE_CWD = /
 # environment
 PATH = /Users/soo/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki
 # environment
-LaunchInstanceID = 65141849-3BFC-4723-9169-AA4D609E2413
+LaunchInstanceID = A9ACBACD-403D-461C-9856-83CB6CCBFFF2
 # environment
 VSCODE_LOG_STACK = false
 # environment
@@ -55,7 +55,7 @@ ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.7r4yyYlGhU/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.0pitrjVoC6/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -76,7 +76,6 @@ VSCODE_CODE_CACHE_PATH = /Users/soo/Library/Application Support/Code/CachedData/
 LOGNAME = soo
 # environment
 APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
- 
 # environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # automatic
@@ -116,7 +115,7 @@ MFLAGS = -Rrqp
 # environment
 MAIL = soo@student.42seoul.kr
 # environment
-XPC_SERVICE_NAME = com.apple.xpc.launchd.oneshot.0x10000003.Electron
+XPC_SERVICE_NAME = com.apple.xpc.launchd.oneshot.0x10000004.Electron
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # automatic
@@ -144,7 +143,7 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 736
+VSCODE_PID = 772
 # variable set hash-table stats:
 # Load=65/1024=6%, Rehash=0, Collisions=1/86=1%
 
@@ -154,9 +153,9 @@ VSCODE_PID = 736
 
 # Directories
 
-# . (device 16777225, inode 4368591): 15 files, no impossibilities.
+# . (device 16777225, inode 4368591): 16 files, no impossibilities.
 
-# 15 files, no impossibilities in 1 directories.
+# 16 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -228,6 +227,6 @@ GNUmakefile:
 # strcache size: total = 0 / max = 0 / min = 4096 / avg = 0
 # strcache free: total = 0 / max = 0 / min = 4096 / avg = 0
 
-# Finished Make data base on Wed Jul  6 19:40:33 2022
+# Finished Make data base on Thu Jul  7 18:58:19 2022
 
  
