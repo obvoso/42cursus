@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 19:18:15 by soo               #+#    #+#             */
-/*   Updated: 2022/07/07 22:16:17 by soo              ###   ########.fr       */
+/*   Updated: 2022/07/07 22:45:51 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,17 @@ char	*arrange_str_cpy(char *ret, char *s1, char *s2, char *s3)
 	return (ret);
 }
 
-char	*arrange_str(char **sep_str, char *line, int front, int back)
+char	*arrange_str(char **sep_str, char *origin, int front, int back)
 {
-	int		i;
 	char	**split_line;
 	char	*ret;
-
+	(void) front;
+	
 	split_line = (char **)malloc(sizeof(char *) * 3);
+	split_line[0] = ft_strndup(origin, find_first_charactor(origin, '$'));
+	split_line[1] = ft_strdup(&origin[back]);
 	split_line[2] = NULL;
-	i = 0;
-	split_line[0] = ft_strndup(line, front);
-	split_line[1] = ft_strdup(&line[back]);
-	printf("%s\n%s\n", split_line[0], split_line[1]);
+	printf("!!!!!!!!%d %d\n", ft_strlen(split_line[0]),ft_strlen(split_line[1]));
 	ret = (char *)malloc(ft_strlen(split_line[0]) + \
 			ft_strlen(split_line[1]) + ft_strlen(sep_str[1]) + 1);
 	ret = arrange_str_cpy(ret, split_line[0], sep_str[1], split_line[1]);
@@ -52,23 +51,25 @@ char	*arrange_str(char **sep_str, char *line, int front, int back)
 char	*substitution_env(t_env *env, char *str, char *origin, int exit_code)
 {
 	char	**sep_str;
-	int		doller;
+	int		dollar;
 	int		end;
 	int		i;
 
 	sep_str = (char **)malloc(sizeof(char *) * 3);
 	sep_str[2] = NULL;
 	
-	doller = find_first_charactor(str, '$');
-	end = find_first_charactor(&str[doller], '\"');
-	sep_str[0] = (char *)malloc(end - doller + 1);
+	dollar = find_first_charactor(str, '$');
+	end = find_first_charactor(&str[dollar], '\"');
+	sep_str[0] = (char *)malloc(end - dollar + 1);
 	i = 0;
-	while(++doller > end)
-		sep_str[0][i++] = str[doller]; // HOME 일캐 복사 $뺌
+	sep[0] = ft_strndup(str[dollar + 1], end - dollar);///ㅇㅕ기 고고침침!!!
+	while(++dollar > end)
+		sep_str[0][i++] = str[dollar]; // HOME 일캐 복사 $뺌
 	sep_str[0][i] = '\0';
 	sep_str[1] = find_env(env, sep_str[0], exit_code);
+	printf("?%s\n?%s\n", sep_str[0], sep_str[1]);
 	free(str);
-	str = arrange_str(sep_str, origin, doller - 1, end);
+	str = arrange_str(sep_str, origin, dollar - 1, end);
 	str_free(sep_str);
 	return (str);
 }

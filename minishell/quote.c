@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 18:13:38 by soo               #+#    #+#             */
-/*   Updated: 2022/07/07 22:16:17 by soo              ###   ########.fr       */
+/*   Updated: 2022/07/07 22:39:43 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ char	*quote_line(char *origin, int exit_code, t_env *env)
 	{
 		// 앞 명령어 떼어서 저장해뒀다가 마지막에 붙여서 리턴해야됨
 		d_line = split_dup_quote(origin, '\"');
-		printf("%s\n", d_line);
 		return (d_line_handler(env, &d_line, origin, exit_code));
 	}
 	return (origin);
