@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 15:26:02 by soo               #+#    #+#             */
-/*   Updated: 2022/07/06 21:06:20 by soo              ###   ########.fr       */
+/*   Updated: 2022/07/07 16:25:55 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,7 @@ t_env	*split_equal(char *line, t_env *new)
 	else if (!split_equal[1])
 		new->value_flag = 1;
 	else
-	{
 		new->value = ft_strdup(split_equal[1]);
-		//free(split_equal[1]);
-	}
-	//free(split_equal[0]);
-	//free(split_equal);
 	str_free(split_equal);
 	return (new);
 }
