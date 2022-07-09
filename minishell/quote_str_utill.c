@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 19:18:15 by soo               #+#    #+#             */
-/*   Updated: 2022/07/09 17:28:15 by soo              ###   ########.fr       */
+/*   Updated: 2022/07/09 22:21:32 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,11 @@ char	*arrange_str(char **sep_str, char *origin, char **line, int dollar)
 	char	**split_line;
 	int		back;
 	int		front;
-
-	split_line = (char **)malloc(sizeof(char *) * 3);
-	front = ft_strlen(origin) - ft_strlen(*line) + dollar;
-	split_line[0] = ft_strndup(origin, front);
-	// split_line[0] = ft_strndup(origin, find_first_charactor(origin, '$')); <<이새끼 문문제제잇잇음음
+	
+	split_line[0] = ft_strndup(origin, find_first_charactor(origin, '$')); //<<이새끼 문문제제잇잇음음
 	back = find_first_charactor(&origin[ft_strlen(split_line[0])], '\"') + ft_strlen(split_line[0]);
 	split_line[1] = ft_strdup(&origin[back]);
-	printf("0 : %s\n1 : %s\n", split_line[0], split_line[1]);
+	printf("line : %s\n0 : %s\n1 : %s\n", *line,split_line[0], split_line[1]);
 	split_line[2] = NULL;
 	free(*line);
 	*line = (char *)malloc(ft_strlen(split_line[0]) + \
@@ -59,10 +56,8 @@ char	*substitution_env(t_env *env, char **line, char *origin, int exit_code)
 	int		dollar;
 	int		end;
 
-	printf("line : %s\n", *line);
 	dollar = find_first_charactor(*line, '$');
 	end = find_first_charactor(&line[0][dollar], '\"') + dollar;
-	printf("dallar : %d end : %d\n", dollar, end);
 	sep_str = (char **)malloc(sizeof(char *) * 3);
 	sep_str[0] = ft_strndup(&line[0][dollar + 1], end - dollar - 1); // 치환할 키
 	sep_str[1] = find_env(env, sep_str[0], exit_code); // 치환된 value

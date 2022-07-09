@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 18:13:38 by soo               #+#    #+#             */
-/*   Updated: 2022/07/09 16:55:20 by soo              ###   ########.fr       */
+/*   Updated: 2022/07/09 22:25:23 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ char	*d_line_handler(t_env *env, char **line, char **origin, int exit_code)
 	char	*ret;
 	int		dollar;
 
-	dollar = cnt_quote(*origin, '$');
+	dollar = cnt_quote(line, '$');
 	while (dollar--)
 	{
 		substitution_env(env, line, *origin, exit_code);
