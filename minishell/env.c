@@ -3,24 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
+/*   By: songmin <autumninmoon@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 14:02:34 by soo               #+#    #+#             */
-/*   Updated: 2022/07/06 16:48:07 by soo              ###   ########.fr       */
+/*   Updated: 2022/07/08 15:07:06 by songmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "env.h"
 
-static t_env *get_last(t_env *head)
+static	t_env *get_last(t_env *head)
 {
 	while (head->next)
 		head = head->next;
 	return (head);
 }
 
-t_env *split_env(t_env *head, char **envp)
+t_env	*split_env(t_env *head, char **envp)
 {
 	t_env *new;
 	char **split_equal;
