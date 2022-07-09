@@ -8,14 +8,12 @@ make[1]: Entering directory `/Users/soo/soo/42cursus/pipex/srcs/libft'
 cc -Wall -Wextra -Werror -c ft_isalpha.c -o ft_isalpha.o 
 cc -Wall -Wextra -Werror -c ft_isdigit.c -o ft_isdigit.o 
 cc -Wall -Wextra -Werror -c ft_isalnum.c -o ft_isalnum.o 
- 
 cc -Wall -Wextra -Werror -c ft_isascii.c -o ft_isascii.o 
 cc -Wall -Wextra -Werror -c ft_isprint.c -o ft_isprint.o 
 cc -Wall -Wextra -Werror -c ft_strlen.c -o ft_strlen.o 
 cc -Wall -Wextra -Werror -c ft_memset.c -o ft_memset.o 
 cc -Wall -Wextra -Werror -c ft_bzero.c -o ft_bzero.o 
 cc -Wall -Wextra -Werror -c ft_memcpy.c -o ft_memcpy.o 
- 
 cc -Wall -Wextra -Werror -c ft_memmove.c -o ft_memmove.o 
 cc -Wall -Wextra -Werror -c ft_strlcpy.c -o ft_strlcpy.o 
 cc -Wall -Wextra -Werror -c ft_strlcat.c -o ft_strlcat.o 
@@ -33,7 +31,6 @@ cc -Wall -Wextra -Werror -c ft_strdup.c -o ft_strdup.o
 cc -Wall -Wextra -Werror -c ft_substr.c -o ft_substr.o 
 cc -Wall -Wextra -Werror -c ft_strjoin.c -o ft_strjoin.o 
 cc -Wall -Wextra -Werror -c ft_strtrim.c -o ft_strtrim.o 
- 
 cc -Wall -Wextra -Werror -c ft_split.c -o ft_split.o 
 cc -Wall -Wextra -Werror -c ft_itoa.c -o ft_itoa.o 
 cc -Wall -Wextra -Werror -c ft_strmapi.c -o ft_strmapi.o 
@@ -45,7 +42,6 @@ cc -Wall -Wextra -Werror -c ft_putnbr_fd.c -o ft_putnbr_fd.o
 cc -Wall -Wextra -Werror -c gnl/get_next_line.c -o gnl/get_next_line.o 
 cc -Wall -Wextra -Werror -c gnl/get_next_line_utils.c -o gnl/get_next_line_utils.o 
 cc -Wall -Wextra -Werror -c gnl/get_next_line_bonus.c -o gnl/get_next_line_bonus.o 
- 
 cc -Wall -Wextra -Werror -c gnl/get_next_line_utils_bonus.c -o gnl/get_next_line_utils_bonus.o 
 cc -Wall -Wextra -Werror -c printf/ft_printf.c -o printf/ft_printf.o 
 cc -Wall -Wextra -Werror -c printf/ft_printf_func.c -o printf/ft_printf_func.o 

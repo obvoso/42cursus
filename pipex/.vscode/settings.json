@@ -5,6 +5,7 @@
 		"string.h": "c",
 		"pipex_bonus.h": "c",
 		"ratio": "c",
-		"libft.h": "c"
+		"libft.h": "c",
+		"__node_handle": "c"
 	}
 }
