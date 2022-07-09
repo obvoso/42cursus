@@ -8,12 +8,12 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This program built for i386-apple-darwin11.3.0
  
 
-# Make data base, printed on Fri Jun 17 20:55:20 2022
+# Make data base, printed on Sat Jul  9 20:12:40 2022
 
 # Variables
 
- 
 # automatic
+ 
 <D = $(patsubst %/,%,$(dir $<))
 # automatic
 ?F = $(notdir $?)
@@ -46,11 +46,13 @@ OBJS = ${SRCS:.c=.o}
 # environment
 P9K_SSH = 0
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000cq5r0035sf/T/vscode-ipc-66cf561f-a8e2-4456-a44f-878422d7be74.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000cq5r0035sf/T/vscode-ipc-f73f6d93-140d-47d9-9d2c-4cf018b1a42d.sock
 # environment
 VSCODE_CWD = /
 # environment
-PATH = /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki
+PATH = /Users/soo/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki
+# environment
+LaunchInstanceID = E3CE12AF-3740-49A4-82AE-5C202094F2DF
 # environment
 VSCODE_LOG_STACK = false
 # environment
@@ -58,7 +60,7 @@ ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.yKwWksCxIv/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.Acle0Loawk/Listeners
 # automatic
 %F = $(notdir $%)
 # makefile (from `Makefile', line 24)
@@ -76,7 +78,7 @@ HOME = /Users/soo
 # default
 MAKEFILEPATH := /Applications/Xcode.app/Contents/Developer/Makefiles
 # environment
-VSCODE_CODE_CACHE_PATH = /Users/soo/Library/Application Support/Code/CachedData/4af164ea3a06f701fe3e89a2bcbb421d2026b68f
+VSCODE_CODE_CACHE_PATH = /Users/soo/Library/Application Support/Code/CachedData/30d9c6cd9483b2cc586687151bcbcd635f373630
 # environment
 LOGNAME = soo
 # environment
@@ -120,7 +122,7 @@ TMPDIR = /var/folders/zz/zyxvpxvq6csfxvn_n000cq5r0035sf/T/
 # automatic
 *F = $(notdir $*)
 # environment
-VSCODE_IPC_HOOK = /Users/soo/Library/Application Support/Code/1.68.0-main.sock
+VSCODE_IPC_HOOK = /Users/soo/Library/Application Support/Code/1.68.1-main.sock
 # makefile
 MAKEFLAGS = Rrqp
 # environment
@@ -130,19 +132,23 @@ MFLAGS = -Rrqp
 # environment
 MAIL = soo@student.42seoul.kr
 # environment
-XPC_SERVICE_NAME = com.microsoft.VSCode.2380
+XPC_SERVICE_NAME = com.apple.xpc.launchd.oneshot.0x10000002.Electron
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # automatic
 +F = $(notdir $+)
 # environment
 __CF_USER_TEXT_ENCODING = 0x1972E:0x0:0x0
+# environment
+COMMAND_MODE = unix2003
 # default
 MAKEFILES := 
 # automatic
 <F = $(notdir $<)
 # environment
 LC_ALL = C
+# environment
+SECURITYSESSIONID = 186a6
 # automatic
 ^F = $(notdir $^)
 # default
@@ -156,10 +162,9 @@ OBJECTS = $(OBJS)
 # environment
 LANG = C
 # environment
-VSCODE_PID = 39234
+VSCODE_PID = 8774
 # variable set hash-table stats:
- 
-# Load=72/1024=7%, Rehash=0, Collisions=4/109=4%
+# Load=75/1024=7%, Rehash=0, Collisions=4/112=4%
 
 # Pattern-specific Variable Values
 
@@ -167,8 +172,8 @@ VSCODE_PID = 39234
 
 # Directories
 
-# . (device 16777225, inode 4117206): 9 files, no impossibilities.
-# srcs (device 16777225, inode 4140140): 8 files, no impossibilities so far.
+# . (device 16777225, inode 4420290): 9 files, no impossibilities.
+# srcs (device 16777225, inode 4420304): 8 files, no impossibilities so far.
 
 # 17 files, no impossibilities in 2 directories.
 
@@ -241,7 +246,7 @@ srcs/pipex.o: srcs/pipex.c
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-17 16:59:11
+#  Last modified 2022-07-09 15:32:19
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -259,7 +264,7 @@ bonus:
 # Not a target:
 srcs/pipex.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-17 16:35:18
+#  Last modified 2022-07-09 15:32:19
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -320,6 +325,7 @@ pipex: srcs/pipex.o srcs/error.o srcs/path.o srcs/libft/libft.a
 # Load=0/32=0%, Rehash=0, Collisions=0/5=0%
 #  commands to execute (from `Makefile', line 41):
 	$(CC) $(CFLAGS) -o $@ $^ -L ./srcs/libft -l ft
+ 
 	
 
 # files hash-table stats:
@@ -335,6 +341,6 @@ pipex: srcs/pipex.o srcs/error.o srcs/path.o srcs/libft/libft.a
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Fri Jun 17 20:55:20 2022
+# Finished Make data base on Sat Jul  9 20:12:40 2022
 
  

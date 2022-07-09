@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 21:12:05 by soo               #+#    #+#             */
-/*   Updated: 2022/06/17 17:28:51 by soo              ###   ########.fr       */
+/*   Updated: 2022/07/09 21:56:53 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,9 +86,36 @@ void	exe_last_cmd(t_px *node, char **envp)
 
 void	exe_process(t_px *head, int argc, char **argv, char **envp)
 {
-	while (head)
+	pid_t pid;
+	t_px	*now;
+	now = head;
+
+	while (now)
 	{
-		make_process(head, argc, argv, envp);
-		head = head->next;
+		pid = fork();
+		if (pid == -1)
+			exit(1);
+		else if (pid == 0)
+			break ;
+		else if (pid > 0)
+		{
+			close(now->pipe[0]);
+			close(now->pipe[1]);
+			// if (node->num == 1 && !ft_strncmp(argv[1], "/dev/urandom", 12))
+			// 	waitpid(node->pid, NULL, WNOHANG);
+			// else
+			// 	waitpid(node->pid, NULL, 0);
+			if (now->num == 1 && !ft_strncmp(now->infile, ".tmp", 4))
+				unlink(now->infile);
+		}
+		if (!now->next)
+			break;
+		now = now->next;
 	}
+	if (pid == 0)
+		exe_cmd(now, argc, argv, envp);
+	int i = 0;
+	waitpid(pid, NULL, 0);
+	while (i++ < now->num)
+		waitpid(0, NULL, 0);
 }

@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 21:02:55 by soo               #+#    #+#             */
-/*   Updated: 2022/06/17 20:55:19 by soo              ###   ########.fr       */
+/*   Updated: 2022/07/09 20:52:24 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	make_process(t_px *node, int argc, char **argv, char **envp)
 
 void	exe_cmd(t_px *node, int argc, char **argv, char **envp)
 {
+	printf("%d\n", node->num);
 	if (node->num == 1)
 		exe_first_cmd(node, envp);
 	else if (node == px_last(node))
@@ -51,7 +52,7 @@ void	exe_cmd(t_px *node, int argc, char **argv, char **envp)
 		close(node->pipe[1]);
 		if (execve(node->path, node->cmd, envp) == -1)
 			exit(1);
-	}	
+	}
 }
 
 t_px	*px_head_init(t_px **head, char **av, char **ep, int num)
