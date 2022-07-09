@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quote_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
+/*   By: songmin <autumninmoon@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 15:07:16 by soo               #+#    #+#             */
-/*   Updated: 2022/07/07 21:34:11 by soo              ###   ########.fr       */
+/*   Updated: 2022/07/08 20:40:05 by songmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int	cnt_quote(char *line, char c)
 	int	i;
 	int	cnt;
 
+	cnt = 0;
 	i = 0;
 	while (line[i])
 	{
