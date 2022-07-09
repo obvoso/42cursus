@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quote_str_utill.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: songmin <autumninmoon@gmail.com>           +#+  +:+       +#+        */
+/*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 19:18:15 by soo               #+#    #+#             */
-/*   Updated: 2022/07/08 20:40:06 by songmin          ###   ########.fr       */
+/*   Updated: 2022/07/09 17:28:15 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
 char	*arrange_str_cpy(char *ret, char *s1, char *s2, char *s3)
 {
 	int	i;
-
+	
+	//printf("0 : %s\n1 : %s\n2 : %s\n", s1, s2 ,s3);
 	i = 0;
 	while (*s1)
 		ret[i++] = *s1++;
@@ -30,15 +31,19 @@ char	*arrange_str_cpy(char *ret, char *s1, char *s2, char *s3)
 	return (ret);
 }
 
-char	*arrange_str(char **sep_str, char *origin, char **line)
+char	*arrange_str(char **sep_str, char *origin, char **line, int dollar)
 {
 	char	**split_line;
 	int		back;
+	int		front;
 
 	split_line = (char **)malloc(sizeof(char *) * 3);
-	split_line[0] = ft_strndup(origin, find_first_charactor(origin, '$'));
+	front = ft_strlen(origin) - ft_strlen(*line) + dollar;
+	split_line[0] = ft_strndup(origin, front);
+	// split_line[0] = ft_strndup(origin, find_first_charactor(origin, '$')); <<이새끼 문문제제잇잇음음
 	back = find_first_charactor(&origin[ft_strlen(split_line[0])], '\"') + ft_strlen(split_line[0]);
 	split_line[1] = ft_strdup(&origin[back]);
+	printf("0 : %s\n1 : %s\n", split_line[0], split_line[1]);
 	split_line[2] = NULL;
 	free(*line);
 	*line = (char *)malloc(ft_strlen(split_line[0]) + \
@@ -53,18 +58,16 @@ char	*substitution_env(t_env *env, char **line, char *origin, int exit_code)
 	char	**sep_str;
 	int		dollar;
 	int		end;
-	int		i;
 
-	sep_str = (char **)malloc(sizeof(char *) * 3);
-	sep_str[2] = NULL;
-	
+	printf("line : %s\n", *line);
 	dollar = find_first_charactor(*line, '$');
 	end = find_first_charactor(&line[0][dollar], '\"') + dollar;
-	sep_str[0] = (char *)malloc(end - dollar + 1);
-	i = 0;
+	printf("dallar : %d end : %d\n", dollar, end);
+	sep_str = (char **)malloc(sizeof(char *) * 3);
 	sep_str[0] = ft_strndup(&line[0][dollar + 1], end - dollar - 1); // 치환할 키
 	sep_str[1] = find_env(env, sep_str[0], exit_code); // 치환된 value
-	arrange_str(sep_str, origin, line); // 치환 문자 기준 앞 문자열 + 치환문자열 + 뒤 문자열
+	sep_str[2] = NULL;
+	arrange_str(sep_str, origin, line, dollar); // 치환 문자 기준 앞 문자열 + 치환문자열 + 뒤 문자열
 	str_free(sep_str);
 	return (*line);
 }
