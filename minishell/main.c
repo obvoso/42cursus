@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: songmin <autumninmoon@gmail.com>           +#+  +:+       +#+        */
+/*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 20:09:35 by soo               #+#    #+#             */
-/*   Updated: 2022/07/08 21:11:47 by songmin          ###   ########.fr       */
+/*   Updated: 2022/07/09 17:30:13 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ int main(int argc, char **argv, char **envp)
 	(void)argc;
 	(void)argv;
 
-	line = ft_strdup("cd \"$USER\"\"HOME\" \"$PWD\"");
+	line = ft_strdup("cd \"$HOME\" '$USER'");
+	// line = ft_strdup("cd \"$USER\"\"HOME\" \"$PWD\"");
 	env = (t_env *)malloc(sizeof(t_env));
 	ft_memset(env, 0, sizeof(t_env));
 	init_env(env, envp);

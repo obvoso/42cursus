@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quote.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: songmin <autumninmoon@gmail.com>           +#+  +:+       +#+        */
+/*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 18:13:38 by soo               #+#    #+#             */
-/*   Updated: 2022/07/08 21:11:20 by songmin          ###   ########.fr       */
+/*   Updated: 2022/07/09 16:55:20 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,18 @@ char	*del_quote(char *origin, char c)
 	return (ret);
 }
 
-char	*s_line_handler(t_env *env, char **line, char *origin, int exit_code)
+char	*s_line_handler(t_env *env, char **line, char **origin)
 {
+	char *ret;
 
-	//del_quote(origin, *line, '\"');
-	return (*line);
+	ret = del_quote(*origin,'\'');
+	if (!ft_strncmp(ret, *origin, ft_strlen(ret)))
+		return (*origin);
+	free(*line);
+	free(*origin);
+	*origin = ft_strdup(ret);
+	free(ret);
+	return (*origin);
 }
 
 char	*d_line_handler(t_env *env, char **line, char **origin, int exit_code)
@@ -92,26 +99,18 @@ char	*d_line_handler(t_env *env, char **line, char **origin, int exit_code)
 
 char	*quote_line(char *origin, int exit_code, t_env *env)
 {
-	int		quote_cnt;
 	char	*s_line;
 	char	*d_line;
 	
-
-	quote_cnt = 0;
 	if (find_first_charactor(origin, '\''))
 	{	
-		quote_cnt = cnt_quote(origin, '\'') / 2;
-		while (quote_cnt--)
-		{
-			s_line = split_dup_quote(origin ,'\'');
-			s_line_handler(env, &s_line, origin, exit_code);
-
-		}
+		s_line = split_dup_quote(origin ,'\'');
+		s_line_handler(env, &s_line, &origin);
 	}
 	if (find_first_charactor(origin, '\"'))
 	{
-			d_line = split_dup_quote(origin ,'\"');
-			d_line_handler(env, &d_line, &origin, exit_code);
+		d_line = split_dup_quote(origin ,'\"');
+		d_line_handler(env, &d_line, &origin, exit_code);
 	}
 	return (origin);
 }
