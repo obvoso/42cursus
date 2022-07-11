@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 18:13:38 by soo               #+#    #+#             */
-/*   Updated: 2022/07/09 22:25:23 by soo              ###   ########.fr       */
+/*   Updated: 2022/07/11 21:45:58 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ char	*del_quote(char *origin, char c)
 		else
 			ret[i++] = origin[o_idx++];
 	}
-	ret[i++] = c;
+	ret[i++] = origin[ft_strlen(origin) - 1];
 	ret[i] = '\0';
 	return (ret);
 }
@@ -65,6 +65,7 @@ char	*s_line_handler(t_env *env, char **line, char **origin)
 	char *ret;
 
 	ret = del_quote(*origin,'\'');
+	// printf("ret %s\n", ret);
 	if (!ft_strncmp(ret, *origin, ft_strlen(ret)))
 		return (*origin);
 	free(*line);
@@ -80,7 +81,10 @@ char	*d_line_handler(t_env *env, char **line, char **origin, int exit_code)
 	char	*ret;
 	int		dollar;
 
-	dollar = cnt_quote(line, '$');
+	dollar = cnt_c(*line, '$');
+	printf("dollar : %d\n", dollar);
+	if (!dollar)
+		return (NULL);
 	while (dollar--)
 	{
 		substitution_env(env, line, *origin, exit_code);
@@ -99,18 +103,29 @@ char	*d_line_handler(t_env *env, char **line, char **origin, int exit_code)
 
 char	*quote_line(char *origin, int exit_code, t_env *env)
 {
+	char	*ret;
 	char	*s_line;
 	char	*d_line;
+	char	**split_origin;
 	
-	if (find_first_charactor(origin, '\''))
+	split_origin = (char **)malloc(sizeof(char *) * 3);
+	split_origin[2] = NULL;
+	if (find_first_c(origin, '\''))
 	{	
-		s_line = split_dup_quote(origin ,'\'');
+		s_line = split_dup_quote(origin , split_origin, '\'');
 		s_line_handler(env, &s_line, &origin);
 	}
-	if (find_first_charactor(origin, '\"'))
+	if (find_first_c(origin, '\"'))
 	{
-		d_line = split_dup_quote(origin ,'\"');
-		d_line_handler(env, &d_line, &origin, exit_code);
+		d_line = split_dup_quote(origin , split_origin, '\"');
+		// printf("??%s\n", d_line);
+		if (!d_line_handler(env, &d_line, &origin, exit_code))
+			return (origin);
+		ret = (char *)malloc(ft_strlen(split_origin[0]) + ft_strlen(origin) + ft_strlen(split_origin[1]) + 1);
+		arrange_str_cpy(ret,split_origin[0], origin, split_origin[1]);
+		free(origin);
+		origin = ft_strdup(ret);
+		free(ret);
 	}
 	return (origin);
 }
