@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 18:14:19 by soo               #+#    #+#             */
-/*   Updated: 2022/07/11 21:19:32 by soo              ###   ########.fr       */
+/*   Updated: 2022/07/12 20:34:29 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ int	find_last_c(char *line, char c);
 //quote_str_utill
 int		find_end(char *line);
 char	*arrange_str_cpy(char *ret, char *s1, char *s2, char *s3);
-char	*arrange_str(char **sep_str, char **line, int p_1, int p_2);
-char	*substitution_env(t_env *env, char **line, char *origin, int exit_code);
+char	*arrange_str(char **sep_str, char **line, int *p_arr, int *idx);
+char	*substitution_env(t_env *env, char **line, int exit_code, int *idx);
 char	*split_dup_quote(char *origin, char **split, char c);
 
 #endif

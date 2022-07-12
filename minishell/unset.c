@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 16:08:34 by soo               #+#    #+#             */
-/*   Updated: 2022/07/06 22:11:51 by soo              ###   ########.fr       */
+/*   Updated: 2022/07/12 21:55:08 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,30 +54,46 @@ int	split_del_key(t_env **env, char *del)
 t_env	*find_unset_env(t_env **env, char *del)
 {
 	t_env	*now;
-	t_env	*prev;
 	
-	prev = *env;
 	now = *env;
-	if (!ft_strncmp((*env)->key, del, ft_strlen((*env)->key)) && \
-		(ft_strlen(now->key) == ft_strlen(del))) // head	삭제
-		return (unset_head(env));
-	while (prev->next) // 중간노드삭제, 마지막 노드는 원래 삭제안됨
+	while (now->next) // 중간노드삭제, 마지막 노드는 원래 삭제안됨
 	{
-		now = prev->next;
-		if (ft_strlen(now->key) == ft_strlen(del) && \
-			!ft_strncmp(now->key, del, ft_strlen(now->key)))
+		if (!ft_strncmp(now->key, del, ft_strlen(del) + 1))
 		{
-			prev->next = now->next;
-			free(now->key);
-			if (now->value)
-				free(now->value);
-			free(now);
-			return (*env);
+			now->unset_flag = 1;
+			break ;
 		}
-		prev = prev->next;
+		now = now->next;
 	}
 	return (*env);
 }
+// t_env	*find_unset_env(t_env **env, char *del)
+// {
+// 	t_env	*now;
+// 	t_env	*prev;
+	
+// 	prev = *env;
+// 	now = *env;
+// 	if (!ft_strncmp((*env)->key, del, ft_strlen((*env)->key)) && \
+// 		(ft_strlen(now->key) == ft_strlen(del))) // head	삭제
+// 		return (unset_head(env));
+// 	while (prev->next) // 중간노드삭제, 마지막 노드는 원래 삭제안됨
+// 	{
+// 		now = prev->next;
+// 		if (ft_strlen(now->key) == ft_strlen(del) && \
+// 			!ft_strncmp(now->key, del, ft_strlen(now->key)))
+// 		{
+// 			prev->next = now->next;
+// 			free(now->key);
+// 			if (now->value)
+// 				free(now->value);
+// 			free(now);
+// 			return (*env);
+// 		}
+// 		prev = prev->next;
+// 	}
+// 	return (*env);
+// }
 
 int	unset_env(t_env **head, char **del)
 {

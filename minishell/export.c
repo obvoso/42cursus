@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 15:26:02 by soo               #+#    #+#             */
-/*   Updated: 2022/07/07 16:25:55 by soo              ###   ########.fr       */
+/*   Updated: 2022/07/12 21:47:44 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,15 @@ void	print_export(t_env *head)
 	now = head;
 	while (now->next)
 	{
-		if (now->value_flag == 1)
-			ft_printf("declare -x %s\n", now->key);
-		else if(!ft_strncmp(now->value, "", 1))
-			ft_printf("declare -x %s=\"\"\n", now->key);
-		else 
-			ft_printf("declare -x %s=\"%s\"\n", now->key, now->value);
+		if (!now->unset_flag)
+		{
+			if (now->value_flag == 1)
+				ft_printf("declare -x %s\n", now->key);
+			else if(!ft_strncmp(now->value, "", 1))
+				ft_printf("declare -x %s=\"\"\n", now->key);
+			else 
+				ft_printf("declare -x %s=\"%s\"\n", now->key, now->value);
+		}
 		now = now->next;
 	}
 }

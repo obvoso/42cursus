@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 14:06:58 by soo               #+#    #+#             */
-/*   Updated: 2022/07/06 16:06:18 by soo              ###   ########.fr       */
+/*   Updated: 2022/07/12 21:46:29 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 typedef struct s_env
 {
 	int				value_flag;
+	int				unset_flag;
 	char			*key;
 	char			*value;
 	struct s_env	*next;
