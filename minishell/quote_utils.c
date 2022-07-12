@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 15:07:16 by soo               #+#    #+#             */
-/*   Updated: 2022/07/11 21:21:30 by soo              ###   ########.fr       */
+/*   Updated: 2022/07/12 22:16:43 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,13 @@ char *find_env(t_env *env, char *str, int exit_code)
 	now = env;
 	while (now->next)
 	{
-		if (!ft_strncmp(now->key, str, ft_strlen(now->key)) \
-			&& ft_strlen(now->key) == ft_strlen(str))
+		if (!ft_strncmp(now->key, str, ft_strlen(str) + 1))
 			{
+				if (now->unset_flag)
+					return (ft_strdup(""));
 				sub_str = ft_strdup(now->value);
 				return (sub_str);
 			}
-		// if (!now->next->next)
-		// 	break;
 		now = now->next;
 	}
 	return (NULL);
@@ -67,11 +66,7 @@ int	cnt_c(char *line, char c)
 	while (line[i])
 	{
 		if (line[i] == c)
-		{
-			tmp = find_first_c(&line[i], '\'');
-			if (!tmp || (tmp && tmp > find_first_c(&line[i], '\"')))
-				++cnt;
-		}
+			++cnt;
 		++i;
 	}
 	return (cnt);
