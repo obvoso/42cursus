@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quote_str_utill.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
+/*   By: songmin <autumninmoon@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 19:18:15 by soo               #+#    #+#             */
-/*   Updated: 2022/07/12 22:18:58 by soo              ###   ########.fr       */
+/*   Updated: 2022/07/13 01:31:52 by songmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,17 @@ char	*arrange_str(char **sep_str, char **line, int *p_arr, int *idx)
 	char	**split_line;
 
 	split_line = (char **)malloc(sizeof(char *) * 3);
-	split_line[0] = ft_strndup(*line, p_arr[0]);
-	split_line[1] = ft_strdup(&line[0][p_arr[1] + 1]);
+	if (line[0][p_arr[0] - 1] == '\"' && line[0][p_arr[1] + 1] == '\"' && \
+		sep_str[1][0] == '\0')
+	{
+		split_line[0] = ft_strndup(*line, p_arr[0] - 1);
+		split_line[1] = ft_strdup(&line[0][p_arr[1] + 2]);
+	}
+	else
+	{
+		split_line[0] = ft_strndup(*line, p_arr[0]);
+		split_line[1] = ft_strdup(&line[0][p_arr[1] + 1]);
+	}
 	split_line[2] = NULL;
 	free(*line);
 	*idx = ft_strlen(split_line[0]) + ft_strlen(sep_str[1]);
@@ -83,14 +92,9 @@ char	*substitution_env(t_env *env, char **line, int exit_code, int *idx)
 		if (!find_first_c(sep_str[0], '\''))
 			find_exit_code(sep_str, exit_code);
 	}
-	// if (sep_str[0] == '\0')
-	// {
-		
-	// }
 	sep_str[2] = NULL;
 	arrange_str(sep_str, line, p_arr, idx); // 치환 문자 기준 앞 문자열 + 치환문자열 + 뒤 문자열
 	str_free(sep_str);
-	printf("%s\n", *line);
 	return (*line);
 }
 

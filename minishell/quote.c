@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quote.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
+/*   By: songmin <autumninmoon@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 18:13:38 by soo               #+#    #+#             */
-/*   Updated: 2022/07/12 22:18:36 by soo              ###   ########.fr       */
+/*   Updated: 2022/07/13 01:42:37 by songmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,11 @@ int	del_quote_cnt(char *origin, char c)
 	
 	o_idx = 1;
 	cnt = 0;
+	if (origin[0] == '\0')
+		return (0);
 	while (origin[o_idx + 1])
 	{
-		if (origin[o_idx] == c && origin[o_idx + 1] == c )
+		if (origin[o_idx] == c && origin[o_idx + 1] == c)
 		{
 			o_idx += 2;
 			cnt +=2;
@@ -92,8 +94,12 @@ char	*d_line_handler(t_env *env, char **line, char **origin, int exit_code)
 		*origin = ft_strdup(*line);
 	}
 	ret = del_quote(*origin, '\"');
+	ret = del_quote(ret, ' '); // 이거는 체님한테 신텍스 에러 파싱 어떻게 했는지 여쭤보고 지우기
 	if (!ft_strncmp(ret, *origin, ft_strlen(ret)))
+	{
+		free(ret);
 		return (*origin);
+	}
 	free(*line);
 	free(*origin);
 	*origin = ft_strdup(ret);
