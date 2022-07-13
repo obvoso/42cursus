@@ -6,7 +6,7 @@
 /*   By: songmin <autumninmoon@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 20:09:35 by soo               #+#    #+#             */
-/*   Updated: 2022/07/13 01:41:37 by songmin          ###   ########.fr       */
+/*   Updated: 2022/07/13 18:18:44 by songmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,36 +18,41 @@ int main(int argc, char **argv, char **envp)
 {
 	t_env	*env;
 	char	*line;
-	char	*ret;
+	//char	*ret;
 
 	(void)argc;
 	(void)argv;
 
-	 line = ft_strdup("echo \"$USER\" '$USER' '$USER' '$USER' \"$USER\""); // "" '' "" 공백 o
-	 line = ft_strdup("echo '$USER' '$USER' '$USER'"); // "" "" ""공백 o
-	 line = ft_strdup("echo '$USER''$USER''$USER'"); // "" "" ""공백 x
+	// line = ft_strdup("echo \"$USER\" '$USER' '$USER' '$USER' \"$USER\""); // "" '' "" 공백 o
+	// line = ft_strdup("echo '$USER' '$USER' '$USER'"); // "" "" ""공백 o
+	// line = ft_strdup("echo '$USER''$USER''$USER'"); // "" "" ""공백 x
 	// line = ft_strdup("echo aaa \"$USER\"b \"$USER\"ccc \"$USER\""); //문자열""문자열 "" 문자열"" 공백 o
 	// line = ft_strdup("echo aaa \"$USER\"\"$USER\"\"$USER\""); //문자열 "" "" "" 공백 x
-	 line = ft_strdup("echo \"$USER\" '$USER'\"$USER\"");
-	 line = ft_strdup("cd \"$USER\" '$HOME' \"$PW\" \"$HOME\""); 
-	 line = ft_strdup("echo \"$USER\" '$USER' \"$USER\" '$USER' \"$USER\" '$USER'"); // "" '' "" ''  공백 o
-	 line = ft_strdup("echo \"$USER\"'$USER'\"$USER\"'$USER'\"$USER\"'$USER'"); // "" '' "" '' 공백x
+	// line = ft_strdup("echo \"$USER\" '$USER'\"$USER\"");
+	// line = ft_strdup("cd \"$USER\" '$HOME' \"$PW\" \"$HOME\""); 
+	// line = ft_strdup("echo \"$USER\" '$USER' \"$USER\" '$USER' \"$USER\" '$USER'"); // "" '' "" ''  공백 o
+	// line = ft_strdup("echo \"$USER\"'$USER'\"$USER\"'$USER'\"$USER\"'$USER'"); // "" '' "" '' 공백x
 	 line = ft_strdup("echo \"$USER\"'$USER''$USER''$USER'\"$USER\""); // "" '' "" 공백 x 
-	 line = ft_strdup("echo \"$USER\"     '$?'\" $ USER  $?       $HOME\"");
 	//line = ft_strdup("echo \"$HOME\"1 \"$HOME\"2\"$HOME\"333");
 	//line = ft_strdup("echo \"$HOME\" \"$HOME\" \"$HOME\"");
+	//line = ft_strdup("echo \"$USER\"     '$?'\" $ USER  $?       $HOME\"");
 	// 로직상..시발안됨......
 	// line = ft_strdup("cd '\"$HOME\"'");
+	// line = ft_strdup("cd \"'$HOME'\"");
+	
+	//line = ft_strdup("echo \"$USER\"     '$?'\" $ USER  $?       $HOME\"");
 	env = (t_env *)malloc(sizeof(t_env));
 	ft_memset(env, 0, sizeof(t_env));
 	init_env(env, envp);
-	unset(&env, "unset HOME");
-	// print_env(env);
-	// printf("\n-----------\n");
-	// print_export(env);
-	// printf("\n-----------\n");
-	ret = quote_line(line, 0, env);
-	printf("main : %s\n", ret);
+	//export(env, "export _=aa a=b c=d");
+	//line = ft_strdup("\"$HOME\"");
+	//print_env(env);
+	//unset(&env, "unset c");
+	//print_env(env);
+	quote_line(&line, 0, env);
+	printf("main : %s\n", line);
 	// "dd "" dd""dd"
 	// "" "" ""
+	//while (1)
+	//{}
 }
