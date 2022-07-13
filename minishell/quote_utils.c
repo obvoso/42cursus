@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quote_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
+/*   By: songmin <autumninmoon@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 15:07:16 by soo               #+#    #+#             */
-/*   Updated: 2022/07/12 22:16:43 by soo              ###   ########.fr       */
+/*   Updated: 2022/07/13 16:52:34 by songmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	*find_exit_code(char **sep_str, int exit_code)
 	return (sep_str[1]);
 }
 
-char *find_env(t_env *env, char *str, int exit_code)
+char *find_env(t_env *env, char *str)
 {
 	t_env	*now;
 	char	*sub_str;
@@ -59,7 +59,6 @@ int	cnt_c(char *line, char c)
 {
 	int	i;
 	int	cnt;
-	int	tmp;
 
 	cnt = 0;
 	i = 0;
@@ -85,7 +84,7 @@ int	find_first_c(char *line, char c)
 			return (i);
 		++i;
 	}
-	return (0);
+	return (-1);
 }
 
 int	find_last_c(char *line, char c)

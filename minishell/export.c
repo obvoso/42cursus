@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
+/*   By: songmin <autumninmoon@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 15:26:02 by soo               #+#    #+#             */
-/*   Updated: 2022/07/12 21:47:44 by soo              ###   ########.fr       */
+/*   Updated: 2022/07/13 15:58:44 by songmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,17 @@ t_env	*add_env(t_env *head, t_env *new)
 {
 	t_env	*now;
 
-	now = head;
-	while (now->next)
+	if (!ft_strncmp(new->key, "_", 2))
 	{
-		if (!ft_strncmp(now->key, new->key, ft_strlen(now->key)) \
-			&& ft_strlen(now->key) == ft_strlen(new->key))
+		free(new->key);
+		free(new->value);
+		free(new);
+		return (head);
+	}
+	now = head;
+	while (now->next && ft_strncmp(now->next->key, "_", 2))
+	{
+		if (!ft_strncmp(now->key, new->key, ft_strlen(now->key) + 1))
 		{
 			free(now->value);
 			now->value = ft_strdup(new->value);
@@ -77,8 +83,6 @@ t_env	*add_env(t_env *head, t_env *new)
 			free(new);
 			return (head);
 		}
-		if (!now->next->next)
-			break;
 		now = now->next;
 	}
 	new->next = now->next;

@@ -6,7 +6,7 @@
 /*   By: songmin <autumninmoon@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 14:02:34 by soo               #+#    #+#             */
-/*   Updated: 2022/07/08 15:07:06 by songmin          ###   ########.fr       */
+/*   Updated: 2022/07/13 15:03:02 by songmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,5 @@ t_env	*split_env(t_env *head, char **envp)
 
 t_env	*init_env(t_env *head, char **envp)
 {
-	// split_env(head, envp);
 	return (split_env(head, envp));
 }

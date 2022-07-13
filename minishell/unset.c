@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
+/*   By: songmin <autumninmoon@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 16:08:34 by soo               #+#    #+#             */
-/*   Updated: 2022/07/12 21:55:08 by soo              ###   ########.fr       */
+/*   Updated: 2022/07/13 15:49:10 by songmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,11 @@ int	split_del_key(t_env **env, char *del)
 t_env	*find_unset_env(t_env **env, char *del)
 {
 	t_env	*now;
-	
 	now = *env;
-	while (now->next) // 중간노드삭제, 마지막 노드는 원래 삭제안됨
+	while (now)
 	{
-		if (!ft_strncmp(now->key, del, ft_strlen(del) + 1))
+		if (!ft_strncmp(now->key, del, ft_strlen(del) + 1) && \
+			(ft_strncmp(now->key, "_", 2)))
 		{
 			now->unset_flag = 1;
 			break ;
