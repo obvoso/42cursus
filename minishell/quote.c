@@ -6,7 +6,7 @@
 /*   By: songmin <autumninmoon@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 18:13:38 by soo               #+#    #+#             */
-/*   Updated: 2022/07/13 18:18:45 by songmin          ###   ########.fr       */
+/*   Updated: 2022/07/13 18:38:42 by songmin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,6 @@ char	*d_line_handler(t_env *env, char **line, char **origin, int exit_code)
 		*origin = ft_strdup(*line);
 	}
 	ret = del_quote(*origin, '\"');
-	// 연속된 공백 제거 체님한테 신텍스 에러 파싱 어떻게 했는지 여쭤보고 지우기
 	free(*line);
 	if (!ret)
 		return (*origin);
