@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 14:09:59 by soo               #+#    #+#             */
-/*   Updated: 2022/07/07 20:55:34 by soo              ###   ########.fr       */
+/*   Updated: 2022/07/14 20:37:46 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,14 @@ char	**line_format(char *line, char *cmd)
 	i = 1;
 	ret = (char **)malloc(sizeof(char *) * 3);
 	str = ft_split(line, ' ');
-	if (ft_strlen(str[0]) == ft_strlen(cmd) && \
-		!ft_strncmp(str[0], cmd, ft_strlen(cmd)))
+	if (!ft_strncmp(str[0], cmd, ft_strlen(cmd + 1)))
 		ret[0] = ft_strdup(str[0]);
 	else
 		return (NULL); // error command not found
-	ret[1] = ft_strdup(&line[ft_strlen(ret[0])]);
+	if (line[ft_strlen(ret[0])] == '\0')
+		ret[1] = ft_strdup("");
+	else
+		ret[1] = ft_strdup(&line[ft_strlen(ret[0]) + 1]);
 	ret[2] = NULL;
 	str_free(str);
 	return (ret);

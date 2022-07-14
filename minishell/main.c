@@ -6,13 +6,14 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 20:09:35 by soo               #+#    #+#             */
-/*   Updated: 2022/07/14 16:29:32 by soo              ###   ########.fr       */
+/*   Updated: 2022/07/14 21:40:03 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
-#include "env.h"
-#include "quote.h"
+#include "include/env.h"
+#include "include/quote.h"
+#include "include/cd.h"
 
 int main(int argc, char **argv, char **envp)
 {
@@ -40,19 +41,21 @@ int main(int argc, char **argv, char **envp)
 	// line = ft_strdup("cd ggkkgkgjdkfjaksdjflkasdflkdsjf11120e0kdfjk$HOME");
 	// line = ft_strdup("cd \"'$HOME'\"");
 	
-	line = ft_strdup("\"$HOM $HOMEaaaa? $?antmsanswkeh?\"");
+	line = ft_strdup("cd ..");
 	// line = ft_strdup("echo '$$ $HOME\'");
 	env = (t_env *)malloc(sizeof(t_env));
 	ft_memset(env, 0, sizeof(t_env));
 	init_env(env, envp);
-	export(env, "export _=aa a=b c=d");
+	chdir_main(env, line);
+	// export(env, "export a=b c=d");
 	//line = ft_strdup("\"$HOME\"");
-	//print_env(env);
-	unset(&env, "unset c");
-	//print_env(env);
-	quote_line(&line, 0, env);
-	printf("main : %s\n", line);
+	// print_env(env);
+	// printf("??????????????\n");
+	// unset(&env, "unset c");
+	// export(env, "export");
+	// quote_line(&line, 0, env);
+	// printf("main : %s\n", line);
 	// "dd "" dd""dd"
 	// "" "" ""
-	system("leaks a.out");
+	//system("leaks a.out");
 }

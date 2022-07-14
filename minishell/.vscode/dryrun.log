@@ -1,6 +1,16 @@
-make --dry-run --always-make --keep-going --print-directory
+make --dry-run --keep-going --print-directory
 make: Entering directory `/Users/soo/soo/42cursus/minishell'
+cc -Wall -Wextra -Werror -o srcs/cd/change_directory.o -c srcs/cd/change_directory.c -I include
+ 
+cc -Wall -Wextra -Werror -o srcs/env/call_env.o -c srcs/env/call_env.c -I include
+cc -Wall -Wextra -Werror -o srcs/env/env.o -c srcs/env/env.c -I include
+cc -Wall -Wextra -Werror -o srcs/env/export.o -c srcs/env/export.c -I include
+ 
+cc -Wall -Wextra -Werror -o srcs/env/unset.o -c srcs/env/unset.c -I include
+cc -Wall -Wextra -Werror -o srcs/quote/quote.o -c srcs/quote/quote.c -I include
+cc -Wall -Wextra -Werror -o srcs/quote/quote_utils.o -c srcs/quote/quote_utils.c -I include
+cc -Wall -Wextra -Werror -o srcs/quote/quote_str_utils.o -c srcs/quote/quote_str_utils.c -I include
+cc -Wall -Wextra -Werror -o srcs/utils.o -c srcs/utils.c -I include
+cc -Wall -Wextra -Werror -o builtin srcs/cd/change_directory.o srcs/env/call_env.o srcs/env/env.o srcs/env/export.o srcs/env/unset.o srcs/quote/quote.o srcs/quote/quote_utils.o srcs/quote/quote_str_utils.o srcs/utils.o srcs/libft/libft.a main.c -L ./srcs/libft -l ft
 make: Leaving directory `/Users/soo/soo/42cursus/minishell'
  
-make: *** No targets specified and no makefile found.  Stop.
-
