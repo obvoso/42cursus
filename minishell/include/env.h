@@ -6,14 +6,14 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 14:06:58 by soo               #+#    #+#             */
-/*   Updated: 2022/07/12 21:46:29 by soo              ###   ########.fr       */
+/*   Updated: 2022/07/14 20:15:09 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ENV_H
 # define ENV_H
 
-#include "./libft/libft.h"
+# include "../srcs/libft/libft.h"
 
 typedef struct s_env
 {

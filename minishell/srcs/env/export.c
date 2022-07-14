@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: songmin <autumninmoon@gmail.com>           +#+  +:+       +#+        */
+/*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 15:26:02 by soo               #+#    #+#             */
-/*   Updated: 2022/07/13 15:58:44 by songmin          ###   ########.fr       */
+/*   Updated: 2022/07/14 20:38:14 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ int	make_new_env(t_env *head, char *line)
 
 int	export_env(t_env *head, char **line)
 {
-	if (!line[1] || line[1][0] == '\0') // cmd가 인자없이 export만 들어왔을 경우
+	if (line[1][0] == '\0') // cmd가 인자없이 export만 들어왔을 경우
 	{
 		str_free(line);
 		print_export(head);

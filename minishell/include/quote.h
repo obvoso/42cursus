@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   quote.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: songmin <autumninmoon@gmail.com>           +#+  +:+       +#+        */
+/*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 18:14:19 by soo               #+#    #+#             */
-/*   Updated: 2022/07/13 17:42:24 by songmin          ###   ########.fr       */
+/*   Updated: 2022/07/14 20:15:07 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef QUOTE_H
 # define QUOTE_H
 
-#include "./libft/libft.h"
-#include "env.h"
+# include "../srcs/libft/libft.h"
+# include "env.h"
 
 //quote
 int	del_quote_cnt(char *origin, char c);
