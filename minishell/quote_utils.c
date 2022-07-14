@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quote_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: songmin <autumninmoon@gmail.com>           +#+  +:+       +#+        */
+/*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 15:07:16 by soo               #+#    #+#             */
-/*   Updated: 2022/07/13 16:52:34 by songmin          ###   ########.fr       */
+/*   Updated: 2022/07/14 16:29:53 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,10 @@ char	*find_exit_code(char **sep_str, int exit_code)
 	char	*str_exit_code;
 
 	i = 0;
-	while (sep_str[1][i + 1])
+
+	while (sep_str[0][i + 1])
 	{
-		if (sep_str[1][i] == '$' && sep_str[1][i + 1] == '?')
+		if (sep_str[0][i] == '$' && sep_str[0][i + 1] == '?')
 		{
 			str_exit_code = ft_itoa(exit_code);
 			free(sep_str[1]);
@@ -46,13 +47,13 @@ char *find_env(t_env *env, char *str)
 		if (!ft_strncmp(now->key, str, ft_strlen(str) + 1))
 			{
 				if (now->unset_flag)
-					return (ft_strdup(""));
+					break;
 				sub_str = ft_strdup(now->value);
 				return (sub_str);
 			}
 		now = now->next;
 	}
-	return (NULL);
+	return (ft_strdup(""));
 }
 
 int	cnt_c(char *line, char c)

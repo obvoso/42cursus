@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quote_str_utill.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: songmin <autumninmoon@gmail.com>           +#+  +:+       +#+        */
+/*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 19:18:15 by soo               #+#    #+#             */
-/*   Updated: 2022/07/13 18:14:53 by songmin          ###   ########.fr       */
+/*   Updated: 2022/07/14 16:30:15 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,9 +86,10 @@ char	*substitution_env(t_env *env, char **line, int exit_code, int *idx)
 	sep_str = (char **)malloc(sizeof(char *) * 3);
 	sep_str[0] = ft_strndup(&line[0][dollar + 1], end - dollar); // 치환할 키
 	sep_str[1] = find_env(env, sep_str[0]); // 치환된 value
-	if (!sep_str[1]) // "$유효하지 않은 value"일 때 치환하기 전 문자를 전달"
+	if (sep_str[1][0] == '\0') // "$유효하지 않은 value"일 때 치환하기 전 달러 포함 문자 복사"
 	{
-		sep_str[1] = ft_strndup(&line[0][dollar], end - dollar + 1);
+		free(sep_str[0]);
+		sep_str[0] = ft_strndup(&line[0][dollar], end - dollar + 1);
 		if (find_first_c(sep_str[0], '\'') == -1)
 			find_exit_code(sep_str, exit_code);
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: songmin <autumninmoon@gmail.com>           +#+  +:+       +#+        */
+/*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 20:09:35 by soo               #+#    #+#             */
-/*   Updated: 2022/07/13 18:18:44 by songmin          ###   ########.fr       */
+/*   Updated: 2022/07/14 16:29:32 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,27 +32,27 @@ int main(int argc, char **argv, char **envp)
 	// line = ft_strdup("cd \"$USER\" '$HOME' \"$PW\" \"$HOME\""); 
 	// line = ft_strdup("echo \"$USER\" '$USER' \"$USER\" '$USER' \"$USER\" '$USER'"); // "" '' "" ''  공백 o
 	// line = ft_strdup("echo \"$USER\"'$USER'\"$USER\"'$USER'\"$USER\"'$USER'"); // "" '' "" '' 공백x
-	 line = ft_strdup("echo \"$USER\"'$USER''$USER''$USER'\"$USER\""); // "" '' "" 공백 x 
+	//  line = ft_strdup("echo \"$USER\"'$USER''$USER''$USER'\"$USER\""); // "" '' "" 공백 x 
 	//line = ft_strdup("echo \"$HOME\"1 \"$HOME\"2\"$HOME\"333");
-	//line = ft_strdup("echo \"$HOME\" \"$HOME\" \"$HOME\"");
-	//line = ft_strdup("echo \"$USER\"     '$?'\" $ USER  $?       $HOME\"");
+	// line = ft_strdup("echo \"$HOME\" \"$HOME\" \"$HOME\"");
+	// line = ft_strdup("echo \"$USER\"     '$?'\" $ USER  $?       $HOME\"");
 	// 로직상..시발안됨......
-	// line = ft_strdup("cd '\"$HOME\"'");
+	// line = ft_strdup("cd ggkkgkgjdkfjaksdjflkasdflkdsjf11120e0kdfjk$HOME");
 	// line = ft_strdup("cd \"'$HOME'\"");
 	
-	//line = ft_strdup("echo \"$USER\"     '$?'\" $ USER  $?       $HOME\"");
+	line = ft_strdup("\"$HOM $HOMEaaaa? $?antmsanswkeh?\"");
+	// line = ft_strdup("echo '$$ $HOME\'");
 	env = (t_env *)malloc(sizeof(t_env));
 	ft_memset(env, 0, sizeof(t_env));
 	init_env(env, envp);
-	//export(env, "export _=aa a=b c=d");
+	export(env, "export _=aa a=b c=d");
 	//line = ft_strdup("\"$HOME\"");
 	//print_env(env);
-	//unset(&env, "unset c");
+	unset(&env, "unset c");
 	//print_env(env);
 	quote_line(&line, 0, env);
 	printf("main : %s\n", line);
 	// "dd "" dd""dd"
 	// "" "" ""
-	//while (1)
-	//{}
+	system("leaks a.out");
 }
