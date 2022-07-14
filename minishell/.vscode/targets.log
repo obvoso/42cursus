@@ -10,7 +10,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 make: *** No rule to make target `all'.  Stop.
 
 
-# Make data base, printed on Tue Jul 12 22:04:41 2022
+# Make data base, printed on Thu Jul 14 15:56:17 2022
 
 # Variables
 
@@ -41,7 +41,7 @@ VSCODE_VERBOSE_LOGGING = true
 # environment
 P9K_SSH = 0
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000cq5r0035sf/T/vscode-ipc-38e2de6c-9f2f-42c3-b9f3-1e7ddb9eb267.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000cq5r0035sf/T/vscode-ipc-530ef680-a366-4202-9d43-1b64c48dc97b.sock
 # environment
 VSCODE_CWD = /
 # environment
@@ -53,7 +53,7 @@ ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.BH5csDuRZR/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.BhqYEr3pUB/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -113,7 +113,7 @@ MFLAGS = -Rrqp
 # environment
 MAIL = soo@student.42seoul.kr
 # environment
-XPC_SERVICE_NAME = com.microsoft.VSCode.2352
+XPC_SERVICE_NAME = com.microsoft.VSCode.2368
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # automatic
@@ -137,7 +137,7 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 15395
+VSCODE_PID = 28413
 # variable set hash-table stats:
 # Load=62/1024=6%, Rehash=0, Collisions=1/83=1%
 
@@ -147,7 +147,8 @@ VSCODE_PID = 15395
 
 # Directories
 
-# . (device 16777225, inode 4420207): 17 files, no impossibilities.
+ 
+# . (device 16777225, inode 4450841): 17 files, no impossibilities.
 
 # 17 files, no impossibilities in 1 directories.
 
@@ -215,13 +216,12 @@ GNUmakefile:
 # No `vpath' search paths.
 
 # No general (`VPATH' variable) search path.
- 
 
 # # of strings in strcache: 0
 # # of strcache buffers: 0
 # strcache size: total = 0 / max = 0 / min = 4096 / avg = 0
 # strcache free: total = 0 / max = 0 / min = 4096 / avg = 0
 
-# Finished Make data base on Tue Jul 12 22:04:41 2022
+# Finished Make data base on Thu Jul 14 15:56:17 2022
 
  
