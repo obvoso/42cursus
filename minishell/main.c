@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 20:09:35 by soo               #+#    #+#             */
-/*   Updated: 2022/07/14 21:40:03 by soo              ###   ########.fr       */
+/*   Updated: 2022/07/15 20:26:36 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int main(int argc, char **argv, char **envp)
 {
 	t_env	*env;
 	char	*line;
+	char	**env_arr;
 	//char	*ret;
 
 	(void)argc;
@@ -41,11 +42,12 @@ int main(int argc, char **argv, char **envp)
 	// line = ft_strdup("cd ggkkgkgjdkfjaksdjflkasdflkdsjf11120e0kdfjk$HOME");
 	// line = ft_strdup("cd \"'$HOME'\"");
 	
-	line = ft_strdup("cd ..");
+	// line = ft_strdup("cd ..");
 	// line = ft_strdup("echo '$$ $HOME\'");
+	line = ft_strdup("export ");
 	env = (t_env *)malloc(sizeof(t_env));
 	ft_memset(env, 0, sizeof(t_env));
-	init_env(env, envp);
+	init_env(env, envp, &env_arr);
 	chdir_main(env, line);
 	// export(env, "export a=b c=d");
 	//line = ft_strdup("\"$HOME\"");
