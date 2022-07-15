@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 14:06:58 by soo               #+#    #+#             */
-/*   Updated: 2022/07/14 20:15:09 by soo              ###   ########.fr       */
+/*   Updated: 2022/07/15 21:01:31 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,19 @@ typedef struct s_env
 
 //env
 t_env	*init_env(t_env *head, char **envp);
-t_env *split_env(t_env *head, char **envp);
+t_env	*split_env(t_env *head, char **envp);
 
 //call_env
 void	print_env(t_env	*head);
 
 //export
-int		export(t_env *head, char *line);
-int		export_env(t_env *head, char **line);
+int	export(t_env *head, char **line, char ***env_arr);
+int	export_env(t_env *head, char **line, char ***env_arr);
 t_env	*add_env(t_env *head, t_env *new);
-int		make_new_env(t_env *head, char *line);
+int	make_new_env(t_env *head, char **split_blank);
 t_env	*split_equal(char *line, t_env *new);
 void	print_export(t_env *head);
+char **add_env_arr(t_env *head, char ***env_arr);
 
 //utils
 char	**line_format(char *line, char *cmd);
@@ -46,9 +47,14 @@ void str_free(char **str);
 
 //unset
 t_env	*unset_head(t_env **head);
-t_env	*find_unset_env(t_env **env, char *del);
-int		unset_env(t_env **head, char **del);
-int		unset(t_env **head, char *line);
-int		split_del_key(t_env **env, char *del);
+t_env	*find_unset_env(t_env **env, char *del, char ***env_arr);
+int		unset_env(t_env **head, char **del, char ***env_arr);
+int		split_del_key(t_env **env, char **split_key, char ***env_arr);
+int		unset(t_env **head, char **line, char ***env_arr);
+char	**del_env_arr(t_env *head, char ***env_arr);
+
+//env_arr
+char **init_env_arr(t_env *head);
+char **edit_env_arr(t_env *head, char ***env_arr);
 
 #endif

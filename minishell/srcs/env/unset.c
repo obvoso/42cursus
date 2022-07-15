@@ -3,70 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: songmin <autumninmoon@gmail.com>           +#+  +:+       +#+        */
+/*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 16:08:34 by soo               #+#    #+#             */
-/*   Updated: 2022/07/13 15:49:10 by songmin          ###   ########.fr       */
+/*   Updated: 2022/07/15 21:02:32 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "env.h"
 
-t_env	*unset_head(t_env **head)
-{
-	t_env	*del;
-
-	del = (*head);
-	*head = (*head)->next;
-	free(del->key);
-	free(del->value);
-	free(del);
-	return (*head);
-}
-
-int	split_del_key(t_env **env, char *del)
-{
-	int		i;
-	int		flag;
-	char	**split_key;
-
-	split_key = ft_split(del, ' ');
-	i = 0;
-	flag = 0;
-	while (split_key[i])
-	{
-		if (!format_check(split_key[i]))
-		{
-			ft_putstr_fd("export: '", 2);
-			ft_putstr_fd(split_key[i], 2);
-			ft_putstr_fd("' : not a valid identifier\n", 2);
-			++flag;
-			++i;
-			continue ;
-		}
-		find_unset_env(env, split_key[i++]);
-	}
-	str_free(split_key);
-	return (flag);
-}
-
-t_env	*find_unset_env(t_env **env, char *del)
-{
-	t_env	*now;
-	now = *env;
-	while (now)
-	{
-		if (!ft_strncmp(now->key, del, ft_strlen(del) + 1) && \
-			(ft_strncmp(now->key, "_", 2)))
-		{
-			now->unset_flag = 1;
-			break ;
-		}
-		now = now->next;
-	}
-	return (*env);
-}
 // t_env	*find_unset_env(t_env **env, char *del)
 // {
 // 	t_env	*now;
@@ -95,21 +41,79 @@ t_env	*find_unset_env(t_env **env, char *del)
 // 	return (*env);
 // }
 
-int	unset_env(t_env **head, char **del)
+t_env	*unset_head(t_env **head)
 {
-	if (split_del_key(head, del[1]) > 0)
+	t_env	*del;
+
+	del = (*head);
+	*head = (*head)->next;
+	free(del->key);
+	free(del->value);
+	free(del);
+	return (*head);
+}
+
+int	split_del_key(t_env **env, char **split_key, char ***env_arr)
+{
+	int		i;
+	int		flag;
+	// char	**split_key;
+
+	// split_key = ft_split(del, ' ');
+	i = 1;
+	flag = 0;
+	while (split_key[i])
 	{
-		str_free(del);
+		if (!format_check(split_key[i]))
+		{
+			ft_putstr_fd("export: '", 2);
+			ft_putstr_fd(split_key[i], 2);
+			ft_putstr_fd("' : not a valid identifier\n", 2);
+			++flag;
+			++i;
+			continue ;
+		}
+		find_unset_env(env, split_key[i++], env_arr);
+	}
+	//str_free(split_key);
+	return (flag);
+}
+
+t_env	*find_unset_env(t_env **env, char *del, char ***env_arr)
+{
+	t_env	*now;
+	now = *env;
+	while (now)
+	{
+		if (!ft_strncmp(now->key, del, ft_strlen(del) + 1) && \
+			(ft_strncmp(now->key, "_", 2)))
+		{
+			now->unset_flag = 1;
+			del_env_arr(*env, env_arr);
+			break ;
+		}
+		now = now->next;
+	}
+	return (*env);
+}
+
+
+int	unset_env(t_env **head, char **del, char ***env_arr)
+{
+	if (split_del_key(head, del, env_arr) > 0)
+	{
+		//str_free(del);
 		return (1);
 	}
-	str_free(del);
+	edit_env_arr(head, env_arr);
+	//str_free(del);
 	return (0);
 }
 
-int	unset(t_env **head, char *line)
+int	unset(t_env **head, char **line, char ***env_arr)
 {
-	char	**str;
+	// char	**str;
 
-	str = line_format(line, "unset");
-	return (unset_env(head, str));
+	// str = line_format(line, "unset");
+	return (unset_env(head, line, env_arr));
 }
