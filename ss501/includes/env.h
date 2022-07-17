@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 14:06:58 by soo               #+#    #+#             */
-/*   Updated: 2022/07/15 21:35:40 by soo              ###   ########.fr       */
+/*   Updated: 2022/07/17 16:28:05 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	print_env(t_env	*head);
 //export
 int	export(t_env *head, char **line, char ***env_arr);
 int	export_env(t_env *head, char **line, char ***env_arr);
+t_env	*dup_env(t_env **now, t_env **new);
 t_env	*add_env(t_env *head, t_env *new);
 int	make_new_env(t_env *head, char **split_blank);
 t_env	*split_equal(char *line, t_env *new);
@@ -54,7 +55,6 @@ int		unset(t_env **head, char **line, char ***env_arr);
 char	**del_env_arr(t_env *head, char ***env_arr);
 
 //env_arr
-char **init_env_arr(t_env *head);
 char **edit_env_arr(t_env *head, char ***env_arr);
 
 #endif

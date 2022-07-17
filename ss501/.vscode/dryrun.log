@@ -1,0 +1,29 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory `/Users/soo/soo/42cursus/ss501'
+cc -Wall -Wextra -Werror -Iincludes -g -fsanitize=address -I /Users/soo/.brew/opt/readline/include -c srcs/main.c -o srcs/main.o
+cc -Wall -Wextra -Werror -Iincludes -g -fsanitize=address -I /Users/soo/.brew/opt/readline/include -c srcs/ft_cmd.c -o srcs/ft_cmd.o
+cc -Wall -Wextra -Werror -Iincludes -g -fsanitize=address -I /Users/soo/.brew/opt/readline/include -c srcs/ft_parsing.c -o srcs/ft_parsing.o
+cc -Wall -Wextra -Werror -Iincludes -g -fsanitize=address -I /Users/soo/.brew/opt/readline/include -c srcs/ft_error_check.c -o srcs/ft_error_check.o
+cc -Wall -Wextra -Werror -Iincludes -g -fsanitize=address -I /Users/soo/.brew/opt/readline/include -c srcs/ft_pipe_utils.c -o srcs/ft_pipe_utils.o
+cc -Wall -Wextra -Werror -Iincludes -g -fsanitize=address -I /Users/soo/.brew/opt/readline/include -c srcs/ft_pipe.c -o srcs/ft_pipe.o
+cc -Wall -Wextra -Werror -Iincludes -g -fsanitize=address -I /Users/soo/.brew/opt/readline/include -c srcs/ft_dire_file.c -o srcs/ft_dire_file.o
+cc -Wall -Wextra -Werror -Iincludes -g -fsanitize=address -I /Users/soo/.brew/opt/readline/include -c srcs/ft_utils.c -o srcs/ft_utils.o
+cc -Wall -Wextra -Werror -Iincludes -g -fsanitize=address -I /Users/soo/.brew/opt/readline/include -c srcs/ft_echo.c -o srcs/ft_echo.o
+cc -Wall -Wextra -Werror -Iincludes -g -fsanitize=address -I /Users/soo/.brew/opt/readline/include -c srcs/ft_free.c -o srcs/ft_free.o
+cc -Wall -Wextra -Werror -Iincludes -g -fsanitize=address -I /Users/soo/.brew/opt/readline/include -c srcs/ft_syntax.c -o srcs/ft_syntax.o
+cc -Wall -Wextra -Werror -Iincludes -g -fsanitize=address -I /Users/soo/.brew/opt/readline/include -c srcs/ft_trans_quot.c -o srcs/ft_trans_quot.o
+cc -Wall -Wextra -Werror -Iincludes -g -fsanitize=address -I /Users/soo/.brew/opt/readline/include -c srcs/ft_make_here_doc.c -o srcs/ft_make_here_doc.o
+cc -Wall -Wextra -Werror -Iincludes -g -fsanitize=address -I /Users/soo/.brew/opt/readline/include -c srcs/cd/change_directory.c -o srcs/cd/change_directory.o
+cc -Wall -Wextra -Werror -Iincludes -g -fsanitize=address -I /Users/soo/.brew/opt/readline/include -c srcs/env/call_env.c -o srcs/env/call_env.o
+cc -Wall -Wextra -Werror -Iincludes -g -fsanitize=address -I /Users/soo/.brew/opt/readline/include -c srcs/env/env.c -o srcs/env/env.o
+cc -Wall -Wextra -Werror -Iincludes -g -fsanitize=address -I /Users/soo/.brew/opt/readline/include -c srcs/env/export.c -o srcs/env/export.o
+cc -Wall -Wextra -Werror -Iincludes -g -fsanitize=address -I /Users/soo/.brew/opt/readline/include -c srcs/env/unset.c -o srcs/env/unset.o
+cc -Wall -Wextra -Werror -Iincludes -g -fsanitize=address -I /Users/soo/.brew/opt/readline/include -c srcs/quote/quote.c -o srcs/quote/quote.o
+cc -Wall -Wextra -Werror -Iincludes -g -fsanitize=address -I /Users/soo/.brew/opt/readline/include -c srcs/quote/quote_utils.c -o srcs/quote/quote_utils.o
+cc -Wall -Wextra -Werror -Iincludes -g -fsanitize=address -I /Users/soo/.brew/opt/readline/include -c srcs/quote/quote_str_utils.c -o srcs/quote/quote_str_utils.o
+cc -Wall -Wextra -Werror -Iincludes -g -fsanitize=address -I /Users/soo/.brew/opt/readline/include -c srcs/utils.c -o srcs/utils.o
+cc -Wall -Wextra -Werror -Iincludes -g -fsanitize=address -I /Users/soo/.brew/opt/readline/include -c srcs/env/env_arr.c -o srcs/env/env_arr.o
+make -C ./libft
+cc -Wall -Wextra -Werror -Iincludes -g -fsanitize=address -o minishell srcs/main.o srcs/ft_cmd.o srcs/ft_parsing.o srcs/ft_error_check.o srcs/ft_pipe_utils.o srcs/ft_pipe.o srcs/ft_dire_file.o srcs/ft_utils.o srcs/ft_echo.o srcs/ft_free.o srcs/ft_syntax.o srcs/ft_trans_quot.o srcs/ft_make_here_doc.o srcs/cd/change_directory.o srcs/env/call_env.o srcs/env/env.o srcs/env/export.o srcs/env/unset.o srcs/quote/quote.o srcs/quote/quote_utils.o srcs/quote/quote_str_utils.o srcs/utils.o srcs/env/env_arr.o libft.a -I /Users/soo/.brew/opt/readline/include -lreadline -L /Users/soo/.brew/opt/readline/lib
+make: Leaving directory `/Users/soo/soo/42cursus/ss501'
+ 

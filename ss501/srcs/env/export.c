@@ -6,13 +6,13 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 15:26:02 by soo               #+#    #+#             */
-/*   Updated: 2022/07/15 21:01:27 by soo              ###   ########.fr       */
+/*   Updated: 2022/07/17 16:30:13 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "env.h"
-
+//!!널가드
 void	print_export(t_env *head)
 {
 	t_env	*now;
@@ -60,6 +60,18 @@ t_env	*split_equal(char *line, t_env *new)
 	return (new);
 }
 
+t_env	*dup_env(t_env **now, t_env **new)
+{
+	(*now)->unset_flag = 0;
+	(*now)->value_flag = (*new)->value_flag;
+	free((*now)->value);
+	(*now)->value = ft_strdup((*new)->value);
+	free((*new)->key);
+	free((*new)->value);
+	free(*new);
+	return (*now);
+}
+
 t_env	*add_env(t_env *head, t_env *new)
 {
 	t_env	*now;
@@ -74,16 +86,17 @@ t_env	*add_env(t_env *head, t_env *new)
 	now = head;
 	while (now->next && ft_strncmp(now->next->key, "_", 2))
 	{
-		if (!ft_strncmp(now->key, new->key, ft_strlen(now->key) + 1))
+		if (!ft_strncmp(now->key, new->key, ft_strlen(new->key) + 1))
 		{
-			free(now->value);
-			now->value = ft_strdup(new->value);
-			free(new->key);
-			free(new->value);
-			free(new);
+			dup_env(&now, &new);
 			return (head);
 		}
 		now = now->next;
+	}
+	if (!ft_strncmp(now->key, new->key, ft_strlen(new->key) + 1))
+	{
+		dup_env(&now, &new);
+		return (head);
 	}
 	new->next = now->next;
 	now->next = new;
@@ -124,6 +137,8 @@ int	make_new_env(t_env *head, char **split_blank)
 
 int	export_env(t_env *head, char **line, char ***env_arr)
 {
+	if (!line)
+		return (1);
 	if (!line[1]) // cmd가 인자없이 export만 들어왔을 경우
 	{
 		// str_free(line);
@@ -151,5 +166,7 @@ int	export(t_env *head, char **line, char ***env_arr)
 	// 	ft_putstr_fd("command not found\n", 2);
 	// 	return (1);
 	// }
+	// while (*line++)
+	// 	printf("%s\n", *line);
 	return (export_env(head, line, env_arr));
 }
