@@ -1,0 +1,46 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/18 00:21:57 by soo               #+#    #+#             */
+/*   Updated: 2022/09/18 01:02:45 by soo              ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef PHILO_H
+# define PHILO_H
+
+# define EAT 2;
+# define SLEEP 3;
+# define THINK 4;
+# define DIE 5;
+
+# include <stdio.h>
+# include <unistd.h>
+# include <sys/time.h>
+# include <pthread.h>
+
+typedef struct	s_param
+{
+	int	philos;
+	int	life_time;
+	int	eat_time;
+	int	sleep_time;
+	int	must_eat;
+	pthread_mutex_t	*print;
+	pthread_mutex_t	*fork;
+	pthread_mutex_t	*status;
+}	t_param;
+
+typedef struct s_philo
+{
+	int	num;
+	int	status;
+}	t_phlio;
+
+
+
+#endif
