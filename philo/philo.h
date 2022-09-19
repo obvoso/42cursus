@@ -6,12 +6,18 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 00:21:57 by soo               #+#    #+#             */
-/*   Updated: 2022/09/19 00:07:08 by soo              ###   ########.fr       */
+/*   Updated: 2022/09/19 14:06:50 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
+
+# define TAKE has taken a fork;
+# define EATING is eating;
+# define SLEEPING is sleeping;
+# define THINKING is thinking;
+# define DIED died;
 
 # define INIT 0;
 # define EAT 2;
