@@ -6,24 +6,25 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 00:21:57 by soo               #+#    #+#             */
-/*   Updated: 2022/09/19 14:06:50 by soo              ###   ########.fr       */
+/*   Updated: 2022/09/19 21:35:01 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
-# define TAKE has taken a fork;
-# define EATING is eating;
-# define SLEEPING is sleeping;
-# define THINKING is thinking;
-# define DIED died;
+# define TAKE "has taken a fork"
+# define EATING "is eating"
+# define SLEEPING "is sleeping"
+# define THINKING "is thinking"
+# define DIED "died"
 
-# define INIT 0;
-# define EAT 2;
-# define SLEEP 3;
-# define THINK 4;
-# define DIE 5;
+# define INIT 0
+# define STARVE 1
+# define EAT 2
+# define SLEEP 3
+# define THINK 4
+# define DIE 5
 
 # include <stdio.h>
 # include <stdlib.h>
@@ -38,23 +39,25 @@ typedef struct	s_param
 	int	eat_time;
 	int	sleep_time;
 	int	must_eat;
-	int	*order;
+	int	*eat_check;
 	pthread_mutex_t	*print;
 	pthread_mutex_t	*fork;
+	struct timeval now;
 }	t_param;
 
 typedef struct s_philo
 {
 	int	num;
-	int	state;
 	int	l_fork;
 	int	r_fork;
+	int	eat_cnt;
 }	t_philo;
 
 typedef struct s_arg
 {
 	int		idx;
-	t_param *param;
+	t_param param;
 	t_philo *philo;
 } t_arg;
+
 #endif
