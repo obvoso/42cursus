@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 00:21:57 by soo               #+#    #+#             */
-/*   Updated: 2022/09/19 21:35:01 by soo              ###   ########.fr       */
+/*   Updated: 2022/09/21 12:02:00 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ typedef struct	s_param
 	int	*eat_check;
 	pthread_mutex_t	*print;
 	pthread_mutex_t	*fork;
-	struct timeval now;
 }	t_param;
 
 typedef struct s_philo
