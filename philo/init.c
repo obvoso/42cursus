@@ -6,11 +6,55 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 18:44:13 by soo               #+#    #+#             */
-/*   Updated: 2022/09/19 21:29:48 by soo              ###   ########.fr       */
+/*   Updated: 2022/09/21 21:38:18 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+t_param	*args_parse(t_param *param, char **argv, int argc)
+{
+	param->philos = ft_atoi(argv[1]);
+	if (param->philos < 1)
+		return (NULL);
+	param->life_time = ft_atoi(argv[2]);
+	if (param->life_time < 1)
+		return (NULL);
+	param->eat_time = ft_atoi(argv[3]);
+	if (param->eat_time < 1)
+		return (NULL);
+	param->sleep_time = ft_atoi(argv[4]);
+	if (param->sleep_time < 1)
+		return (NULL);
+	if (argc == 6)
+	param->must_eat = ft_atoi(argv[5]);
+	if (param->must_eat < 1)
+		return (NULL);
+	return (param);
+}
+
+int	ft_atoi(const char *str)
+{
+	unsigned long long	ret;
+	int					sign;
+
+	ret = 0;
+	sign = 1;
+	if ((*str >= 9 && *str <= 13) || *str == ' ')
+		return (-1);
+	if (*str == '-' || *str == '+')
+		return (-1);
+	while (*str >= '0' && *str <= '9')
+	{
+		ret = ret * 10 + *str - '0';
+		++str;
+	}
+	if (ret > 2147483647 && sign == 1)
+		return (-1);
+	if (ret > 2147483648 && sign == -1)
+		return (-1);
+	return ((int)ret * sign);
+}
 
 t_param *init_param(t_param *param)
 {
@@ -36,17 +80,21 @@ t_param *init_param(t_param *param)
 	return (param);
 }
 
-t_philo *init_philo(t_arg arg)
+t_philo *init_philo(t_philo *philo, t_param *param)
 {
 	int	i;
 
 	i = 0;
-	while (i < arg.param.philos)
+	param->start = get_now(); // 여기 일단 넣고 나중에 초 ㄱㅊ으면 init_param으로 넘기기
+	while (i < param->philos)
 	{
-		arg.philo[i].num = i;
-		arg.philo->l_fork = i;
-		arg.philo->r_fork = (i + 1) % arg.param.philos;
+		philo[i].num = i;
+		philo->l_fork = i;
+		philo->r_fork = (i + 1) % param->philos;
+		philo->eat_cnt = 0;
+		philo->last_eat_time = 0; // 이게 맞나..
+		philo->param = param;
 		++i;
 	}
-	return (arg.philo);
+	return (philo);
 }

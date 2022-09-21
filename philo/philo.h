@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 00:21:57 by soo               #+#    #+#             */
-/*   Updated: 2022/09/21 12:02:00 by soo              ###   ########.fr       */
+/*   Updated: 2022/09/21 22:00:24 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ typedef struct	s_param
 	int	eat_time;
 	int	sleep_time;
 	int	must_eat;
-	int	*eat_check;
+	int	*eat_check; // 어캐쓰노
+	long long start;
 	pthread_mutex_t	*print;
 	pthread_mutex_t	*fork;
 }	t_param;
@@ -50,13 +51,9 @@ typedef struct s_philo
 	int	l_fork;
 	int	r_fork;
 	int	eat_cnt;
+	long long	last_eat_time; // 마지막으로 먹는데 걸린 시간
+	pthread_t	tid;
+	t_param *param;
 }	t_philo;
-
-typedef struct s_arg
-{
-	int		idx;
-	t_param param;
-	t_philo *philo;
-} t_arg;
 
 #endif

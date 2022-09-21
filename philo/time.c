@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 14:22:20 by soo               #+#    #+#             */
-/*   Updated: 2022/09/20 15:44:21 by soo              ###   ########.fr       */
+/*   Updated: 2022/09/21 21:57:05 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,29 @@ long long	get_now(void)
 
 	gettimeofday(&now, NULL);
 	return ((now.tv_sec * 1000) + (now.tv_usec / 1000));
-	// subject는 milli, 나오는 건 macro, sec이니까 마이크로는 / 1000, sec은 * 1000해서 맞추는듯
 }
 
-long long	time_diff(long long start)
+long long	time_watch(long long start)
 {
 	long long now;
-	
+
+	if (!start)
+	{
+		start = get_now();
+		return (start);
+	}
+	now = get_now();
+	return (now - start);
+}
+
+void	throw_time(long long start, long long end)
+{
+	long long	now;
+
+	now = time_watch(start);
+	while(now >= end)
+	{
+		usleep(10);
+		now = time_watch(start);
+	}
 }
