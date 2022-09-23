@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 00:21:44 by soo               #+#    #+#             */
-/*   Updated: 2022/09/21 21:40:53 by soo              ###   ########.fr       */
+/*   Updated: 2022/09/23 21:30:04 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,14 @@ void	make_thread(t_philo *philo)
 	i = 0;
 	while (i < philo[0].param->philos)
 	{
-		if (pthread_create(&(philo[i].tid), NULL, threading, &(philo[i])) != 0)
+		if (pthread_create(&(philo[i].tid), NULL, threading, (void *)&(philo[i])) != 0)
 			return ;
+		if (philo->state == DIE || philo->state == FIN)
+			return ;
+		// if (check_finish(&philo[i]))
+		// 	return ;
 		++i;
 	}
-	// check_finish(arg);
 	i = 0;
 	while (i < philo[0].param->philos)
 	{
@@ -40,7 +43,7 @@ int	main(int argc, char **argv)
 	if (argc != 5 && argc != 6)
 		return (1);
 	memset(&param, 0, sizeof(t_param));
-	if (!args_parse(&param, argv, argc) || init_param(param))
+	if (!args_parse(&param, argv, argc) || !init_param(&param))
 		return (1);
 	philo = (t_philo *)malloc(sizeof(t_philo) * param.philos);
 	init_philo(philo, &param);
