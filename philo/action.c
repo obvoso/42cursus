@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:59:55 by soo               #+#    #+#             */
-/*   Updated: 2022/09/23 21:39:37 by soo              ###   ########.fr       */
+/*   Updated: 2022/09/23 22:28:58 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,19 +70,17 @@ void	eating(t_philo *philo)
 
 	if (check_finish(philo))
 		return ;
-	start = get_now();
 	pthread_mutex_lock(&(philo->param->fork[philo->l_fork]));
-	print_state(philo, TAKE);
 	pthread_mutex_lock(&(philo->param->fork[philo->r_fork]));
+	start = get_now();
+	print_state(philo, TAKE);
 	print_state(philo, TAKE);
 	print_state(philo, EATING);
-	philo->last_eat_time = time_watch(start); // 마지막으로 먹는 데 걸린 시간 저장
-	//ft_putnbr(philo->last_eat_time);
+	philo->eat_cnt++;
+	throw_time(start, philo->param->eat_time);
 	pthread_mutex_unlock(&(philo->param->fork[philo->l_fork]));
 	pthread_mutex_unlock(&(philo->param->fork[philo->r_fork]));
 	// arg->param.eat_check[arg->idx] = EAT; // 어캐쓰노
-	philo->eat_cnt++;
-	throw_time(start, philo->param->eat_time);
 }
 
 void	*threading(void *p_philo)
