@@ -6,13 +6,14 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 00:21:57 by soo               #+#    #+#             */
-/*   Updated: 2022/09/24 14:00:31 by soo              ###   ########.fr       */
+/*   Updated: 2022/09/24 18:39:02 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
+//예외처리 에러메세지 출력하기!!!!!!!!!!!
 # define TAKE "has taken a fork"
 # define EATING "is eating"
 # define SLEEPING "is sleeping"
@@ -35,6 +36,17 @@
 # include <sys/time.h>
 # include <pthread.h>
 
+typedef struct s_philo
+{
+	int	num; 
+	int	l_fork;
+	int	r_fork;
+	int	eat_cnt;
+	int	state;
+	long long	last_eat_time; // 한 턴 돈 시간
+	pthread_t	tid;
+}	t_philo;
+
 typedef struct	s_param
 {
 	int	philos;
@@ -44,21 +56,11 @@ typedef struct	s_param
 	int	must_eat;
 	int	*eat_check; // 어캐쓰노
 	long long start;
+	int	die_state;
 	pthread_mutex_t	*print;
 	pthread_mutex_t	*fork;
+	t_philo *philo;
 }	t_param;
-
-typedef struct s_philo
-{
-	int	num; 
-	int	l_fork;
-	int	r_fork;
-	int	eat_cnt;
-	int	state;
-	long long	last_eat_time; // 마지막으로 먹는데 걸린 시간
-	pthread_t	tid;
-	t_param *param;
-}	t_philo;
 
 //init
 t_param	*args_parse(t_param *param, char **argv, int argc);
@@ -81,6 +83,6 @@ void print_state(t_philo *philo, char *state);
 //time
 long long	get_now(void);
 long long	time_watch(long long start);
-void	throw_time(long long start, long long end);
+void	throw_time(t_philo *philo, long long start, long long end);
 
 #endif

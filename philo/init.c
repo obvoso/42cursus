@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 18:44:13 by soo               #+#    #+#             */
-/*   Updated: 2022/09/24 14:24:18 by soo              ###   ########.fr       */
+/*   Updated: 2022/09/24 16:19:48 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_param	*args_parse(t_param *param, char **argv, int argc)
 {
 	param->philos = ft_atoi(argv[1]);
-	if (param->philos < 1)
+	if (param->philos < 2)
 		return (NULL);
 	param->life_time = ft_atoi(argv[2]);
 	if (param->life_time < 1)
@@ -71,7 +71,7 @@ t_philo *init_philo(t_philo *philo, t_param *param)
 		philo[i].l_fork = i;
 		philo[i].r_fork = (i + 1) % param->philos;
 		philo[i].eat_cnt = 0;
-		philo[i].last_eat_time = 0; // 이게 맞나..
+		philo[i].last_eat_time = get_now(); // 이게 맞나..
 		philo[i].param = param;
 		++i;
 	}

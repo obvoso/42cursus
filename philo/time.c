@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 14:22:20 by soo               #+#    #+#             */
-/*   Updated: 2022/09/23 22:01:45 by soo              ###   ########.fr       */
+/*   Updated: 2022/09/24 16:09:42 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,12 @@ long long	time_watch(long long start)
 	return (now - start);
 }
 
-void	throw_time(long long start, long long end)
+void	throw_time(t_philo *philo, long long start, long long end)
 {
 	long long	now;
 
 	now = time_watch(start);
-	while(now <= end)
+	while(now <= end && !check_finish(philo))
 	{
 		usleep(10);
 		now = time_watch(start);
