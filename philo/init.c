@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 18:44:13 by soo               #+#    #+#             */
-/*   Updated: 2022/09/23 21:39:29 by soo              ###   ########.fr       */
+/*   Updated: 2022/09/24 14:21:21 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_param	*args_parse(t_param *param, char **argv, int argc)
 			return (NULL);
 	}
 	return (param);
-}
+} 
 
 t_param *init_param(t_param *param)
 {
