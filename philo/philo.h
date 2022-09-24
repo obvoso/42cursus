@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 00:21:57 by soo               #+#    #+#             */
-/*   Updated: 2022/09/23 21:11:51 by soo              ###   ########.fr       */
+/*   Updated: 2022/09/24 14:00:31 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ typedef struct	s_param
 
 typedef struct s_philo
 {
-	int	num;
+	int	num; 
 	int	l_fork;
 	int	r_fork;
 	int	eat_cnt;
