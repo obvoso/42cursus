@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 14:22:20 by soo               #+#    #+#             */
-/*   Updated: 2022/09/24 16:09:42 by soo              ###   ########.fr       */
+/*   Updated: 2022/09/24 22:29:19 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,11 @@ long long	time_watch(long long start)
 void	throw_time(t_philo *philo, long long start, long long end)
 {
 	long long	now;
-
+	t_param	*param;
+	
 	now = time_watch(start);
-	while(now <= end && !check_finish(philo))
+	param = philo->param;
+	while(now < end && !param->die_state)
 	{
 		usleep(10);
 		now = time_watch(start);

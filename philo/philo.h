@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 00:21:57 by soo               #+#    #+#             */
-/*   Updated: 2022/09/24 18:39:02 by soo              ###   ########.fr       */
+/*   Updated: 2022/09/24 21:12:56 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PHILO_H
 
 //예외처리 에러메세지 출력하기!!!!!!!!!!!
+//6번째 인자  make넣었는데 돌아감 좆됨 인자처리 다시하기!!!!!!
 # define TAKE "has taken a fork"
 # define EATING "is eating"
 # define SLEEPING "is sleeping"
@@ -36,17 +37,6 @@
 # include <sys/time.h>
 # include <pthread.h>
 
-typedef struct s_philo
-{
-	int	num; 
-	int	l_fork;
-	int	r_fork;
-	int	eat_cnt;
-	int	state;
-	long long	last_eat_time; // 한 턴 돈 시간
-	pthread_t	tid;
-}	t_philo;
-
 typedef struct	s_param
 {
 	int	philos;
@@ -59,8 +49,19 @@ typedef struct	s_param
 	int	die_state;
 	pthread_mutex_t	*print;
 	pthread_mutex_t	*fork;
-	t_philo *philo;
 }	t_param;
+
+typedef struct s_philo
+{
+	int	num; 
+	int	l_fork;
+	int	r_fork;
+	int	eat_cnt;
+	long long	last_eat_time; // 한 턴 돈 시간
+	pthread_t	tid;
+	t_param *param;
+}	t_philo;
+
 
 //init
 t_param	*args_parse(t_param *param, char **argv, int argc);
@@ -69,7 +70,7 @@ t_philo *init_philo(t_philo *philo, t_param *param);
 int	ft_atoi(const char *str);
 
 //action
-int	check_finish(t_philo *philo);
+//int	check_finish(t_philo *philo);
 void	thinking(t_philo *philo);
 void	sleeping(t_philo *philo);
 void	eating(t_philo *philo);

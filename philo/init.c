@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 18:44:13 by soo               #+#    #+#             */
-/*   Updated: 2022/09/24 16:19:48 by soo              ###   ########.fr       */
+/*   Updated: 2022/09/24 22:00:35 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ t_philo *init_philo(t_philo *philo, t_param *param)
 		philo[i].l_fork = i;
 		philo[i].r_fork = (i + 1) % param->philos;
 		philo[i].eat_cnt = 0;
-		philo[i].last_eat_time = get_now(); // 이게 맞나..
+		philo[i].last_eat_time = get_now();
 		philo[i].param = param;
 		++i;
 	}

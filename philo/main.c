@@ -6,25 +6,53 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 00:21:44 by soo               #+#    #+#             */
-/*   Updated: 2022/09/24 18:15:58 by soo              ###   ########.fr       */
+/*   Updated: 2022/09/24 22:43:17 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	check_out_side(t_philo *philo)
+int	check_must_eat(t_philo *philo, int philos, int must_eat)
+{
+	int	i;
+	int	cnt;
+
+	i = 0;
+	cnt = 0;
+	if (must_eat)
+	{
+		while (i < philos && philo[i].eat_cnt == must_eat)
+			cnt += philo[i++].eat_cnt;
+		if (cnt && (cnt / philos) == philo->param->must_eat)
+			return (1);
+	}
+	return (0);
+}
+
+int	check_die_state(t_philo *philo)
 {
 	int	i;
 	t_param	*param;
-	
+
 	param = philo->param;
+	// eat_time == 0 //이건 밖에서 체크하기
 	while (1)
 	{
-		i = 0;
-		while(i < param->philos)
+		if (check_must_eat(philo, param->philos, param->must_eat))
 		{
-			if (philo[i].state == FIN || philo[i].state == DIE)
+			philo->param->die_state = 1;
+			pthread_mutex_lock(param->print);
+			ft_putendl(FINISH);
+			pthread_mutex_unlock(param->print);
+			return (1);
+		}
+		i = 0;
+		while (i < param->philos)
+		{
+			if (get_now() - philo[i].last_eat_time >= param->life_time)
 			{
+				philo->param->die_state = 1;
+				print_state(&philo[i], DIED);
 				return (1);
 			}
 			++i;
@@ -42,16 +70,11 @@ void	make_thread(t_philo *philo)
 	{
 		if (pthread_create(&(philo[i].tid), NULL, threading, (void *)&(philo[i])) != 0)
 			return ;
-		// if (philo->state == DIE || philo->state == FIN)
-		// 	return ;
-		if (check_finish(&philo[i]))
-			return ;
 		++i;
 	}
 	i = 0;
-	if (check_out_side(philo))
+	if (check_die_state(philo))
 	{
-	
 		while (i < philo[0].param->philos)
 		{
 			pthread_detach(philo[i].tid);
