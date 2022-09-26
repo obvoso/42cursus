@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 00:21:44 by soo               #+#    #+#             */
-/*   Updated: 2022/09/26 14:27:59 by soo              ###   ########.fr       */
+/*   Updated: 2022/09/26 15:06:50 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ int	check_must_eat(t_param *param, t_philo *philo, int philos, int must_eat)
 	cnt = 0;
 	if (must_eat)
 	{
-		//while (i < philos && philo[i].eat_cnt == must_eat)
-		//	cnt += philo[i++].eat_cnt;
 		while (i < philos)
 		{
 			if (philo[i].eat_cnt < must_eat)
@@ -48,8 +46,6 @@ int	check_die_state(t_philo *philo)
 	// eat_time == 0 //이건 밖에서 체크하기
 	while (1)
 	{
-		if (param->ready == 1)
-		{
 			i = 0;
 			while (i < param->philos)
 			{
@@ -64,7 +60,6 @@ int	check_die_state(t_philo *philo)
 			}
 			if (check_must_eat(param, philo, param->philos, param->must_eat))
 				return (1);
-		}
 	}
 	return (0);
 }
@@ -80,7 +75,6 @@ void	make_thread(t_philo *philo)
 			return ;
 		++i;
 	}
-	philo->param->ready = 1;
 	i = 0;
 	if (check_die_state(philo))
 	{

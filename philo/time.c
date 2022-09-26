@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 14:22:20 by soo               #+#    #+#             */
-/*   Updated: 2022/09/26 14:01:26 by soo              ###   ########.fr       */
+/*   Updated: 2022/09/26 15:25:02 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	throw_time(t_philo *philo, long long start, int end)
 	l_end = (long long)end;
 	while(now < end && !param->die_state)
 	{
-		usleep(10);
+		usleep(100);
 		now = time_watch(start);
 	}
 }

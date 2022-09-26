@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 00:21:57 by soo               #+#    #+#             */
-/*   Updated: 2022/09/26 14:04:09 by soo              ###   ########.fr       */
+/*   Updated: 2022/09/26 15:53:35 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,13 @@
 # define FINISH "finish"
 
 # define INIT 0
-# define STARVE 1
-# define EAT 2
-# define SLEEP 3
-# define THINK 4
-# define DIE 5
-# define FIN 6
+
+# define HUNGRY 0
+# define FULL 1
+# define SLEEP 2
+# define THINK 3
+# define DIE 4
+# define FIN 5
 
 # include <stdio.h>
 # include <stdlib.h>
@@ -44,10 +45,9 @@ typedef struct	s_param
 	int	eat_time;
 	int	sleep_time;
 	int	must_eat;
-	int	*eat_check; // 어캐쓰노
+	int	*eat_check; // 어캐쓰노 1이면 먹어라 0이면 먹음
 	long long start;
 	int	die_state;
-	int ready;
 	pthread_mutex_t	*print;
 	pthread_mutex_t	*fork;
 }	t_param;
