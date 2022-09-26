@@ -6,12 +6,12 @@
 #    By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/18 00:19:38 by soo               #+#    #+#              #
-#    Updated: 2022/09/24 17:47:33 by soo              ###   ########.fr        #
+#    Updated: 2022/09/26 21:08:19 by soo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=thread
 
 NAME = philo
 

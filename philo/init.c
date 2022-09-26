@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 18:44:13 by soo               #+#    #+#             */
-/*   Updated: 2022/09/26 15:35:03 by soo              ###   ########.fr       */
+/*   Updated: 2022/09/26 21:10:18 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,44 +35,46 @@ t_param	*args_parse(t_param *param, char **argv, int argc)
 	return (param);
 }
 
-t_param *init_param(t_param *param)
+t_param	*init_param(t_param *param)
 {
 	int	i;
 
-	param->fork = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * param->philos);
+	param->fork = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) \
+					* param->philos);
 	param->print = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t));
-	if (!param->fork || !param->print)
+	param->state = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t));
+	param->check = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t));
+	param->last_eat = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t));
+	param->eat_check = (int *)malloc(sizeof(int) * param->philos);
+	if (!param->fork || !param->print || !param->state || !param->eat_check)
 		return (NULL);
-	 param->eat_check = (int *)malloc(sizeof(int) * param->philos);
-	 if (!param->eat_check)
-	 	return (NULL);
 	i = 0;
 	while (i < param->philos)
 	{
 		if (i % 2 == 0)
 			param->eat_check[i] = FULL;
 		else
-		 	param->eat_check[i] = HUNGRY;
+			param->eat_check[i] = HUNGRY;
 		++i;
 	}
-	if (pthread_mutex_init(param->print, NULL) != 0)
+	if (pthread_mutex_init(param->print, NULL) || \
+		pthread_mutex_init(param->state, NULL) || \
+		pthread_mutex_init(param->last_eat, NULL) || \
+		pthread_mutex_init(param->check, NULL))
 		return (NULL);
 	i = 0;
 	while (i < param->philos)
-	{
-		if (pthread_mutex_init(&(param->fork[i]), NULL) != 0)
+		if (pthread_mutex_init(&(param->fork[i++]), NULL) != 0)
 			return (NULL);
-		++i;
-	}
 	return (param);
 }
 
-t_philo *init_philo(t_philo *philo, t_param *param)
+t_philo	*init_philo(t_philo *philo, t_param *param)
 {
 	int	i;
 
 	i = 0;
-	param->start = get_now(); // 여기 일단 넣고 나중에 초 ㄱㅊ으면 init_param으로 넘기기
+	param->start = get_now();
 	while (i < param->philos)
 	{
 		philo[i].num = i;
