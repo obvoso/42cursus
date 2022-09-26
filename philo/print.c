@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 12:55:33 by soo               #+#    #+#             */
-/*   Updated: 2022/09/24 22:52:02 by soo              ###   ########.fr       */
+/*   Updated: 2022/09/26 14:19:11 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,12 @@ void	ft_putnbr(long long nb)
 
 void print_state(t_philo *philo, char *state)
 {
-	pthread_mutex_lock(philo->param->print);
-	ft_putnbr(time_watch(philo->param->start));
+	t_param *param;
+
+	param = philo->param;
+	pthread_mutex_lock(param->print);
+	ft_putnbr(time_watch(param->start));
 	ft_putnbr(philo->num + 1);
 	ft_putendl(state);
-	pthread_mutex_unlock(philo->param->print);
+	pthread_mutex_unlock(param->print);
 }

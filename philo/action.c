@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:59:55 by soo               #+#    #+#             */
-/*   Updated: 2022/09/24 22:04:24 by soo              ###   ########.fr       */
+/*   Updated: 2022/09/26 14:18:37 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,12 @@ void	sleeping(t_philo *philo)
 	long long	start;
 	t_param		*param;
 
+	start = get_now();
 	param = philo->param;
 	if (param->die_state)
 		return ;
-	start = get_now();
 	print_state(philo, SLEEPING);
-	throw_time(philo, start, philo->param->sleep_time);
+	throw_time(philo, start, param->sleep_time);
 }
 
 void	eating(t_philo *philo)
@@ -74,17 +74,17 @@ void	eating(t_philo *philo)
 	param = philo->param;
 	if (param->die_state)
 		return ;
-	pthread_mutex_lock(&(philo->param->fork[philo->l_fork]));
-	pthread_mutex_lock(&(philo->param->fork[philo->r_fork]));
+	pthread_mutex_lock(&(param->fork[philo->l_fork]));
+	pthread_mutex_lock(&(param->fork[philo->r_fork]));
 	start = get_now();
 	print_state(philo, TAKE);
 	print_state(philo, TAKE);
 	print_state(philo, EATING);
 	philo->last_eat_time = get_now();
 	philo->eat_cnt++;
-	throw_time(philo, start, philo->param->eat_time);
-	pthread_mutex_unlock(&(philo->param->fork[philo->l_fork]));
-	pthread_mutex_unlock(&(philo->param->fork[philo->r_fork]));
+	throw_time(philo, start, param->eat_time);
+	pthread_mutex_unlock(&(param->fork[philo->l_fork]));
+	pthread_mutex_unlock(&(param->fork[philo->r_fork]));
 	// arg->param.eat_check[arg->idx] = EAT; // 어캐쓰노
 }
 
@@ -95,6 +95,7 @@ void	*threading(void *p_philo)
 
 	philo = (t_philo *)p_philo;
 	param = philo->param;
+	
 	while (!param->die_state)
 	{
 		if (philo->num % 2 == 0)
@@ -102,7 +103,7 @@ void	*threading(void *p_philo)
 		eating(philo);
 		sleeping(philo);
 		thinking(philo);
-		usleep(500);
+		//usleep(500);
 	}
 	return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 18:44:13 by soo               #+#    #+#             */
-/*   Updated: 2022/09/24 22:00:35 by soo              ###   ########.fr       */
+/*   Updated: 2022/09/26 14:26:15 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ t_param *init_param(t_param *param)
 	param->print = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t));
 	if (!param->fork || !param->print)
 		return (NULL);
+	//param->ready = 0;
 	// param->eat_check = (int *)malloc(sizeof(int) * param->philos);
 	// if (!param->eat_check)
 	// 	return (NULL);

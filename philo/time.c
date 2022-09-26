@@ -6,12 +6,11 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 14:22:20 by soo               #+#    #+#             */
-/*   Updated: 2022/09/24 22:29:19 by soo              ###   ########.fr       */
+/*   Updated: 2022/09/26 14:01:26 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-#include <i386/types.h>
 
 long long	get_now(void)
 {
@@ -34,13 +33,15 @@ long long	time_watch(long long start)
 	return (now - start);
 }
 
-void	throw_time(t_philo *philo, long long start, long long end)
+void	throw_time(t_philo *philo, long long start, int end)
 {
-	long long	now;
+	int	now;
+	long long l_end;
 	t_param	*param;
 	
 	now = time_watch(start);
 	param = philo->param;
+	l_end = (long long)end;
 	while(now < end && !param->die_state)
 	{
 		usleep(10);

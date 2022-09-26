@@ -6,13 +6,13 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 00:21:44 by soo               #+#    #+#             */
-/*   Updated: 2022/09/24 22:43:17 by soo              ###   ########.fr       */
+/*   Updated: 2022/09/26 14:27:59 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	check_must_eat(t_philo *philo, int philos, int must_eat)
+int	check_must_eat(t_param *param, t_philo *philo, int philos, int must_eat)
 {
 	int	i;
 	int	cnt;
@@ -21,10 +21,19 @@ int	check_must_eat(t_philo *philo, int philos, int must_eat)
 	cnt = 0;
 	if (must_eat)
 	{
-		while (i < philos && philo[i].eat_cnt == must_eat)
-			cnt += philo[i++].eat_cnt;
-		if (cnt && (cnt / philos) == philo->param->must_eat)
-			return (1);
+		//while (i < philos && philo[i].eat_cnt == must_eat)
+		//	cnt += philo[i++].eat_cnt;
+		while (i < philos)
+		{
+			if (philo[i].eat_cnt < must_eat)
+				return (0);
+			++i;
+		}
+		philo->param->die_state = 1;
+		pthread_mutex_lock(param->print);
+		ft_putendl(FINISH);
+		pthread_mutex_unlock(param->print);
+		return (1);
 	}
 	return (0);
 }
@@ -33,29 +42,28 @@ int	check_die_state(t_philo *philo)
 {
 	int	i;
 	t_param	*param;
+	long long	now;
 
 	param = philo->param;
 	// eat_time == 0 //이건 밖에서 체크하기
 	while (1)
 	{
-		if (check_must_eat(philo, param->philos, param->must_eat))
+		if (param->ready == 1)
 		{
-			philo->param->die_state = 1;
-			pthread_mutex_lock(param->print);
-			ft_putendl(FINISH);
-			pthread_mutex_unlock(param->print);
-			return (1);
-		}
-		i = 0;
-		while (i < param->philos)
-		{
-			if (get_now() - philo[i].last_eat_time >= param->life_time)
+			i = 0;
+			while (i < param->philos)
 			{
-				philo->param->die_state = 1;
-				print_state(&philo[i], DIED);
-				return (1);
+				now = get_now();
+				if (now - philo[i].last_eat_time > param->life_time)
+				{
+					philo->param->die_state = 1;
+					print_state(&philo[i], DIED);
+					return (1);
+				}
+				++i;
 			}
-			++i;
+			if (check_must_eat(param, philo, param->philos, param->must_eat))
+				return (1);
 		}
 	}
 	return (0);
@@ -72,6 +80,7 @@ void	make_thread(t_philo *philo)
 			return ;
 		++i;
 	}
+	philo->param->ready = 1;
 	i = 0;
 	if (check_die_state(philo))
 	{
