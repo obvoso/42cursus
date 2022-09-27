@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:59:55 by soo               #+#    #+#             */
-/*   Updated: 2022/09/26 22:02:48 by soo              ###   ########.fr       */
+/*   Updated: 2022/09/27 22:11:56 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ int	eating(t_philo *philo)
 	pthread_mutex_unlock(param->state);
 	pthread_mutex_lock(&(param->fork[philo->l_fork]));
 	pthread_mutex_lock(&(param->fork[philo->r_fork]));
-	param->eat_check[philo->num] = FULL;
 	start = get_now();
 	print_state(philo, TAKE);
 	print_state(philo, TAKE);
@@ -76,9 +75,9 @@ int	eating(t_philo *philo)
 	philo->last_eat_time = get_now();
 	pthread_mutex_unlock(param->last_eat);
 	pthread_mutex_lock(param->check);
-	philo->eat_cnt++;
 	pthread_mutex_unlock(param->check);
 	throw_time(philo, start, param->eat_time);
+	philo->eat_cnt++;
 	if (!check_mutex(param))
 		return (1);
 	pthread_mutex_lock(param->check);
