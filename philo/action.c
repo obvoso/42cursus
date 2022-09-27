@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:59:55 by soo               #+#    #+#             */
-/*   Updated: 2022/09/27 22:11:56 by soo              ###   ########.fr       */
+/*   Updated: 2022/09/27 22:21:43 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	eating(t_philo *philo)
 	pthread_mutex_lock(param->check);
 	pthread_mutex_unlock(param->check);
 	throw_time(philo, start, param->eat_time);
-	philo->eat_cnt++;
+	philo->eat_cnt++; // 시간 지나고 체크할지 지나기 전에 체크할지 생각해보기...
 	if (!check_mutex(param))
 		return (1);
 	pthread_mutex_lock(param->check);
