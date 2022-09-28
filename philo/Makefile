@@ -6,7 +6,7 @@
 #    By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/18 00:19:38 by soo               #+#    #+#              #
-#    Updated: 2022/09/27 22:06:12 by soo              ###   ########.fr        #
+#    Updated: 2022/09/28 22:00:58 by soo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,17 +15,23 @@ CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
 
 NAME = philo
 
-SRCS =	main.c init.c action.c print.c time.c
+SRCS =	srcs/main.c \
+		srcs/init.c \
+		srcs/action.c \
+		srcs/print.c \
+		srcs/time.c \
+		srcs/check.c \
+		srcs/free.c
 
 OBJS = ${SRCS:.c=.o}
 
 all : $(NAME)
 
 $(NAME) : $(OBJS) 
-	$(CC) $(CFLAGS) -o $@ $^ 
+	$(CC) $(CFLAGS) -o $@ $^
 
 %.o : %.c
-	$(CC) $(CFLAGS) -o $@ -c $^ 
+	$(CC) $(CFLAGS) -o $@ -c $^ -Iinclude
 	
 clean :
 	rm -f $(OBJS)

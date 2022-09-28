@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 18:44:13 by soo               #+#    #+#             */
-/*   Updated: 2022/09/27 22:18:45 by soo              ###   ########.fr       */
+/*   Updated: 2022/09/28 21:01:46 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,22 @@ t_param	*args_parse(t_param *param, char **argv, int argc)
 	return (param);
 }
 
+int	make_mutex(t_param *param)
+{
+	int	i;
+
+	if (pthread_mutex_init(param->print, NULL) || \
+		pthread_mutex_init(param->state, NULL) || \
+		pthread_mutex_init(param->last_eat, NULL) || \
+		pthread_mutex_init(param->check, NULL))
+		return (0);
+	i = 0;
+	while (i < param->philos)
+		if (pthread_mutex_init(&(param->fork[i++]), NULL) != 0)
+			return (0);
+	return (1);
+}
+
 t_param	*init_param(t_param *param)
 {
 	int	i;
@@ -46,7 +62,8 @@ t_param	*init_param(t_param *param)
 	param->check = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t));
 	param->last_eat = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t));
 	param->eat_check = (int *)malloc(sizeof(int) * param->philos);
-	if (!param->fork || !param->print || !param->state || !param->eat_check)
+	if (!param->fork || !param->print || !param->state || !param->eat_check || \
+		!param->check || !param->last_eat)
 		return (NULL);
 	i = 0;
 	while (i < param->philos)
@@ -57,15 +74,8 @@ t_param	*init_param(t_param *param)
 			param->eat_check[i] = HUNGRY;
 		++i;
 	}
-	if (pthread_mutex_init(param->print, NULL) || \
-		pthread_mutex_init(param->state, NULL) || \
-		pthread_mutex_init(param->last_eat, NULL) || \
-		pthread_mutex_init(param->check, NULL))
+	if (!make_mutex(param))
 		return (NULL);
-	i = 0;
-	while (i < param->philos)
-		if (pthread_mutex_init(&(param->fork[i++]), NULL) != 0)
-			return (NULL);
 	return (param);
 }
 
@@ -104,7 +114,7 @@ int	ft_atoi(const char *str)
 		ret = ret * 10 + *str - '0';
 		++str;
 	}
-	if (str)
+	if (*str)
 		return (-1);
 	if (ret > 2147483647 && sign == 1)
 		return (-1);

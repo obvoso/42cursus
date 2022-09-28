@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 00:21:57 by soo               #+#    #+#             */
-/*   Updated: 2022/09/27 22:04:25 by soo              ###   ########.fr       */
+/*   Updated: 2022/09/28 21:40:10 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,16 +61,22 @@ typedef struct s_philo
 
 //init
 t_param		*args_parse(t_param *param, char **argv, int argc);
+int			make_mutex(t_param *param);
 t_param		*init_param(t_param *param);
 t_philo		*init_philo(t_philo *philo, t_param *param);
 int			ft_atoi(const char *str);
 
 //action
-int			check_mutex(t_param *param);
+void		set_eat_check(t_param *param, t_philo *philo);
 int			thinking(t_philo *philo);
 int			sleeping(t_philo *philo);
 int			eating(t_philo *philo);
 void		*threading(void *p_philo);
+
+//check
+int			check_mutex(t_param *param);
+int			check_die_mutex(t_param *param);
+int			check_threading_param(t_param *param, t_philo *philo);
 
 //print
 void		ft_putendl(char *s);
@@ -81,5 +87,8 @@ void		print_state(t_philo *philo, char *state);
 long long	get_now(void);
 long long	time_watch(long long start);
 void		throw_time(t_philo *philo, long long start, int end);
+
+//free
+void		free_all(t_param param, t_philo **philo);
 
 #endif
