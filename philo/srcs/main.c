@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 00:21:44 by soo               #+#    #+#             */
-/*   Updated: 2022/10/02 17:25:44 by soo              ###   ########.fr       */
+/*   Updated: 2022/10/02 22:23:35 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,23 +19,23 @@ int	check_must_eat(t_param *param, t_philo *philo, int philos, int must_eat)
 	i = 0;
 	if (must_eat)
 	{
-		while (i < philos)
-		{
-			pthread_mutex_lock(param->check);
-			if (philo[i].eat_cnt < must_eat)
-			{
-				pthread_mutex_unlock(param->check);
-				return (0);
-			}
-			else
-			{
-				pthread_mutex_lock(param->print);
-				ft_putendl(FINISH);
-				philo->param->die_state = DIE;
-				pthread_mutex_unlock(param->check);
-				return (1);
-			}
+		pthread_mutex_lock(param->check);
+		while (i < philos && philo[i].eat_cnt == must_eat)
 			++i;
+		if (i == philos)
+		{
+			pthread_mutex_unlock(param->check);
+			pthread_mutex_lock(param->print);
+			ft_putendl(FINISH);
+			pthread_mutex_unlock(param->check);
+			philo->param->die_state = DIE;
+			pthread_mutex_lock(param->check);
+			return (1);
+		}
+		else
+		{
+			pthread_mutex_unlock(param->check);
+			return (0);
 		}
 	}
 	return (0);
@@ -52,10 +52,12 @@ int	check_life_time(t_param *param, t_philo *philo)
 		pthread_mutex_lock(param->check);
 		if (get_now() - philo[i].last_eat_time > param->life_time)
 		{
+			pthread_mutex_unlock(param->check);
 			pthread_mutex_lock(param->print);
 			ft_putnbr(time_watch(param->start));
 			ft_putnbr(philo[i].num + 1);
 			ft_putendl(DIED);
+			pthread_mutex_lock(param->check);
 			philo->param->die_state = DIE;
 			pthread_mutex_unlock(param->check);
 			return (1);
@@ -73,7 +75,7 @@ int	check_fin_state(t_philo *philo)
 	param = philo->param;
 	while (1)
 	{
-		usleep(100);
+		usleep (200);
 		if (check_life_time(param, philo))
 			return (1);
 		usleep(100);
@@ -85,8 +87,8 @@ int	check_fin_state(t_philo *philo)
 
 void	make_thread(t_philo *philo)
 {
-	int	i;
-	t_param *param;
+	int		i;
+	t_param	*param;
 
 	i = 0;
 	while (i < philo[0].param->philos)

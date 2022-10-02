@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 12:55:33 by soo               #+#    #+#             */
-/*   Updated: 2022/10/02 17:21:07 by soo              ###   ########.fr       */
+/*   Updated: 2022/10/02 22:12:17 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,17 @@ void	ft_putnbr(long long nb)
 	write(1, " ", 1);
 }
 
-int	print_state(t_philo *philo, char *state, int flag)
+int	print_state(t_philo *philo, t_param *param, char *state, int flag)
 {
-	t_param	*param;
-
-	param = philo->param;
+	if (!param->print)
+		return (1);
+	pthread_mutex_lock(param->print);
+	if (check_die_mutex(param))
+		return (1);
+	ft_putnbr(time_watch(param->start));
+	ft_putnbr(philo->num + 1);
+	ft_putendl(state);
+	pthread_mutex_unlock(param->print);
 	if (flag == EAT)
 	{
 		pthread_mutex_lock(param->check);
@@ -63,14 +69,5 @@ int	print_state(t_philo *philo, char *state, int flag)
 		philo->last_eat_time = get_now();
 		pthread_mutex_unlock(param->check);
 	}
-	if (!param->print)
-		return (1);
-	pthread_mutex_lock(param->print);
-	if (check_die_mutex(param))
-		return (1);
-	ft_putnbr(time_watch(param->start));
-	ft_putnbr(philo->num + 1);
-	ft_putendl(state);
-	pthread_mutex_unlock(param->print);
 	return (0);
 }

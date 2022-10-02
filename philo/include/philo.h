@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 00:21:57 by soo               #+#    #+#             */
-/*   Updated: 2022/10/02 15:31:21 by soo              ###   ########.fr       */
+/*   Updated: 2022/10/02 17:37:39 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # define DIED "died"
 # define FINISH "finish"
 
-#define EAT 1
-#define FORK 2
+# define EAT 1
+# define FORK 2
 
 # define HUNGRY 0
 # define FULL 1
@@ -75,7 +75,7 @@ void		*threading(void *p_philo);
 //print
 void		ft_putendl(char *s);
 void		ft_putnbr(long long nb);
-int			print_state(t_philo *philo, char *state, int flag);
+int			print_state(t_philo *philo, t_param *param, char *state, int flag);
 
 //time
 long long	get_now(void);
@@ -84,6 +84,5 @@ void		throw_time(t_philo *philo, long long start, int end);
 
 //handle
 int			check_die_mutex(t_param *param);
-void		free_all(t_param param);
 
 #endif

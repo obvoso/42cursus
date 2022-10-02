@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:59:55 by soo               #+#    #+#             */
-/*   Updated: 2022/10/02 17:15:54 by soo              ###   ########.fr       */
+/*   Updated: 2022/10/02 17:38:41 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	thinking(t_philo *philo)
 	t_param	*param;
 
 	param = philo->param;
-	return (print_state(philo, THINKING, 0));
+	return (print_state(philo, param, THINKING, 0));
 }
 
 int	sleeping(t_philo *philo)
@@ -25,7 +25,7 @@ int	sleeping(t_philo *philo)
 	t_param		*param;
 
 	param = philo->param;
-	if (print_state(philo, SLEEPING, 0))
+	if (print_state(philo, param, SLEEPING, 0))
 		return (1);
 	throw_time(philo, get_now(), param->sleep_time);
 	return (0);
@@ -36,7 +36,7 @@ static int	take_fork(t_philo *philo, t_param *param)
 	if (check_die_mutex(param))
 		return (1);
 	pthread_mutex_lock(param->fork + philo->l_fork);
-	if (print_state(philo, TAKE, 0))
+	if (print_state(philo, param, TAKE, 0))
 	{
 		pthread_mutex_unlock(param->fork + philo->l_fork);
 		return (1);
@@ -44,7 +44,7 @@ static int	take_fork(t_philo *philo, t_param *param)
 	if (check_die_mutex(param))
 		return (1);
 	pthread_mutex_lock(param->fork + philo->r_fork);
-	if (print_state(philo, TAKE, FORK))
+	if (print_state(philo, param, TAKE, FORK))
 	{
 		pthread_mutex_unlock(param->fork + philo->r_fork);
 		return (1);
@@ -59,7 +59,7 @@ int	eating(t_philo *philo)
 	param = philo->param;
 	if (take_fork(philo, param))
 		return (1);
-	if (print_state(philo, EATING, EAT))
+	if (print_state(philo, param, EATING, EAT))
 		return (1);
 	throw_time(philo, philo->last_eat_time, param->eat_time);
 	if (check_die_mutex(param))
