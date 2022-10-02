@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 00:21:44 by soo               #+#    #+#             */
-/*   Updated: 2022/10/02 22:23:35 by soo              ###   ########.fr       */
+/*   Updated: 2022/10/02 22:34:16 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,24 +19,24 @@ int	check_must_eat(t_param *param, t_philo *philo, int philos, int must_eat)
 	i = 0;
 	if (must_eat)
 	{
-		pthread_mutex_lock(param->check);
-		while (i < philos && philo[i].eat_cnt == must_eat)
-			++i;
-		if (i == philos)
+		while (i < philos)
 		{
-			pthread_mutex_unlock(param->check);
-			pthread_mutex_lock(param->print);
-			ft_putendl(FINISH);
-			pthread_mutex_unlock(param->check);
-			philo->param->die_state = DIE;
 			pthread_mutex_lock(param->check);
-			return (1);
-		}
-		else
-		{
+			if (philo[i].eat_cnt < must_eat)
+			{
+				pthread_mutex_unlock(param->check);
+				return (0);
+			}
+			++i;
 			pthread_mutex_unlock(param->check);
-			return (0);
 		}
+		pthread_mutex_unlock(param->check);
+		pthread_mutex_lock(param->print);
+		ft_putendl(FINISH);
+		pthread_mutex_lock(param->check);
+		philo->param->die_state = DIE;
+		pthread_mutex_unlock(param->check);
+		return (1);
 	}
 	return (0);
 }
