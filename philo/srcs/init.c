@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 18:44:13 by soo               #+#    #+#             */
-/*   Updated: 2022/09/28 21:01:46 by soo              ###   ########.fr       */
+/*   Updated: 2022/10/01 20:24:09 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_param	*args_parse(t_param *param, char **argv, int argc)
 {
 	param->philos = ft_atoi(argv[1]);
-	if (param->philos < 2)
+	if (param->philos < 1)
 		return (NULL);
 	param->life_time = ft_atoi(argv[2]);
 	if (param->life_time < 1)
@@ -39,10 +39,9 @@ int	make_mutex(t_param *param)
 {
 	int	i;
 
-	if (pthread_mutex_init(param->print, NULL) || \
-		pthread_mutex_init(param->state, NULL) || \
-		pthread_mutex_init(param->last_eat, NULL) || \
-		pthread_mutex_init(param->check, NULL))
+	if (pthread_mutex_init(param->print, NULL))
+		return (0);
+	if (pthread_mutex_init(param->check, NULL))
 		return (0);
 	i = 0;
 	while (i < param->philos)
@@ -53,27 +52,12 @@ int	make_mutex(t_param *param)
 
 t_param	*init_param(t_param *param)
 {
-	int	i;
-
 	param->fork = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) \
 					* param->philos);
 	param->print = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t));
-	param->state = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t));
 	param->check = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t));
-	param->last_eat = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t));
-	param->eat_check = (int *)malloc(sizeof(int) * param->philos);
-	if (!param->fork || !param->print || !param->state || !param->eat_check || \
-		!param->check || !param->last_eat)
+	if (!param->fork || !param->print || !param->check)
 		return (NULL);
-	i = 0;
-	while (i < param->philos)
-	{
-		if (i % 2 == 0)
-			param->eat_check[i] = FULL;
-		else
-			param->eat_check[i] = HUNGRY;
-		++i;
-	}
 	if (!make_mutex(param))
 		return (NULL);
 	return (param);

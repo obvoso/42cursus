@@ -6,7 +6,7 @@
 #    By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/18 00:19:38 by soo               #+#    #+#              #
-#    Updated: 2022/09/28 22:00:58 by soo              ###   ########.fr        #
+#    Updated: 2022/10/02 17:25:16 by soo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,7 @@ SRCS =	srcs/main.c \
 		srcs/action.c \
 		srcs/print.c \
 		srcs/time.c \
-		srcs/check.c \
-		srcs/free.c
+		srcs/handle.c
 
 OBJS = ${SRCS:.c=.o}
 
