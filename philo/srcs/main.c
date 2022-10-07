@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 00:21:44 by soo               #+#    #+#             */
-/*   Updated: 2022/10/02 22:34:16 by soo              ###   ########.fr       */
+/*   Updated: 2022/10/07 17:34:54 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ int	check_must_eat(t_param *param, t_philo *philo, int philos, int must_eat)
 {
 	int	i;
 
-	i = 0;
 	if (must_eat)
 	{
+		i = 0;
 		while (i < philos)
 		{
 			pthread_mutex_lock(param->check);
@@ -30,7 +30,6 @@ int	check_must_eat(t_param *param, t_philo *philo, int philos, int must_eat)
 			++i;
 			pthread_mutex_unlock(param->check);
 		}
-		pthread_mutex_unlock(param->check);
 		pthread_mutex_lock(param->print);
 		ft_putendl(FINISH);
 		pthread_mutex_lock(param->check);

@@ -6,7 +6,7 @@
 /*   By: soo <soo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 12:55:33 by soo               #+#    #+#             */
-/*   Updated: 2022/10/02 22:12:17 by soo              ###   ########.fr       */
+/*   Updated: 2022/10/07 17:57:27 by soo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,19 @@ void	ft_putnbr(long long nb)
 
 int	print_state(t_philo *philo, t_param *param, char *state, int flag)
 {
+	if (flag == EAT)
+	{
+		pthread_mutex_lock(param->check);
+		philo->last_eat_time = get_now();
+		philo->eat_cnt++;
+		pthread_mutex_unlock(param->check);
+	}
+	else if (flag == FORK)
+	{
+		pthread_mutex_lock(param->check);
+		philo->last_eat_time = get_now();
+		pthread_mutex_unlock(param->check);
+	}
 	if (!param->print)
 		return (1);
 	pthread_mutex_lock(param->print);
@@ -56,18 +69,5 @@ int	print_state(t_philo *philo, t_param *param, char *state, int flag)
 	ft_putnbr(philo->num + 1);
 	ft_putendl(state);
 	pthread_mutex_unlock(param->print);
-	if (flag == EAT)
-	{
-		pthread_mutex_lock(param->check);
-		philo->last_eat_time = get_now();
-		philo->eat_cnt++;
-		pthread_mutex_unlock(param->check);
-	}
-	if (flag == FORK)
-	{
-		pthread_mutex_lock(param->check);
-		philo->last_eat_time = get_now();
-		pthread_mutex_unlock(param->check);
-	}
 	return (0);
 }
