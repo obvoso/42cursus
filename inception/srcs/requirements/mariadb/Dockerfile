@@ -3,11 +3,11 @@ FROM alpine:3.17
 RUN apk update \
     && apk add \
     mariadb \
-    mariadb-client \
+    mariadb-client
 
 RUN mkdir -p /run/mysqld \
     && mkdir -p /var/lib/mysql \
-    && chmod 777 /run/mysqld \
+    && chmod 777 /run/mysqld
 
 ENTRYPOINT ["/usr/bin/mysql_install_db", "--user=mysql", "--datadir=/var/lib/mysql"]
 # /usr/bin/mysql_install_db "--user=mysql" "--datadir=/var/lib/mysql"
