@@ -5,11 +5,9 @@ FROM alpine:3.17
 
 # RUN을 단일 명령어로 작성하면 이들은 단일 레이어에서 실행된다. 
 RUN apk update \
-    && apk add dumb-init \
-    && apk add --no-cache nginx \
-    --no-cache openssl \
-    && mkdir -p /etc/nginx/ssl \
-    && mkdir -p /run/nginx
+    && apk add --no-cache nginx openssl
+
+RUN mkdir -p /etc/nginx/ssl
 
 RUN openssl req -x509 \
     -newkey rsa:2048 \
@@ -19,9 +17,8 @@ RUN openssl req -x509 \
     -out /etc/nginx/ssl/soo.crt \
     -subj "/C=KR/ST=Seoul/L=Gangnam/O=42Seoul/OU=Student/CN=localhost"
 
-COPY ./conf/nginx.conf /etc/nginx/nginx.conf
+COPY ./conf/nginx.conf /etc/nginx/http.d/
 
 EXPOSE 443
 
-ENTRYPOINT ["/usr/bin/dumb-init", "--"]
 CMD ["nginx", "-g", "daemon off;"]
