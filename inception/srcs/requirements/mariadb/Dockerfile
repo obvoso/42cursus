@@ -1,23 +1,19 @@
 FROM alpine:3.17
 
 RUN apk update \
-    && apk add \
+    && apk add --no-cache \
     mariadb \
-    mariadb-client
+    mariadb-client \
+    dumb-init
 
-RUN mkdir -p /run/mysqld \
-    && mkdir -p /var/lib/mysql \
-    && chmod 777 /run/mysqld
+RUN mkdir -p /run/mysqld
+RUN chmod 777 /run/mysqld
+RUN mkdir -p /var/lib/mysql
 
-ENTRYPOINT ["/usr/bin/mysql_install_db", "--user=mysql", "--datadir=/var/lib/mysql"]
-# /usr/bin/mysql_install_db "--user=mysql" "--datadir=/var/lib/mysql"
-# mysqld --user=mysql --console &
-# mysql
-# create database wordpress
-# create user 'soo'@'%' identified by '0000';
-# grant all privileges on *.* to 'soo'@'%';
-# flush privileges;
+COPY ./tools/run.sh /tmp/run.sh
+RUN chmod +x /tmp/run.sh
 
-CMD ["mysqld", "--user=mysql", "--console"]
+ENTRYPOINT [ "/usr/bin/dumb-init", "--"]
+CMD ["sh", "/tmp/run.sh"]
 
 EXPOSE 3306
