@@ -13,6 +13,8 @@ services:
       - "443:443"
     networks:
       - intra
+    env_file:
+    - .env
   
   mariadb:
     container_name: mariadb
@@ -28,7 +30,19 @@ services:
     env_file:
       - .env
  
-  # wordpress:
+  wordpress:
+    container_name: wordpress
+    build: ./requirements/wordpress
+    volumes:
+      - type: bind
+        source: "$VOLUMEDIR/wordpress"
+        target: /var/www/
+    ports:
+      - "9000:9000"
+    networks: 
+      - intra
+    env_file:
+      - .env
 
 # default == breidge
 networks:
