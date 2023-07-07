@@ -13,8 +13,6 @@ services:
       - "443:443"
     networks:
       - intra
-    env_file:
-    - .env
   
   mariadb:
     container_name: mariadb
@@ -43,6 +41,8 @@ services:
       - intra
     env_file:
       - .env
+    depends_on:
+      - mariadb
 
 # default == breidge
 networks:
