@@ -1,4 +1,4 @@
-wp core download
+wp core download --path=/var/www/wordpress
 
 # 동일한 네트워크에 있는 mariadb의 컨테이너네임:포트번호
 # 사용할 db config 파일 생성, mariadb 컨테이너에서 만든 db로 연결

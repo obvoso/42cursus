@@ -1,5 +1,6 @@
 FROM alpine:3.17
 
+WORKDIR /var/www/wordpress
 # php == php81
 RUN apk update \
     && apk add --no-cache \
@@ -32,9 +33,10 @@ RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli
     # wp를 wp-cli.phar로 심볼릭 링크를 걸어 wp로 실행 가능하게 함
     && ln -sf /usr/local/bin/wp-cli.phar /usr/local/bin/wp
 
-
 COPY ./tools/run.sh /tmp/wordpress_run.sh
 RUN chmod +x /tmp/wordpress_run.sh
+
+EXPOSE 9000
 
 ENTRYPOINT [ "/usr/bin/dumb-init", "--" ]
 CMD ["sh", "/tmp/wordpress_run.sh"]

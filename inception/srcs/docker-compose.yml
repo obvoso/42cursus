@@ -5,14 +5,18 @@ services:
     # 경로 내 도커파일이 없으면 에러, context로 경로 지정 후 dockerfile로 파일 지정
     build: ./requirements/nginx
     # source:target
+    # source는 호스트 경로, target은 컨테이너 경로
     volumes:
       - type: bind
         source: "$VOLUMEDIR/wordpress"
-        target: /var/www/
+        target: /var/www/wordpress
     ports:
       - "443:443"
     networks:
       - intra
+    depends_on:
+      - mariadb
+    restart: always
   
   mariadb:
     container_name: mariadb
@@ -21,12 +25,11 @@ services:
       - type: bind
         source: "$VOLUMEDIR/mariadb"
         target: /var/lib/mysql
-    ports:
-      - "3306:3306"
     networks: 
        - intra
     env_file:
       - .env
+    restart: always
  
   wordpress:
     container_name: wordpress
@@ -34,16 +37,15 @@ services:
     volumes:
       - type: bind
         source: "$VOLUMEDIR/wordpress"
-        target: /var/www/
-    ports:
-      - "9000:9000"
-    networks: 
+        target: /var/www/wordpress
+    networks:
       - intra
     env_file:
       - .env
     depends_on:
       - mariadb
+    restart: always
 
-# default == breidge
+# bridge: 컨테이너 내부에서만 통신, default == breidge
 networks:
   intra:

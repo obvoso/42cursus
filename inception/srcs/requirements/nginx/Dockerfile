@@ -8,6 +8,7 @@ RUN apk update \
     && apk add --no-cache nginx openssl
 
 RUN mkdir -p /etc/nginx/ssl
+RUN mkdir -p /var/www/wordpress
 
 RUN openssl req -x509 \
     -newkey rsa:2048 \
@@ -19,6 +20,6 @@ RUN openssl req -x509 \
 
 COPY ./conf/nginx.conf /etc/nginx/http.d/
 
-EXPOSE 443
-
 CMD ["nginx", "-g", "daemon off;"]
+
+EXPOSE 443
