@@ -7,15 +7,13 @@ FROM alpine:3.17
 RUN apk update \
     && apk add --no-cache nginx openssl
 
-RUN mkdir -p /etc/nginx/ssl
-RUN mkdir -p /var/www/wordpress
 
 RUN openssl req -x509 \
     -newkey rsa:2048 \
     -nodes \
     -days 365 \
-    -keyout /etc/nginx/ssl/soo.key \
-    -out /etc/nginx/ssl/soo.crt \
+    -keyout /etc/ssl/private/soo.key \
+    -out /etc/ssl/certs/soo.crt \
     -subj "/C=KR/ST=Seoul/L=Gangnam/O=42Seoul/OU=Student/CN=localhost"
 
 COPY ./conf/nginx.conf /etc/nginx/http.d/
